@@ -1,0 +1,9 @@
+describe tokenizer(__FILE__) do
+  after :each do check_value end
+
+  please #do check
+  #  tokens.should == [
+
+  #  ]
+  #end
+end

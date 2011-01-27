@@ -1,0 +1,52 @@
+== Wavy Interactive Ruby
+*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides result highlighting.
+
+It fixes some displaying bugs and extends the original tokenizer.
+
+== Install
+Install the gem with:
+
+  gem install wirb
+
+== Usage
+Add to your <tt>~/.irbrc</tt>
+
+  require 'rubygems' unless defined? Gem
+  require 'wirb'
+  Wirb.start
+
+== Improvements and fixed Wirble bugs
+* Basic support for regexes (Wirble displayed them as keywords)
+* Support for generic objects, especially sets and enumerators
+* Fixes some symbol bugs (e.g. :+, :*, ...)
+* Does not change the inspect value (e.g. ranges with 4 instead of 3 dots)
+* Comes with tests
+* Can be used without irb
+
+== Customize
+The color schema can be changed with:
+
+  Wirb.schema = { :comma => :purple, ... }
+
+Wirb color schemas are (almost) compatible with those from the original Wirble, but there are many extensions. Take a look at wirb/schema.rb or </tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
+
+Color schemas wanted! You've got a good looking alternative color schema? Please post it on the wiki[https://github.com/janlelis/wirb/wiki/schemas], it may be bundled with a next version ;)
+
+== wp
+You can colorize any object with <tt>wp</tt> (wavy_print):
+  require 'wirb/wp'
+  wp some_object
+  wp some_object, :light_red
+
+== Also see
+* hirb[https://github.com/cldwalker/hirb]
+* irbtools[https://github.com/janlelis/irbtools]
+* ripl-color_result[https://github.com/janlelis/ripl-color_result]
+
+== Credits
+Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.
+
+Contains code from (and thanks to)
+* Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
+
+J-_-L
