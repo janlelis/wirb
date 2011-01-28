@@ -8,11 +8,12 @@ class << Wirb
 
     chars = str.split(//)
 
-    @state, @token, i = [], '', 0
+    @state, @token, @passed, i  =  [], '', '', 0
 
     # helpers
     pass_custom_state = lambda{ |kind, *options|
       yield kind, @token  unless @token.empty?
+      @passed << @token
       @state.pop          if     options.include?(:remove)
       @token  = ''        unless options.include?(:keep_token)
       @repeat = true      if     options.include?(:repeat)
@@ -20,7 +21,7 @@ class << Wirb
 
     pass_state  = lambda{ |*options| pass_custom_state[ @state[-1], *options ] }
 
-    pass        = lambda{ |kind, string| yield kind, string }
+    pass        = lambda{ |kind, string| @passed << string; yield kind, string }
     
     set_state   = lambda{ |state| @state[-1] = state }
 
@@ -296,11 +297,13 @@ class << Wirb
       #   raise "unknown state #{@state[-1]} #{@state.inspect}"
       end
 
-      # TODO infinite recursion detection and catch errors?
+      # TODO infinite recursion detection
 
       # next round :)
       i += 1 unless @repeat
     end
+  rescue
+    pass[:default, str.gsub(/^#{@passed}/, '')]
   end
 end
 
