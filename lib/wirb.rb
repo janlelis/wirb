@@ -26,10 +26,15 @@ class << Wirb
   end
 
   # Colorize a result string
-  def colorize_result(str, custom_schema = schema)
-    tokenize(str).map{ |kind, token|
+  def colorize_result(string, custom_schema = schema)
+    check = ''
+    colorful = tokenize(string).map do |kind, token|
+      check << token
       colorize_string token, custom_schema[kind]
-    }.join
+    end.join
+
+    # always display the correct inspect string!
+    check == string ? colorful : string
   end
 
   # Colorize results in irb/ripl (or whatever might be supported in future)

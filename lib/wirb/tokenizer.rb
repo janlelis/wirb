@@ -8,7 +8,8 @@ class << Wirb
 
     chars = str.split(//)
 
-    @state, @token, @passed, i  =  [], '', '', 0
+    @state, @token, i  =  [], '', 0
+    @passed, snapshot  =  '', nil # exception handling
 
     # helpers
     pass_custom_state = lambda{ |kind, *options|
@@ -300,10 +301,14 @@ class << Wirb
       #   raise "unknown state #{@state[-1]} #{@state.inspect}"
       end
 
-      # TODO infinite recursion detection
-
       # next round :)
-      i += 1 unless @repeat
+      if !@repeat
+        i += 1
+      elsif snapshot && Marshal.load(snapshot) == [@state, @token, llc, lc, c, nc] # loop protection
+        raise 'Wirb Bug :/'
+      end
+
+      snapshot = Marshal.dump([@state, @token, llc, lc, c, nc])
     end
   rescue
     # p$!
