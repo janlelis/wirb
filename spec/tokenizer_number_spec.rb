@@ -90,6 +90,15 @@ describe tokenizer(__FILE__) do
         [:number, "3"],
         [:close_rational, ")"],
       ]
+
+      # modifying the world, see https://github.com/janlelis/wirb/issues#issue/1
+      require 'mathn'
+      check Rational(2,3)
+      tokens.should == [
+        [:number, "2"],
+        [:rational_separator, "/"],
+        [:number, "3"],
+      ]
     end
   end
 end

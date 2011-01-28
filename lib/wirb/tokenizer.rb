@@ -175,6 +175,9 @@ class << Wirb
       when :number
         if c =~ /[0-9e+.-]/ && !(c == '.' && nc == '.')
           @token << c
+        elsif c == '/' # ruby 1.8 mathn
+          pass_state[]
+          pass[:rational_separator, '/']
         else
           pass_state[:remove, :repeat]
         end
@@ -190,7 +193,7 @@ class << Wirb
         case c
         when '('
           pass[:open_rational, '(']
-        when /[0-9e-]/
+        when /[0-9-]/
           push_state[:number, :repeat]
         when '/', ','
           pass[:rational_separator, c]
@@ -303,6 +306,7 @@ class << Wirb
       i += 1 unless @repeat
     end
   rescue
+    # p$!
     pass[:default, str.gsub(/^#{@passed}/, '')]
   end
 end
