@@ -1,5 +1,6 @@
 == 0.2.2
 * Always return inspected string (even when errors happen) and endless-loop protection
+* Recognize active record class descriptions
 
 == 0.2.1
 * Fix 1.8 Rational after requiring 'mathn'

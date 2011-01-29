@@ -21,6 +21,11 @@ def check(obj)
   wp obj
 end
 
+def check_inspected(str)
+  @a = str
+  puts Wirb.colorize_result str
+end
+
 def tokens
   Wirb.tokenize(@a).to_a
 end

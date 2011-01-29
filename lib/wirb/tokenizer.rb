@@ -58,11 +58,17 @@ class << Wirb
         when /[A-Z]/  then push_state[:class,    :repeat]
         when /[a-z]/  then push_state[:keyword,  :repeat]
         when /[0-9-]/ then push_state[:number,   :repeat]
-        when '('      then push_state[:rational, :repeat]
-        when '.'      then push_state[:range, :repeat]
+        when '.'      then push_state[:range,    :repeat]
         when /\s/     then pass[:whitespace, c]
         when ','      then pass[:comma, ',']
         when '>'      then pass[:refers, '=>'] if lc == '='
+        when '('
+          if nc =~ /[0-9-]/
+            push_state[:rational, :repeat]
+          else
+            push_state[:object_description, :repeat]
+            open_brackets = 0 # TODO also count ()?
+          end
  
         when '{'
           if get_state[:set]
@@ -311,7 +317,7 @@ class << Wirb
       snapshot = Marshal.dump([@state, @token, llc, lc, c, nc])
     end
   rescue
-    # p$!
+    # p$!, $!.backtrace[0]
     pass[:default, str.gsub(/^#{@passed}/, '')]
   end
 end
