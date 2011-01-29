@@ -1,7 +1,4 @@
-module Wirb
-  VERSION = '0.2.1'
-end
-
+require File.dirname(__FILE__) + '/wirb/version'
 require File.dirname(__FILE__) + '/wirb/colors'
 require File.dirname(__FILE__) + '/wirb/schema'
 require File.dirname(__FILE__) + '/wirb/tokenizer'
