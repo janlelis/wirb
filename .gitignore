@@ -1,3 +1,5 @@
+*.rbc
+Rakefile.compiled.rbc
 *.swp
 *~
 pkg

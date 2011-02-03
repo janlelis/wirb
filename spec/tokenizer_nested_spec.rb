@@ -3,7 +3,7 @@ require 'set'
 describe tokenizer(__FILE__) do
   after :each do check_value end
 
-  please do check [2,'sdf',:hallosfe, /34jf3/, [[[[]]]], {{5=> "4"} => {Set.new => binding}}]
+  please do check [2,'sdf',:hallosfe, /34jf3/, [[[[]]]], {{5=> "4"} => {Set.new => Object.new}}]
     tokens.should be_like [
       [:open_array, "["],
       [:number, "2"],
@@ -52,7 +52,7 @@ describe tokenizer(__FILE__) do
       [:close_object, ">"],
       [:refers, "=>"],
       [:open_object, "#<"],
-      [:object_class, "Binding"],
+      [:object_class, "Object"],
       [:object_description_prefix, ":"],
       [:object_addr, OBJECT_ID],
       [:close_object, ">"],

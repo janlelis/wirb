@@ -1,5 +1,7 @@
-require File.dirname(__FILE__) + '/../lib/wirb' unless defined? Wirb
-require File.dirname(__FILE__) + '/../lib/wirb/wp'
+#require File.dirname(__FILE__) + '/../lib/wirb' unless defined? Wirb
+#require File.dirname(__FILE__) + '/../lib/wirb/wp'
+require 'wirb'
+require 'wirb/wp'
 require 'zucker/engine'
 require 'zucker/version'
 

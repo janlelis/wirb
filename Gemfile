@@ -1,7 +1,9 @@
 source :rubygems
 
-group :dev do
-  gem 'rspec'
-  gem 'rspec-core'
-  gem 'zucker', '>=9'
-end
+gemspec
+
+#group :dev do
+#  gem 'rspec'
+#  gem 'rspec-core'
+#  gem 'zucker', '>=9'
+#end

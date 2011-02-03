@@ -1,3 +1,6 @@
+== 0.2.3 / 0.2.4
+* Support for rubygems-test <gem-testers.org>
+
 == 0.2.2
 * Always return inspected string (even when errors happen) and endless-loop protection
 * Recognize active record class descriptions

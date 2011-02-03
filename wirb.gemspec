@@ -12,7 +12,10 @@ Gem::Specification.new do |s|
   s.description =  "Colorizes your irb results. It's based on Wirble but only provides result highlighting. Just call Wirb.start and enjoy the colors ;)."
   s.required_rubygems_version = '>= 1.3.6'
   s.required_ruby_version     = '>= 1.8.7'
-  s.files = Dir.glob(%w[{lib,test}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} **/deps.rip]) + %w{Rakefile wirb.gemspec}
+  s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} **/deps.rip]) + %w{Rakefile wirb.gemspec .gemtest}
   s.extra_rdoc_files = ["README.rdoc", "COPYING"]
   s.license = 'MIT'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec-core'
+  s.add_development_dependency 'zucker', '>=9'
 end
