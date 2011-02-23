@@ -61,13 +61,20 @@ class << Wirb
         when '.'      then push_state[:range,    :repeat]
         when /\s/     then pass[:whitespace, c]
         when ','      then pass[:comma, ',']
-        when '>'      then pass[:refers, '=>'] if lc == '='
+        when '>'
+          if lc == '='
+            if get_state[:hash]
+              pass[:refers, '=>']
+            else # FIXME remove this buggy <=> cheat
+              pass[:symbol, '=>']
+            end
+          end
         when '('
           if nc =~ /[0-9-]/
             push_state[:rational, :repeat]
           else
             push_state[:object_description, :repeat]
-            open_brackets = 0 # TODO also count ()?
+            open_brackets = 0
           end
  
         when '{'
@@ -126,8 +133,9 @@ class << Wirb
         when /[^"., }\])=]/
           @token << c
         else
-          if  ( c == '=' && !(nc == '>' && lc != '<' ) ) ||
-              ( c == ']' && lc == '[' )
+          if c == ']' && lc == '['
+            @token << c
+          elsif c == '=' && nc != '>' # FIXME: spaceship error
             @token << c
           else
             pass[:symbol_prefix, ':']

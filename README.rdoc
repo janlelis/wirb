@@ -28,7 +28,7 @@ The color schema can be changed with:
 
   Wirb.schema = { :comma => :purple, ... }
 
-Wirb color schemas are (almost) compatible with those from the original Wirble, but there are many extensions. Take a look at wirb/schema.rb or </tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
+Wirb color schemas are (almost) compatible with those from the original Wirble, but there are many extensions. Take a look at wirb/schema.rb or <tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
 
 Color schemas wanted! You've got a good looking alternative color schema? Please post it on the wiki[https://github.com/janlelis/wirb/wiki/schemas], it may be bundled with a next version ;)
 

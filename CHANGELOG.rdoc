@@ -1,3 +1,6 @@
+== 0.2.5
+* Little fixes..
+
 == 0.2.3 / 0.2.4
 * Support for rubygems-test <gem-testers.org>
 
