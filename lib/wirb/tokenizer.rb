@@ -326,7 +326,7 @@ class << Wirb
     end
   rescue
     # p$!, $!.backtrace[0]
-    pass[:default, str.gsub(/^#{@passed}/, '')]
+    pass[:default, str.sub(@passed, '')]
   end
 end
 
