@@ -1,5 +1,6 @@
 == 0.2.5
-* Little fixes..
+* Fix wrong \\ escaping
+* Fix stupid rescue bug (no more wirb crashes)
 
 == 0.2.3 / 0.2.4
 * Support for rubygems-test <gem-testers.org>

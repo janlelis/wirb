@@ -1,7 +1,5 @@
 == Wavy Interactive Ruby
-*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides result highlighting.
-
-It fixes some displaying bugs and extends the original tokenizer.
+*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting.
 
 == Install
 Install the gem with:
@@ -16,12 +14,13 @@ Add to your <tt>~/.irbrc</tt>
   Wirb.start
 
 == Improvements and fixed Wirble bugs
-* Basic support for regexes (Wirble displayed them as keywords)
-* Support for generic objects, especially sets and enumerators
-* Fixes some symbol bugs (e.g. :+, :*, ...)
 * Does not change the inspect value (e.g. ranges with 4 instead of 3 dots)
+* Basic support for regexes
+* Fixes some symbol bugs (e.g. :+, :*, ...)
+* Support for generic objects, especially sets and enumerators
 * Comes with tests
 * Can be used without irb
+* Supports 1.8, 1.9, jruby, rbx
 
 == Customize
 The color schema can be changed with:
