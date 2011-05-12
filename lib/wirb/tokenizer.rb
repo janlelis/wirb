@@ -144,7 +144,7 @@ class << Wirb
         end
 
       when :symbol_string
-        if c == '"' && lc != '\\'
+        if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # see string
           pass[:open_symbol_string, '"']
           pass_state[:remove]
           pop_state[]
@@ -154,8 +154,8 @@ class << Wirb
         end
 
       when :string
-        if c == '"' && lc != '\\'
-          pass[:open_string, '"']
+        if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # allow escaping of " and
+          pass[:open_string, '"']                                        # work around \\
           pass_state[:remove]
           pass[:close_string, '"']
         else
@@ -163,7 +163,7 @@ class << Wirb
         end
 
       when :regexp
-        if c == '/' && lc != '\\'
+        if c == '/' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # see string
           pass[:open_regexp, '/']
           pass_state[:remove]
           pass[:close_regexp, '/']

@@ -8,4 +8,28 @@ describe tokenizer(__FILE__) do
   please do check '"quote"'
     tokens.should == [[:open_string, '"'], [:string, "\\\"quote\\\""], [:close_string, '"']]
   end
+
+  please do check "\\"
+    tokens.should == [
+      [:open_string, "\""],
+      [:string, "\\\\"],
+      [:close_string, "\""],
+    ]
+  end
+
+  please do check "\\\\"
+    tokens.should == [
+      [:open_string, "\""],
+      [:string, "\\\\\\\\"],
+      [:close_string, "\""],
+    ]
+  end
+
+  please do check "\\\"X"
+    tokens.should == [
+      [:open_string, "\""],
+      [:string, "\\\\\\\"X"],
+      [:close_string, "\""],
+    ]
+  end
 end
