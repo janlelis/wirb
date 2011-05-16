@@ -1,3 +1,6 @@
+== 0.2.6
+* Fix Ruby 1.8 "already initialized constant" warnings
+
 == 0.2.5
 * Fix wrong \\ escaping
 * Fix stupid rescue bug (no more wirb crashes)
