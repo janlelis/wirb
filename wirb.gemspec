@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Wirb::VERSION
   s.authors     = ["Jan Lelis"]
   s.email       = "mail@janlelis.de"
-  s.homepage    = "http://github.com/janlelis/wirb"
+  s.homepage    = "https://github.com/janlelis/wirb"
   s.summary     = "Colorizes your irb results."
   s.description =  "Colorizes your irb results. It's based on Wirble but only provides result highlighting. Just call Wirb.start and enjoy the colors ;)."
   s.required_rubygems_version = '>= 1.3.6'
@@ -17,5 +17,14 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rspec-core'
-  s.add_development_dependency 'zucker', '>=9'
+  s.add_development_dependency 'zucker', '>= 10'
+ 
+  len = s.homepage.size
+  s.post_install_message = \
+    "       ┌── " + "info ".ljust(len-2,'─')            + "─┐\n" +
+    " J-_-L │ "   + s.homepage                          + " │\n" +
+    "       ├── " + "usage ".ljust(len-2,'─')           + "─┤\n" +
+    "       │ "   + "require 'wirb'".ljust(len,' ')     + " │\n" +
+    "       │ "   + "Wirb.start".ljust(len,' ')         + " │\n" +
+    "       └─"   + '─'*len                             + "─┘"
 end
