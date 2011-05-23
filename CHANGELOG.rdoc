@@ -1,3 +1,7 @@
+== 0.3.0
+* Improve 1.9 enumerator detection/highlighting
+  * Remove open_enumerator / close_enumerator (use nested usual base objects)
+
 == 0.2.6
 * Fix Ruby 1.8 "already initialized constant" warnings
 

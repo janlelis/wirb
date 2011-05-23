@@ -9,8 +9,6 @@ module Wirb
 
     :open_set         => :green,
     :close_set        => :green,
-    :open_enumerator  => :green,
-    :close_enumerator => :green,
 
     # delimiter colors
     :comma            => :green,

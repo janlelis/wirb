@@ -81,8 +81,6 @@ end
 # common regex patterns
 OBJECT_ID = /0x[0-9a-f]+/
 
-=begin helper methods for getting tokens
-def ws(obj)
-  puts Wirb.tokenize(obj.inspect).map{|*x| x.inspect + ','}*$/
-end
+=begin helper method for getting tokens
+def ws(obj); puts Wirb.tokenize(obj.inspect).map{|*x| x.inspect + ','}*$/; end
 =end

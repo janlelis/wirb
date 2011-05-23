@@ -24,7 +24,10 @@ class << Wirb
 
     pass        = lambda{ |kind, string| @passed << string; yield kind, string }
     
-    set_state   = lambda{ |state| @state[-1] = state }
+    set_state   = lambda{ |state, *options|
+      @state[-1] = state
+      @repeat = true if options.include? :repeat
+    }
 
     get_state   = lambda{ |state| @state[-1] == state }
 
@@ -51,7 +54,6 @@ class << Wirb
       case @state[-1]
       when nil, :hash, :array, :enumerator, :set # "default" state
         case c
-        when ':'      then push_state[:symbol]
         when '"'      then push_state[:string]
         when '/'      then push_state[:regexp]
         when '#'      then push_state[:object]
@@ -61,6 +63,14 @@ class << Wirb
         when '.'      then push_state[:range,    :repeat]
         when /\s/     then pass[:whitespace, c]
         when ','      then pass[:comma, ',']
+
+        when ':'
+          if get_state[:enumerator]
+            set_state[:object_description, :repeat]
+          else
+            push_state[:symbol]
+          end
+ 
         when '>'
           if lc == '='
             if get_state[:hash]
@@ -79,33 +89,30 @@ class << Wirb
  
         when '{'
           if get_state[:set]
-            pass[:open_set, '{'];  push_state[nil]
+            pass[:open_set, '{']; push_state[nil] # {{ means set-hash
           else
             pass[:open_hash, '{']; push_state[:hash]
           end
 
         when '['
-          if get_state[:enumerator]
-            pass[:open_enumerator, '[']; push_state[nil]
-          else
-            pass[:open_array, '['];      push_state[:array]
-          end
+          pass[:open_array, '[']; push_state[:array]
           
         when ']'
           if get_state[:array]
-            pass[:close_array, ']'];       pop_state[]
-          elsif get_previous_state[:enumerator]
-            pass[:close_enumerator, ']'];  pop_state[]
-            set_state[:object_description]
+            pass[:close_array, ']']
+            pop_state[]
+            pop_state[] if get_state[:enumerator]
           end
 
         when '}'
           if get_state[:hash]
-            pass[:close_hash, '}'];  pop_state[]
+            pass[:close_hash, '}']
           elsif get_previous_state[:set]
-            pass[:close_set, '}'];   pop_state[]
-            set_state[:object_description]
+            pass[:close_set, '}']
+            pop_state[] # remove extra nil state
           end
+          pop_state[]
+          pop_state[] if get_state[:enumerator]
 
         # else
         #   warn "ignoring char #{c.inspect}" if @debug
@@ -227,7 +234,8 @@ class << Wirb
           open_brackets = 0
         when '>'
           pass[:close_object, '>']
-          pop_state[]; @token = ''
+          pop_state[]
+          pop_state[] if get_state[:enumerator]
         end
 
       when :object_class
@@ -243,10 +251,15 @@ class << Wirb
           elsif !(c == ':' && lc == ':')
             pass_state[:keep_token]
             pass[:object_description_prefix, c]
-            if %w[set].include? @token = @token.downcase
+
+            @token = @token.downcase
+            if %w[set].include? @token
               set_state[@token.to_sym]
             else
               set_state[:object_description]
+              if %w[enumerator].include? @token
+                push_state[@token.to_sym]
+              end
             end
             @token = ''
           end
@@ -264,9 +277,6 @@ class << Wirb
         when '<'
           open_brackets += 1
           @token << c
-        when '['
-          pass_state[:repeat]
-          set_state[:enumerator]
         when '"'
           pass_state[]
           push_state[:string]
@@ -325,7 +335,7 @@ class << Wirb
       snapshot = Marshal.dump([@state, @token, llc, lc, c, nc])
     end
   rescue
-    # p$!, $!.backtrace[0]
+     p$!, $!.backtrace[0]
     pass[:default, str.sub(@passed, '')]
   end
 end
