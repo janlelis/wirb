@@ -41,9 +41,10 @@ class << Wirb
     end
   end
 
-  # Colorize results in irb
+  # Colorize results
+  #  Will hook into irb if IRB is defined
   def start
-    require File.dirname(__FILE__) + '/wirb/irb'
+    require File.dirname(__FILE__) + '/wirb/irb' if defined?(IRB)
     @running = true
   rescue LoadError
     warn "Couldn't activate Wirb"

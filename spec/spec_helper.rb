@@ -5,6 +5,8 @@ require 'wirb/wp'
 require 'zucker/engine'
 require 'zucker/version'
 
+Wirb.start
+
 def tokenizer(filename)
   filename =~ /tokenizer_(.*)_spec\.rb/
   "Wirb.tokenize" + ($1 ? "(#{$1})" : "")
