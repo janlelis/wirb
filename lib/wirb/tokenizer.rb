@@ -119,6 +119,7 @@ class << Wirb
         end
 
       when :class
+        next set_state[:time, :repeat] if c == ' ' # Ruby 1.8 default timestamp
         case c
         when /[a-z0-9_]/i
           @token << c
@@ -195,7 +196,9 @@ class << Wirb
         end
 
       when :number
-        if c =~ /[0-9e+.-]/ && !(c == '.' && nc == '.')
+        if c == '-' && @token != '' && @token[-1] != 'e'
+          set_state[:time, :repeat]
+        elsif c =~ /[0-9e+.-]/ && !(c == '.' && nc == '.')
           @token << c
         elsif c == '/' # ruby 1.8 mathn
           pass_state[]
@@ -204,6 +207,23 @@ class << Wirb
           pass_state[:remove, :repeat]
         end
 
+      when :time # via regex, state needs to be triggered somewhere else
+        peek = chars[i..-1].join
+        if [
+          /^\d+-\d{2}-\d{2} \d{2}:\d{2}:\d{2} (?:[+-]\d{4}|[a-z]{3})/i,               # 1.9 / UTC
+          /^[a-z]{3} [a-z]{3} \d{2} \d{2}:\d{2}:\d{2} (?:[+-]\d{4}|[a-z]{3}) \d{4}/i, # 1.8
+          #/^\d+-\d{2}-\d{2}/, # simple date
+        ].any?{ |regex|
+          ( @token + peek ) =~ regex
+        } # found, adjust parsing-pointer:
+          i = i + $&.size - @token.size - 1
+          @token = $&
+          pass_state[:remove]
+        else
+          @token << c
+          pop_state[:remove]
+        end
+ 
       when :range
         if c == '.'
           @token << c

@@ -7,7 +7,7 @@ task :test    => :spec
 
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.rspec_opts = [
-    # '--color',
+     '--color',
     '-r ' + File.expand_path( File.join( 'spec', 'spec_helper') ),
   ]
 end

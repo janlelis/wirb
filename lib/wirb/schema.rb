@@ -56,7 +56,9 @@ module Wirb
     :close_rational     => :light_cyan,
 
     # misc
-    :keyword => nil, # rename to default?
+    :default => nil,
+    :keyword => nil, # some lowercased word, merge with default?
+    :time    => :purple,
     :nil     => :light_red,
     :false   => :red,
     :true    => :green,
