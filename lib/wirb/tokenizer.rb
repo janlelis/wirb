@@ -87,7 +87,7 @@ class << Wirb
           if lc == '='
             if get_state[:hash]
               pass[:refers, '=>']
-            else # FIXME remove this buggy <=> cheat
+            else # MAYBE remove this <=> cheat
               pass[:symbol, '=>']
             end
           elsif get_state[:variable]
@@ -127,6 +127,11 @@ class << Wirb
           end
           pop_state[]
           pop_state[] if get_state[:enumerator]
+
+        when '<'
+          pass[:open_object, '<']
+          push_state[:ruby_vm]
+          push_state[:object_class]
 
         # else
         #  warn "ignoring char #{c.inspect}" if @debug
@@ -283,19 +288,24 @@ class << Wirb
             pass_state[]
             pass[:class_separator, '::']
           elsif !(c == ':' && lc == ':')
-            pass_state[:keep_token]
-            pass[:object_description_prefix, c]
-
-            @token = @token.downcase
-            if %w[set].include? @token
-              set_state[@token.to_sym]
+            if get_previous_state[:ruby_vm]
+              pass_state[]
+              pop_state[:remove]
             else
-              set_state[:object_description]
-              if %w[enumerator].include? @token
-                push_state[@token.to_sym]
+              pass_state[:keep_token]
+              pass[:object_description_prefix, c]
+
+              @token = @token.downcase
+              if %w[set].include? @token
+                set_state[@token.to_sym]
+              else
+                set_state[:object_description]
+                if %w[enumerator].include? @token
+                  push_state[@token.to_sym]
+                end
               end
+              @token = ''
             end
-            @token = ''
           end
         end
 
@@ -352,11 +362,14 @@ class << Wirb
           end
         end
 
-       when :object_line
+      when :object_line
         if c == ':' && nc =~ /[0-9]/
           @token << ':'
           pass_state[:remove]
           push_state[:object_line_number]
+        elsif c == '>' # e.g. RubyVM
+          pass_state[:remove, :repeat]
+          pass[:close_object, '>'] # TODO move somewhere else if disturbing
         else
           @token << c
         end
@@ -367,6 +380,18 @@ class << Wirb
         else
           pass_state[:remove, :repeat]
         end
+
+      # <RubyVM::InstructionSequence:pp@/home/jan/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/irb/output-method.rb>
+      when :ruby_vm # TODO write tests
+        if c =~ /[^@]/i
+          @token << c
+        else
+          pass[:object_description_prefix, ':']
+          pass[:object_line_prefix, @token + '@']
+          @token = ''
+          set_state[:object_line]
+        end
+
       
       # else
       #   raise "unknown state #{@state[-1]} #{@state.inspect}"
