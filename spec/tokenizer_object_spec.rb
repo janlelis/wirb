@@ -8,7 +8,7 @@ describe tokenizer(__FILE__) do
       [:open_object, "#<"],
       [:object_class, "Object"],
       [:object_description_prefix, ":"],
-      [:object_addr, OBJECT_ID],
+      [:object_address, OBJECT_ID],
       [:close_object, ">"],
     ]
  end
@@ -18,7 +18,7 @@ describe tokenizer(__FILE__) do
       [:open_object, "#<"],
       [:object_class, "Proc"],
       [:object_description_prefix, ":"],
-      [:object_addr, OBJECT_ID],
+      [:object_address, OBJECT_ID],
       [:object_line_prefix, "@"],
       [:object_line, /.*tokenizer_object_spec.rb:/],
       [:object_line_number, /\d+/],
@@ -31,7 +31,7 @@ describe tokenizer(__FILE__) do
       [:open_object, "#<"],
       [:object_class, "Proc"],
       [:object_description_prefix, ":"],
-      [:object_addr, OBJECT_ID],
+      [:object_address, OBJECT_ID],
       [:object_line_prefix, "@"],
       [:object_line, /.*tokenizer_object_spec.rb:/],
       [:object_line_number, /\d+/],
@@ -46,7 +46,7 @@ describe tokenizer(__FILE__) do
         [:open_object, "#<"],
         [:object_class, "Binding"],
         [:object_description_prefix, ":"],
-        [:object_addr, OBJECT_ID],
+        [:object_address, OBJECT_ID],
         [:close_object, ">"],
       ]
     end
@@ -79,7 +79,7 @@ describe tokenizer(__FILE__) do
         [:object_class, "Class"],
         [:object_description_prefix, ":"],
         [:object_description, '#<Class:#<Module:'],
-        [:object_addr, OBJECT_ID],
+        [:object_address, OBJECT_ID],
         [:object_description, '>>'],
         [:close_object, ">"]
       ]
@@ -117,7 +117,7 @@ describe tokenizer(__FILE__) do
       [:open_object, "#<"],
       [:object_class, "Hey"],
       [:object_description_prefix, ":"],
-      [:object_addr, /#{OBJECT_ID}/],
+      [:object_address, /#{OBJECT_ID}/],
       [:object_description, " "],
       [:object_variable_prefix, "@"],
       [:object_variable, "hallo"],

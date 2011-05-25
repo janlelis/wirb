@@ -140,7 +140,7 @@ describe tokenizer(__FILE__) do
         [:class_separator, "::"],
         [:object_class, "EratosthenesGenerator"],
         [:object_description_prefix, ":"],
-        [:object_addr, /#{OBJECT_ID}/],
+        [:object_address, /#{OBJECT_ID}/],
         [:object_description, ' '],
         [:object_variable_prefix, "@"],
         [:object_variable, "last_prime"],

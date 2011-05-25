@@ -54,7 +54,7 @@ describe tokenizer(__FILE__) do
       [:open_object, "#<"],
       [:object_class, "Object"],
       [:object_description_prefix, ":"],
-      [:object_addr, OBJECT_ID],
+      [:object_address, OBJECT_ID],
       [:close_object, ">"],
       [:close_hash, "}"],
       [:close_hash, "}"],

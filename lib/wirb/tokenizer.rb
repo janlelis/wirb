@@ -320,7 +320,7 @@ class << Wirb
         when /[0-9]/
           if c == '0' && nc == 'x'
             pass_state[:repeat]
-            push_state[:object_addr]
+            push_state[:object_address]
           else
             # push_state[:number, :repeat]
             @token << c
@@ -339,7 +339,7 @@ class << Wirb
           push_state[:variable]
         end
 
-      when :object_addr
+      when :object_address
         if c =~ /[x0-9a-f]/
           @token << c
         else
