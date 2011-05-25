@@ -52,7 +52,7 @@ class << Wirb
       # warn "char = #{c}  state = #{@state*':'}"
 
       case @state[-1]
-      when nil, :hash, :array, :enumerator, :set # "default" state
+      when nil, :hash, :array, :enumerator, :set, :variable # "default" state
         case c
         when '"'      then push_state[:string]
         when '/'      then push_state[:regexp]
@@ -61,8 +61,20 @@ class << Wirb
         when /[a-z]/  then push_state[:keyword,  :repeat]
         when /[0-9-]/ then push_state[:number,   :repeat]
         when '.'      then push_state[:range,    :repeat]
-        when /\s/     then pass[:whitespace, c]
-        when ','      then pass[:comma, ',']
+
+        when /\s/
+          if get_state[:variable]
+            pop_state[:repeat]
+          else
+            pass[:whitespace, c]
+          end
+
+        when ','
+          if get_state[:variable]
+            pop_state[:repeat]
+          else
+            pass[:comma, ',']
+          end
 
         when ':'
           if get_state[:enumerator]
@@ -78,6 +90,8 @@ class << Wirb
             else # FIXME remove this buggy <=> cheat
               pass[:symbol, '=>']
             end
+          elsif get_state[:variable]
+            pop_state[:repeat]
           end
         when '('
           if nc =~ /[0-9-]/
@@ -115,7 +129,7 @@ class << Wirb
           pop_state[] if get_state[:enumerator]
 
         # else
-        #   warn "ignoring char #{c.inspect}" if @debug
+        #  warn "ignoring char #{c.inspect}" if @debug
         end
 
       when :class
@@ -297,6 +311,9 @@ class << Wirb
         when '<'
           open_brackets += 1
           @token << c
+        when '@'
+          pass_state[]
+          push_state[:object_variable]
         when '"'
           pass_state[]
           push_state[:string]
@@ -310,6 +327,16 @@ class << Wirb
           end
         else
           @token << c
+        end
+
+      when :object_variable
+        if c =~ /[a-z0-9_]/i
+          @token << c
+        else
+          pass[:object_variable_prefix, '@']
+          pass_state[:remove]
+          pass[:object_description, '=']
+          push_state[:variable]
         end
 
       when :object_addr

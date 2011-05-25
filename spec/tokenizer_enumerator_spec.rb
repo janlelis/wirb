@@ -141,7 +141,16 @@ describe tokenizer(__FILE__) do
         [:object_class, "EratosthenesGenerator"],
         [:object_description_prefix, ":"],
         [:object_addr, /#{OBJECT_ID}/],
-        [:object_description, ' @last_prime=nil, @ubound=nil'],
+        [:object_description, ' '],
+        [:object_variable_prefix, "@"],
+        [:object_variable, "last_prime"],
+        [:object_description, "="],
+        [:nil, "nil"],
+        [:object_description, ", "],
+        [:object_variable_prefix, "@"],
+        [:object_variable, "ubound"],
+        [:object_description, "="],
+        [:nil, "nil"],
         [:close_object, ">"],
       ]
     end

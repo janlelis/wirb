@@ -28,6 +28,8 @@ module Wirb
     :object_line_prefix        => :brown_underline,
     :object_line               => :brown_underline,
     :object_line_number        => :brown_underline,
+    :object_variable_prefix    => :light_purple,
+    :object_variable           => :light_purple,
     :close_object              => :green,
 
     # symbol

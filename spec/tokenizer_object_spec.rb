@@ -105,4 +105,30 @@ describe tokenizer(__FILE__) do
       [:close_object, ">"],
     ]
   end
+
+  please do
+    class Hey
+      def initialize
+        @hallo = [1,42]
+      end
+    end
+    check Hey.new 
+    tokens.should be_like [
+      [:open_object, "#<"],
+      [:object_class, "Hey"],
+      [:object_description_prefix, ":"],
+      [:object_addr, /#{OBJECT_ID}/],
+      [:object_description, " "],
+      [:object_variable_prefix, "@"],
+      [:object_variable, "hallo"],
+      [:object_description, "="],
+      [:open_array, "["],
+      [:number, "1"],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:number, "42"],
+      [:close_array, "]"],
+      [:close_object, ">"]
+    ]
+  end
 end
