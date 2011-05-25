@@ -6,6 +6,9 @@ require File.expand_path( File.dirname(__FILE__) + '/wirb/tokenizer' )
 class << Wirb
   attr_accessor :schema
 
+  @running = false
+  def running?() @running end
+
   # Return the escape code for a given color
   def get_color(key)
     if key.is_a? String
@@ -24,24 +27,35 @@ class << Wirb
 
   # Colorize a result string
   def colorize_result(string, custom_schema = schema)
-    check = ''
-    colorful = tokenize(string).map do |kind, token|
-      check << token
-      colorize_string token, custom_schema[kind]
-    end.join
+    if @running
+      check = ''
+      colorful = tokenize(string).map do |kind, token|
+        check << token
+        colorize_string token, custom_schema[kind]
+      end.join
 
-    # always display the correct inspect string!
-    check == string ? colorful : string
+      # always display the correct inspect string!
+      check == string ? colorful : string
+    else
+      string
+    end
   end
 
-  # Colorize results in irb/ripl (or whatever might be supported in future)
+  # Colorize results in irb
   def start
     require File.dirname(__FILE__) + '/wirb/irb'
+    @running = true
   rescue LoadError
-    warn "Couldn't activate Wirb for #{which}"
+    warn "Couldn't activate Wirb"
   end
   alias activate start
   alias enable start
+
+  def stop # don't colorize, anymore
+    @running = false
+  end
+  alias deactivate stop
+  alias disable stop
 end
 
 # J-_-L

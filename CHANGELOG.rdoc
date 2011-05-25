@@ -3,6 +3,7 @@
   * Remove :open_enumerator / :close_enumerator (use nested usual base objects instead)
 * Detect timestamps (:timestamp)
 * Detect instance variables and their contents (:object_variable, :object_variable_prefix)
+* Add Wirb.stop to not colorize anything, anymore (in irb)
 
 == 0.2.6
 * Fix Ruby 1.8 "already initialized constant" warnings
