@@ -154,15 +154,20 @@ class << Wirb
       when :symbol
         case c
         when /"/
-          pass[:symbol_prefix, ':']
-          set_state[:symbol_string]
-          @token = ''
+          if lc == '$' && llc == ':'
+            @token << c
+          else
+            pass[:symbol_prefix, ':']
+            set_state[:symbol_string]
+          end
         when /[^"., }\])=]/
           @token << c
         else
           if c == ']' && lc == '['
             @token << c
           elsif c == '=' && nc != '>' # FIXME: spaceship error
+            @token << c
+          elsif c =~ /[.,]/ && lc == '$' && llc == ':'
             @token << c
           else
             pass[:symbol_prefix, ':']

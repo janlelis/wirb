@@ -1,7 +1,7 @@
 describe tokenizer(__FILE__) do
   after :each do check_value end
 
-  please do check %w|a ab ab0 ab= < > * + <=> <= >= == =~ __send__ is_a? [] []= |.map(&:to_sym)
+  please do check %w|a ab ab0 ab= < > * + <=> <= >= == =~ __send__ is_a? [] []= $. $" $,|.map(&:to_sym)
     tokens.should == [
       [:open_array, "["],
       [:symbol_prefix, ":"],
@@ -72,6 +72,18 @@ describe tokenizer(__FILE__) do
       [:whitespace, " "],
       [:symbol_prefix, ":"],
       [:symbol, "[]="],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:symbol_prefix, ":"],
+      [:symbol, "$."],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:symbol_prefix, ":"],
+      [:symbol, "$\""],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:symbol_prefix, ":"],
+      [:symbol, "$,"],
       [:close_array, "]"],
     ]
   end
