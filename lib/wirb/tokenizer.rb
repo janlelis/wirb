@@ -296,11 +296,11 @@ class << Wirb
               pass[:object_description_prefix, c]
 
               @token = @token.downcase
-              if %w[set].include? @token
+              if %w[set].include?(@token)
                 set_state[@token.to_sym]
               else
                 set_state[:object_description]
-                if %w[enumerator].include? @token
+                if %w[enumerator].include?(@token) && RUBY_VERSION >= '1.9'
                   push_state[@token.to_sym]
                 end
               end

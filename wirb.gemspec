@@ -17,14 +17,14 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rspec-core'
-  s.add_development_dependency 'zucker', '>= 10'
+  s.add_development_dependency 'zucker', '>= 11'
  
   len = s.homepage.size
   s.post_install_message = \
-    "       ┌── " + "info ".ljust(len-2,'─')            + "─┐\n" +
+   ("       ┌── " + "info ".ljust(len-2,'%')            + "─┐\n" +
     " J-_-L │ "   + s.homepage                          + " │\n" +
-    "       ├── " + "usage ".ljust(len-2,'─')           + "─┤\n" +
+    "       ├── " + "usage ".ljust(len-2,'%')           + "─┤\n" +
     "       │ "   + "require 'wirb'".ljust(len,' ')     + " │\n" +
     "       │ "   + "Wirb.start".ljust(len,' ')         + " │\n" +
-    "       └─"   + '─'*len                             + "─┘"
+    "       └─"   + '─'*len                             + "─┘").gsub('%', '─') # 1.8 workaround
 end

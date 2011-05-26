@@ -221,4 +221,20 @@ describe tokenizer(__FILE__) do
       ]
     end
   end
+
+  only18 do
+    if !defined?(RUBY_ENGINE) || RUBY_ENGINE == 'ruby' # TODO tests for jruby + rbx
+      please do check [3,4,5].each
+        tokens.should be_like [
+          [:open_object, "#<"],
+          [:object_class, "Enumerable"],
+          [:class_separator, "::"],
+          [:object_class, "Enumerator"],
+          [:object_description_prefix, ":"],
+          [:object_address, /#{OBJECT_ID}/],
+          [:close_object, ">"],
+        ]
+      end
+    end
+  end
 end
