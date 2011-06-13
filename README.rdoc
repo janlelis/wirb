@@ -1,6 +1,8 @@
 == Wavy Interactive Ruby
 *Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting.
 
+http://travis-ci.org/janlelis/wirb.png
+
 == Install
 Install the gem with:
 
