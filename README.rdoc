@@ -15,21 +15,21 @@ Add to your <tt>~/.irbrc</tt>
   require 'wirb'
   Wirb.start
 
-== Improvements and fixed Wirble bugs
-* Does not change the inspect value (e.g. ranges with 4 instead of 3 dots)
-* Basic support for regexes
-* Fixes some symbol bugs (e.g. :+, :*, ...)
+== Features
+* Syntax highlighting for Ruby objects
+* Does not change the inspect value
 * Support for generic objects, especially sets and enumerators
 * Comes with tests
 * Can be used without irb
-* Supports 1.8, 1.9, jruby, rbx
+* Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
+* Supports 1.8, 1.9, jruby, rbx, head
 
 == Customize
 The color schema can be changed with:
 
   Wirb.schema = { :comma => :purple, ... }
 
-Wirb color schemas are (almost) compatible with those from the original Wirble, but there are many extensions. Take a look at wirb/schema.rb or <tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
+Wirb color schemas are (almost) compatible with those from the original Wirble, but there are lots of extensions. Take a look at wirb/schema.rb or <tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
 
 Color schemas wanted! You've got a good looking alternative color schema? Please post it on the wiki[https://github.com/janlelis/wirb/wiki/schemas], it may be bundled with a next version ;)
 
@@ -40,9 +40,9 @@ You can colorize any object with <tt>wp</tt> (wavy_print):
   wp some_object, :light_red
 
 == Also see
-* hirb[https://github.com/cldwalker/hirb]
-* irbtools[https://github.com/janlelis/irbtools]
-* ripl-color_result[https://github.com/janlelis/ripl-color_result]
+* Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
+* Wirb is part of: irbtools[https://github.com/janlelis/irbtools]
+* ripl is an irb alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
 
 == Credits
 Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.
