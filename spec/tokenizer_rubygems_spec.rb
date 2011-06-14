@@ -7,17 +7,19 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do
-    require 'rspec'
-    check [Gem::Specification.find_by_name('rspec').dependencies.first.requirement]*2
-    tokens.should == [
-      [:open_array, '['],
-      [:gem_requirement, "~> #{ RSpec::Version::STRING}"],
-      [:comma, ","],
-      [:whitespace, " "],
-      [:gem_requirement, "~> #{ RSpec::Version::STRING}"],
-      [:close_array, ']'],
-    ]
+  only19 do
+    please do
+      require 'rspec'
+      check [Gem::Specification.find_by_name('rspec').dependencies.first.requirement]*2
+      tokens.should == [
+        [:open_array, '['],
+        [:gem_requirement, "~> #{ RSpec::Version::STRING }"],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:gem_requirement, "~> #{ RSpec::Version::STRING }"],
+        [:close_array, ']'],
+      ]
+    end
   end
 
   please do check_inspected "{1=>>= 0}"
@@ -30,7 +32,9 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do check Gem::Specification.find_by_name('wirb').dependencies.first
+  please do
+    require 'rspec'
+    check Gem::Specification.find_by_name('wirb').dependencies.first
     tokens.should == [ # <Gem::Dependency type=:development name="rspec" requirements=">= 0">
       [:open_object, "<"],
       [:object_class, "Gem"],
