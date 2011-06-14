@@ -3,19 +3,25 @@ describe tokenizer(__FILE__) do
 
   please do check_inspected "> 3.0.0.beta.4"
     tokens.should == [
-      [:gem_requirement, "> 3.0.0.beta.4"],
+      [:gem_requirement_condition, ">"],
+      [:whitespace, " "],
+      [:gem_requirement_version, "3.0.0.beta.4"],
     ]
   end
 
   please do check_inspected "< 3"
     tokens.should == [
-      [:gem_requirement, "< 3"],
+      [:gem_requirement_condition, "<"],
+      [:whitespace, " "],
+      [:gem_requirement_version, "3"],
     ]
   end
 
   please do check_inspected "<= 3"
     tokens.should == [
-      [:gem_requirement, "<= 3"],
+      [:gem_requirement_condition, "<="],
+      [:whitespace, " "],
+      [:gem_requirement_version, "3"],
     ]
   end
 
@@ -25,10 +31,14 @@ describe tokenizer(__FILE__) do
       check [Gem::Specification.find_by_name('rspec').dependencies.first.requirement]*2
       tokens.should == [
         [:open_array, '['],
-        [:gem_requirement, "~> #{ RSpec::Version::STRING }"],
+        [:gem_requirement_condition, "~>"],
+        [:whitespace, " "],
+        [:gem_requirement_version, RSpec::Version::STRING],
         [:comma, ","],
         [:whitespace, " "],
-        [:gem_requirement, "~> #{ RSpec::Version::STRING }"],
+        [:gem_requirement_condition, "~>"],
+        [:whitespace, " "],
+        [:gem_requirement_version, RSpec::Version::STRING],
         [:close_array, ']'],
       ]
     end
@@ -39,7 +49,9 @@ describe tokenizer(__FILE__) do
       [:open_hash, '{'],
       [:number, '1'],
       [:refers, '=>'],
-      [:gem_requirement, ">= 0"],
+      [:gem_requirement_condition, ">="],
+      [:whitespace, " "],
+      [:gem_requirement_version, "0"],
       [:close_hash, '}'],
     ]
   end

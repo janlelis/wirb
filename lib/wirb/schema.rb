@@ -59,12 +59,13 @@ module Wirb
 
     # misc
     :default => nil,
-    :keyword => nil, # some lowercased word, merge with default?
+    :keyword => nil, # some lowercased word
     :time    => :purple,
     :nil     => :light_red,
     :false   => :red,
     :true    => :green,
-    :gem_requirement => :cyan,
+    :gem_requirement_condition => :cyan,
+    :gem_requirement_version => :light_cyan,
   }
 end
 

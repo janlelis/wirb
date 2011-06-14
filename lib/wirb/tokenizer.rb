@@ -61,7 +61,7 @@ class << Wirb
         when /[a-z]/  then push_state[:keyword,  :repeat]
         when /[0-9-]/ then push_state[:number,   :repeat]
         when '.'      then push_state[:range,    :repeat]
-        when /[~=]/  then push_state[:gem_requirement, :repeat]
+        when /[~=]/  then push_state[:gem_requirement_condition, :repeat]
 
         when /\s/
           if get_state[:variable]
@@ -89,7 +89,7 @@ class << Wirb
           if get_state[:variable]
             pop_state[:repeat]
           elsif @token == '' && nc =~ /[= ]/
-            push_state[:gem_requirement, :repeat]
+            push_state[:gem_requirement_condition, :repeat]
           end
         when '('
           if nc =~ /[0-9-]/
@@ -131,7 +131,7 @@ class << Wirb
 
         when '<'
           if nc =~ /[= ]/
-            push_state[:gem_requirement, :repeat]
+            push_state[:gem_requirement_condition, :repeat]
           else # MAYBE slightly refactoring
             pass[:open_object, '<']
             push_state[:object]
@@ -171,7 +171,7 @@ class << Wirb
         else
           if c == ']' && lc == '['
             @token << c
-          elsif c == '=' && nc != '>' # FIXME: spaceship error
+          elsif c == '=' && nc != '>'
             @token << c
           elsif c =~ /[.,]/ && lc == '$' && llc == ':'
             @token << c
@@ -386,7 +386,7 @@ class << Wirb
           pass_state[:remove, :repeat]
         end
 
-      when :gem_requirement
+      when :gem_requirement_condition
         if c == '>' && lc == '='
           @token = ''; pop_state[] # TODO in pass helper
           if get_state[:hash]
@@ -399,7 +399,16 @@ class << Wirb
           else # MAYBE remove this <=> cheat
             pass[:symbol, '=>']
           end
-        elsif c =~ /[~><= a-z0-9.]/i
+        elsif c =~ /[^\s]/
+          @token << c
+        else
+          pass_state[:remove]
+          pass[:whitespace, c]
+          push_state[:gem_requirement_version]
+        end
+
+      when :gem_requirement_version
+        if c =~ /[0-9a-z.]/i
           @token << c
         else
           pass_state[:remove, :repeat]

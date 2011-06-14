@@ -1,6 +1,6 @@
 == 0.3.2
-* Improve <=> parsing :D
-* Support gem requirements and dependencies
+* Improve :<=> parsing :D
+* Support gem requirements (:gem_requirement_condition, :gem_requirement_version) and gem dependencies
 
 == 0.3.1
 * Fix ;$., ;$", :$,
