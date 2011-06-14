@@ -37,7 +37,7 @@ describe tokenizer(__FILE__) do
       [:comma, ","],
       [:whitespace, " "],
       [:symbol_prefix, ":"],
-      # [:symbol, "<=>"], # FIXME
+      # [:symbol, "<=>"], # MAYBE fixme
       [:symbol, "<"],
       [:symbol, "=>"],
       [:comma, ","],
@@ -95,7 +95,7 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do check [[:hallo],{:'hallo'=>:'test'}, {:'hallo='=>:'test='}, {:'<'=>9}]
+  please do check [[:hallo],{:'hallo'=>:'test'}, {:'hallo='=>:'test='}, {:'<'=>9}, {:'<=>'=>9}, {:'<'=>:'<=>'}]
     tokens.should == [
       [:open_array, "["],
       [:open_array, "["],
@@ -127,6 +127,27 @@ describe tokenizer(__FILE__) do
       [:symbol, "<"],
       [:refers, "=>"],
       [:number, "9"],
+      [:close_hash, "}"],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:open_hash, "{"],
+      [:symbol_prefix, ":"],
+      # [:symbol, "<=>"], # MAYBE fixme
+      [:symbol, "<"],
+      [:symbol, "=>"],
+      [:refers, "=>"],
+      [:number, "9"],
+      [:close_hash, "}"],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:open_hash, "{"],
+      [:symbol_prefix, ":"],
+      [:symbol, "<"],
+      [:refers, "=>"],
+      [:symbol_prefix, ":"],
+      # [:symbol, "<=>"], # MAYBE fixme
+      [:symbol, "<"],
+      [:symbol, "=>"],
       [:close_hash, "}"],
       [:close_array, "]"],
     ]

@@ -75,6 +75,7 @@ class << Wirb
             pop_state[:repeat]
           else
             pass[:comma, ',']
+            @refers_seen[-1] = false if get_state[:hash]
           end
 
         when ':'
@@ -103,6 +104,8 @@ class << Wirb
             pass[:open_set, '{']; push_state[nil] # {{ means set-hash
           else
             pass[:open_hash, '{']; push_state[:hash]
+            @refers_seen ||= []
+            @refers_seen.push false
           end
 
         when '['
@@ -118,6 +121,7 @@ class << Wirb
         when '}'
           if get_state[:hash]
             pass[:close_hash, '}']
+            @refers_seen.pop
           elsif get_previous_state[:set]
             pass[:close_set, '}']
             pop_state[] # remove extra nil state
@@ -382,7 +386,12 @@ class << Wirb
         if c == '>' && lc == '='
           @token = ''; pop_state[] # TODO in pass helper
           if get_state[:hash]
-            pass[:refers, '=>']
+            if nc == '=' || @refers_seen[-1]
+              pass[:symbol, '=>']
+            else
+              pass[:refers, '=>']
+              @refers_seen[-1] = true
+            end
           else # MAYBE remove this <=> cheat
             pass[:symbol, '=>']
           end
