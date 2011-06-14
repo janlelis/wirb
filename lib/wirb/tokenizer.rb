@@ -1,6 +1,6 @@
 class << Wirb
   # This is an extended version of the original wirble tokenizer.
-  # Almost everyone would say that 300 lines long case statements need refactoring, but
+  # Almost everyone would say that 400 lines long case statements need refactoring, but
   # ...sometimes it just doesn't matter ;)
   def tokenize(str)
     raise ArgumentError, 'Tokenizer needs an inspect-string' unless str.is_a? String
@@ -52,7 +52,7 @@ class << Wirb
       # warn "char = #{c}  state = #{@state*':'}"
 
       case @state[-1]
-      when nil, :hash, :array, :enumerator, :set, :variable # "default" state
+      when nil, :hash, :array, :enumerator, :set, :variable # default state
         case c
         when '"'      then push_state[:string]
         when '/'      then push_state[:regexp]
@@ -61,6 +61,7 @@ class << Wirb
         when /[a-z]/  then push_state[:keyword,  :repeat]
         when /[0-9-]/ then push_state[:number,   :repeat]
         when '.'      then push_state[:range,    :repeat]
+        when /[~=]/  then push_state[:gem_requirement, :repeat]
 
         when /\s/
           if get_state[:variable]
@@ -84,14 +85,10 @@ class << Wirb
           end
  
         when '>'
-          if lc == '='
-            if get_state[:hash]
-              pass[:refers, '=>']
-            else # MAYBE remove this <=> cheat
-              pass[:symbol, '=>']
-            end
-          elsif get_state[:variable]
+          if get_state[:variable]
             pop_state[:repeat]
+          elsif @token == '' && nc =~ /[= ]/
+            push_state[:gem_requirement, :repeat]
           end
         when '('
           if nc =~ /[0-9-]/
@@ -128,10 +125,11 @@ class << Wirb
           pop_state[]
           pop_state[] if get_state[:enumerator]
 
-        when '<'
+        when '<' # TODO needs slightly refactoring
           pass[:open_object, '<']
-          push_state[:ruby_vm]
+          push_state[:object]
           push_state[:object_class]
+          open_brackets = 0
 
         # else
         #  warn "ignoring char #{c.inspect}" if @debug
@@ -293,24 +291,19 @@ class << Wirb
             pass_state[]
             pass[:class_separator, '::']
           elsif !(c == ':' && lc == ':')
-            if get_previous_state[:ruby_vm]
-              pass_state[]
-              pop_state[:remove]
-            else
-              pass_state[:keep_token]
-              pass[:object_description_prefix, c]
+            pass_state[:keep_token]
+            pass[:object_description_prefix, c]
 
-              @token = @token.downcase
-              if %w[set].include?(@token)
-                set_state[@token.to_sym]
-              else
-                set_state[:object_description]
-                if %w[enumerator].include?(@token) && RUBY_VERSION >= '1.9'
-                  push_state[@token.to_sym]
-                end
+            @token = @token.downcase
+            if %w[set instructionsequence].include?(@token)
+              set_state[@token.to_sym]
+            else
+              set_state[:object_description]
+              if %w[enumerator].include?(@token) && RUBY_VERSION >= '1.9'
+                push_state[@token.to_sym]
               end
-              @token = ''
             end
+            @token = ''
           end
         end
 
@@ -374,7 +367,6 @@ class << Wirb
           push_state[:object_line_number]
         elsif c == '>' # e.g. RubyVM
           pass_state[:remove, :repeat]
-          pass[:close_object, '>'] # TODO move somewhere else if disturbing
         else
           @token << c
         end
@@ -386,12 +378,24 @@ class << Wirb
           pass_state[:remove, :repeat]
         end
 
-      # <RubyVM::InstructionSequence:pp@/home/jan/.rvm/rubies/ruby-1.9.2-p180/lib/ruby/1.9.1/irb/output-method.rb>
-      when :ruby_vm # TODO write tests
+      when :gem_requirement
+        if c == '>' && lc == '='
+          @token = ''; pop_state[] # TODO in pass helper
+          if get_state[:hash]
+            pass[:refers, '=>']
+          else # MAYBE remove this <=> cheat
+            pass[:symbol, '=>']
+          end
+        elsif c =~ /[~><= a-z0-9.]/i
+          @token << c
+        else
+          pass_state[:remove, :repeat]
+        end
+
+      when :instructionsequence # RubyVM
         if c =~ /[^@]/i
           @token << c
         else
-          pass[:object_description_prefix, ':']
           pass[:object_line_prefix, @token + '@']
           @token = ''
           set_state[:object_line]

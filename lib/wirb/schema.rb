@@ -64,6 +64,7 @@ module Wirb
     :nil     => :light_red,
     :false   => :red,
     :true    => :green,
+    :gem_requirement => :cyan,
   }
 end
 
