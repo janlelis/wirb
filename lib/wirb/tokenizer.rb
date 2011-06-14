@@ -129,11 +129,15 @@ class << Wirb
           pop_state[]
           pop_state[] if get_state[:enumerator]
 
-        when '<' # TODO needs slightly refactoring
-          pass[:open_object, '<']
-          push_state[:object]
-          push_state[:object_class]
-          open_brackets = 0
+        when '<'
+          if nc =~ /[= ]/
+            push_state[:gem_requirement, :repeat]
+          else # MAYBE slightly refactoring
+            pass[:open_object, '<']
+            push_state[:object]
+            push_state[:object_class]
+            open_brackets = 0
+          end
 
         # else
         #  warn "ignoring char #{c.inspect}" if @debug

@@ -7,6 +7,18 @@ describe tokenizer(__FILE__) do
     ]
   end
 
+  please do check_inspected "< 3"
+    tokens.should == [
+      [:gem_requirement, "< 3"],
+    ]
+  end
+
+  please do check_inspected "<= 3"
+    tokens.should == [
+      [:gem_requirement, "<= 3"],
+    ]
+  end
+
   only19 do
     please do
       require 'rspec'
