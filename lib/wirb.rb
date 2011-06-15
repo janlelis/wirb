@@ -2,6 +2,7 @@ require File.expand_path( File.dirname(__FILE__) + '/wirb/version' )
 require File.expand_path( File.dirname(__FILE__) + '/wirb/colors' )
 require File.expand_path( File.dirname(__FILE__) + '/wirb/schema' )
 require File.expand_path( File.dirname(__FILE__) + '/wirb/tokenizer' )
+require 'rainbow'
 
 class << Wirb
   attr_accessor :schema
@@ -9,20 +10,26 @@ class << Wirb
   @running = false
   def running?() @running end
 
-  # Return the escape code for a given color
-  def get_color(key)
-    if key.is_a? String
-      color = key
-    elsif Wirb::COLORS.key?(key)
-      color = Wirb::COLORS[key]
-    end
-
-    color ? "\033[#{ color }m" : ''
-  end
-
   # Colorize a string
-  def colorize_string(string, color)
-    get_color(color) + string.to_s + get_color(:nothing)
+  def colorize_string(string, *color)
+    if color.length == 3 and color.reduce(true) {|acc, x| acc and x.is_a? Fixnum}
+      # This is for specifying RGB colors.
+      return string.color color
+    else
+      if color.length != 1 or not (color[0].is_a? Symbol or color[0].nil? or color[0].is_a? String)
+        raise "Expected a color symbol, html-style hex-value or nil, got: #{color.inspect}"
+      end
+      color = color[0]
+      if color.nil?
+        return string
+      elsif color.is_a? String
+        return string.foreground color
+      elsif Wirb::Colors::respond_to? color
+        return Wirb::Colors.send(color, string)
+      else
+        return string.foreground color
+      end
+    end
   end
 
   # Colorize a result string
