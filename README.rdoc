@@ -29,7 +29,11 @@ The color schema can be changed with:
 
   Wirb.schema = { :comma => :purple, ... }
 
-Wirb color schemas are (almost) compatible with those from the original Wirble, but there are lots of extensions. Take a look at wirb/schema.rb or <tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
+Wirb color schemas are (almost) compatible with those from the original Wirble, but there are lots of extensions. Take a look at wirb/schema.rb or <tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::Colors</tt> for the available colors and how to create your own.  Wirb uses rainbow[https://github.com/sickill/rainbow] for color and supports 256-color terminals.
+
+For support on Windows, you should install the following gems:
+
+  gem install windows-pr win32console
 
 Color schemas wanted! You've got a good looking alternative color schema? Please post it on the wiki[https://github.com/janlelis/wirb/wiki/schemas], it may be bundled with a next version ;)
 
