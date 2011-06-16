@@ -438,7 +438,7 @@ class << Wirb
       snapshot = Marshal.dump([@state, @token, llc, lc, c, nc])
     end
   rescue
-     p$!, $!.backtrace[0]
+    p$!, $!.backtrace[0] if $VERBOSE
     pass[:default, str.sub(@passed, '')]
   end
 end
