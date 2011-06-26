@@ -10,7 +10,7 @@
 #   HighLineConnector.color(s, :yellow)            #=> calls HighLine.color(s, :bold, :yellow) because 
 #                                                  #   Wirb uses :yellow to mean bold yellow
 #
-# Note: HighLine library must be required separately; HighLine must be at least version 1.6.3
+# Note: HighLine library must be required separately
 
 class WirbHighLineConnector
   def self.color(s, *colors)
@@ -50,5 +50,9 @@ class WirbHighLineConnector
       translated_colors.flatten!
     end
     HighLine.color(s, *translated_colors)
+  end
+  
+  def color(*args)
+    self.class.color(*args)
   end
 end

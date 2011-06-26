@@ -25,9 +25,9 @@ class << Wirb
   # colors to be disabled (see lib/highline_connector)
   def use_highline(options={})
     if options[:raw]
-      self.colorizer=HighLine
+      self.colorizer=HighLine.new
     else
-      self.colorizer=WirbHighLineConnector
+      self.colorizer=WirbHighLineConnector.new
     end
   end
 
