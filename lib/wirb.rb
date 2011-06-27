@@ -2,27 +2,47 @@ require File.dirname(__FILE__) + '/wirb/version'
 require File.dirname(__FILE__) + '/wirb/colors'
 require File.dirname(__FILE__) + '/wirb/schema'
 require File.dirname(__FILE__) + '/wirb/tokenizer'
+autoload :WirbHighLineConnector, File.expand_path( File.dirname(__FILE__) + '/wirb/highline_connector.rb' )
 
 class << Wirb
-  attr_accessor :schema
+  attr_accessor :schema, :colorizer
 
   @running = false
   def running?() @running end
 
   # Return the escape code for a given color
-  def get_color(key)
-    if key.is_a? String
-      color = key
-    elsif Wirb::COLORS.key?(key)
-      color = Wirb::COLORS[key]
+  def get_color(*keys)
+    if @colorizer
+      @colorizer.color_code(*keys)
+    else
+      key = keys.first
+      if key.is_a? String
+        color = key.
+      elsif Wirb::COLORS.key?(key)
+        color = Wirb::COLORS[key]
+      end
+      color ? "\033[#{ color }m" : ''
     end
-
-    color ? "\033[#{ color }m" : ''
+  end
+  
+  # Shortcut to invoke HighLine. :raw option causes translation of 
+  # colors to be disabled (see lib/highline_connector)
+  def use_highline(options={})
+    if options[:raw]
+      self.colorizer=HighLine.new
+    else
+      self.colorizer=WirbHighLineConnector.new
+    end
   end
 
   # Colorize a string
-  def colorize_string(string, color)
-    get_color(color) + string.to_s + get_color(:nothing)
+  def colorize_string(string, *colors)
+    colors = colors.flatten
+    if @colorizer
+      @colorizer.color(string, *colors)
+    else
+      get_color(colors.first) + string.to_s + get_color(:nothing)
+    end
   end
 
   # Colorize a result string
