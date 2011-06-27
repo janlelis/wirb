@@ -1,7 +1,7 @@
-require File.expand_path( File.dirname(__FILE__) + '/wirb/version' )
-require File.expand_path( File.dirname(__FILE__) + '/wirb/colors' )
-require File.expand_path( File.dirname(__FILE__) + '/wirb/schema' )
-require File.expand_path( File.dirname(__FILE__) + '/wirb/tokenizer' )
+require File.dirname(__FILE__) + '/wirb/version'
+require File.dirname(__FILE__) + '/wirb/colors'
+require File.dirname(__FILE__) + '/wirb/schema'
+require File.dirname(__FILE__) + '/wirb/tokenizer'
 
 class << Wirb
   attr_accessor :schema
