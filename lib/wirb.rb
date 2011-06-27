@@ -11,14 +11,18 @@ class << Wirb
   def running?() @running end
 
   # Return the escape code for a given color
-  def get_color(key)
-    if key.is_a? String
-      color = key
-    elsif Wirb::COLORS.key?(key)
-      color = Wirb::COLORS[key]
+  def get_color(*keys)
+    if @colorizer
+      @colorizer.color_code(*keys)
+    else
+      key = keys.first
+      if key.is_a? String
+        color = key.
+      elsif Wirb::COLORS.key?(key)
+        color = Wirb::COLORS[key]
+      end
+      color ? "\033[#{ color }m" : ''
     end
-
-    color ? "\033[#{ color }m" : ''
   end
   
   # Shortcut to invoke HighLine. :raw option causes translation of 

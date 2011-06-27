@@ -13,10 +13,10 @@
 # Note: HighLine library must be required separately
 
 class WirbHighLineConnector
-  def self.color(s, *colors)
-    colors.compact!
+  def self.translate_colors(*colors)
+    colors = colors.compact
     if colors.first == :highline # In this case, colors already use HighLine's names
-      translated_colors = colors[1..-1]
+      colors[1..-1]
     else
       translated_colors = colors.map do |color|
         color = color.to_s
@@ -49,7 +49,20 @@ class WirbHighLineConnector
       end
       translated_colors.flatten!
     end
-    HighLine.color(s, *translated_colors)
+  end
+  
+  def self.color_code(*colors)
+    res = HighLine.color_code(*translate_colors(*colors))
+    $stderr.puts "WirbHighLineConnector.color_code(#{colors.map{|color| color.inspect}.join(',')}) => #{res.inspect}"
+    res
+  end
+  
+  def self.color(s, *colors)
+    HighLine.color(s, *translate_colors(*colors))
+  end
+  
+  def color_code(*args)
+    self.class.color_code(*args)
   end
   
   def color(*args)
