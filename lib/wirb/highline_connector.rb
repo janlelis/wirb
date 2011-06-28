@@ -53,7 +53,6 @@ class WirbHighLineConnector
   
   def self.color_code(*colors)
     res = HighLine.color_code(*translate_colors(*colors))
-    $stderr.puts "WirbHighLineConnector.color_code(#{colors.map{|color| color.inspect}.join(',')}) => #{res.inspect}"
     res
   end
   
