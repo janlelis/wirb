@@ -1,5 +1,6 @@
-== 0.3.3
-* Add ability to hook in a "colorizer"; designed with HighLine in mind
+== next
+* Add ability to hook in a colorizer
+* Only display error on failed tokenizations if $VERBOSE is true
 
 == 0.3.2
 * Improve :<=> parsing :D

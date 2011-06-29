@@ -1,7 +1,7 @@
 == Wavy Interactive Ruby
-*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting.
+*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schema possibilities.
 
-http://travis-ci.org/janlelis/wirb.png
+Travis: http://travis-ci.org/janlelis/wirb.png
 
 == Install
 Install the gem with:
@@ -29,7 +29,14 @@ The color schema can be changed with:
 
   Wirb.schema = { :comma => :purple, ... }
 
-Wirb color schemas are (almost) compatible with those from the original Wirble, but there are lots of extensions. Take a look at wirb/schema.rb or <tt>Wirb.schema</tt> for a list of available token descriptions. See wirb/colors.rb or <tt>Wirb::COLORS</tt> for the available colors.
+Wirb color schemas are (almost) compatible with those from the original Wirble, but there are lots of extensions. Take a look at wirb/schema.rb for a list of available token descriptions.
+
+Wirb supports multiple colorization engines. Available engines can be found in <tt>wirb/colorizer/*</tt>, the default engine is Paint[https://github.com/janlelis/paint] engines can be changed like this:
+
+  Wirb.colorizer = Wirb::Colorizer::Wirb0Paint
+
+FIXME easy docs
+
 
 Color schemas wanted! You've got a good looking alternative color schema? Please post it on the wiki[https://github.com/janlelis/wirb/wiki/schemas], it may be bundled with a next version ;)
 
@@ -39,15 +46,19 @@ You can colorize any object with <tt>wp</tt> (wavy_print):
   wp some_object
   wp some_object, :light_red
 
+== Todo before next version:
+* More documentation (and why all this compatibility stuff...)
+* Schemas (should include reference to used colorizer)
+
 == Also see
 * Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
 * Wirb is part of: irbtools[https://github.com/janlelis/irbtools]
 * ripl is an irb alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
+* The default colorizer: Paint[https://github.com/janlelis/paint]
 
 == Credits
 Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.
 
-Contains code from (and thanks to)
-* Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
+Influenced by code from (and thanks to): Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
 
 J-_-L

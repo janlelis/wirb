@@ -1,4 +1,4 @@
-module Wirb
+module Wirb::Colorizer::Wirb0
   COLORS = {
     :nothing      => '0;0',
 
@@ -42,6 +42,12 @@ module Wirb
     :cyan_background    => '7;36',
     :white_background   => '7;37',
   }
-end
 
-# J-_-L
+  def self.run(string, color_name)
+    color(color_name) + string.to_s + color(:nothing)
+  end
+
+  def self.color(color_name)
+    COLORS[color_name] ? "\e[#{COLORS[color_name]}m" : ''
+  end
+end   
