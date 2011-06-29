@@ -14,7 +14,7 @@
 
 class WirbHighLineConnector
   def self.translate_colors(*colors)
-    colors = colors.compact
+    colors = colors.flatten.compact
     if colors.first == :highline # In this case, colors already use HighLine's names
       colors[1..-1]
     else
@@ -47,13 +47,12 @@ class WirbHighLineConnector
           color = color.to_sym
         end
       end
-      translated_colors.flatten!
+      translated_colors.flatten
     end
   end
   
   def self.color_code(*colors)
-    res = HighLine.color_code(*translate_colors(*colors))
-    res
+    HighLine.color_code(*translate_colors(*colors))
   end
   
   def self.color(s, *colors)
