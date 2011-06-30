@@ -1,12 +1,14 @@
 PATH
   remote: .
   specs:
-    wirb (0.3.1)
+    wirb (0.4.0)
 
 GEM
   remote: http://rubygems.org/
   specs:
     diff-lcs (1.1.2)
+    highline (1.6.3)
+    paint (0.8.0)
     rake (0.8.7)
     rspec (2.5.0)
       rspec-core (~> 2.5.0)
@@ -22,6 +24,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  highline
+  paint
   rake
   rspec
   rspec-core

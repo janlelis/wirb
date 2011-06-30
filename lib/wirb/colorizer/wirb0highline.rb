@@ -1,4 +1,4 @@
-# Connector for using HighLine colors with Wirb
+# Colorizer for using HighLine colors with Wirb
 #
 # Automatically translates Wirb color to Highline colors: 
 #   HighLineConnector.color(s, :brown_underline) #=> calls HighLine.color(s, :yellow, :underline)
@@ -6,11 +6,11 @@
 # You can mix and match using HighLine color names and Wirb color names. Prefix HighLine color names
 # with :highline. For instance:
 #
-#   HighLineConnector.color(s, :highline, :yellow) #=> calls HighLine.color(s, :yellow)
-#   HighLineConnector.color(s, :yellow)            #=> calls HighLine.color(s, :bold, :yellow) because 
-#                                                  #   Wirb uses :yellow to mean bold yellow
+#   Wirb.run(s, :highline, :yellow) #=> calls HighLine.color(s, :yellow)
+#   Wirb.run(s, :yellow)            #=> calls HighLine.color(s, :bold, :yellow) because 
+#                                   #   Wirb uses :yellow to mean bold yellow
 
-require 'highlight'
+require 'highline'
 
 module Wirb::Colorizer::Wirb0HighLine
   def self.color(*colors)
@@ -32,29 +32,32 @@ module Wirb::Colorizer::Wirb0HighLine
         case color
         when "nothing"
           color = "clear"
-        when "light_gray"
-           color = "white"
-        when "dark_gray"
-           color = "light_black"  # Changed to [:bold, :black] below
-        when "yellow"
-           color = "light_yellow" # Changed to [:bold, :yellow] below
-        when "white"
-           color = "light_white"  # Changed to [:bold, :white] below
-        when /brown/              # Uses regexp to handle :brown_underline, etc.
+        when /light_gray/
+           color = color.sub("light_gray", "white")
+        when /dark_gray/
+           color = color.sub("dark_gray", "light_black")  # Changed to [:bold, :black] below
+        when /yellow/
+          color = color.sub("yellow", "light_yellow")     # Changed to [:bold, :yellow] below
+        when /white/
+           color = color.sub("white", "light_white")      # Changed to [:bold, :white] below
+        when /brown/              
           color = color.sub("brown", "yellow")
-        when /purple/             # Uses regexp to handle :purple_underline, etc.
+        when /purple/             
           color = color.sub("purple", "magenta")
         end
-        case color
-        when /^light_(.*)/
-          color = [$1.to_sym, :bold]
-        when /(.*)_underline$/
-          color = [$1.to_sym, :underline]
-        when /(.*)_background$/
-          color = ('on_' + $1).to_sym
-        else
-          color = color.to_sym
+        color_set = [color.to_sym]
+        if color_set.first.to_s =~ /^light_(.*)/
+          color_set[0] = $1.to_sym
+          color_set << :bold
         end
+        case color_set.first.to_s
+        when /(.*)_underline$/
+          color_set[0] = [$1.to_sym]
+          color_set << :underline
+        when /(.*)_background$/
+          color_set[0] = [('on_'+$1).to_sym]
+        end
+        color_set
       end
       translated_colors.flatten
     end
