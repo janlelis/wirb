@@ -4,7 +4,7 @@ require File.dirname(__FILE__) + '/wirb/schema'
 require File.dirname(__FILE__) + '/wirb/tokenizer'
 
 class << Wirb
-  attr_accessor :schema, :colorizer
+  attr_accessor :schema
 
   @running = false
 
@@ -12,13 +12,13 @@ class << Wirb
 
   # Return the escape code for a given color
   def get_color(*keys)
-    @colorizer.color(*keys)
+    colorizer.color(*keys)
   end
   alias color get_color
   
   # Colorize a string
   def colorize_string(string, *colors)
-    @colorizer.run(string, *colors)
+    colorizer.run(string, *colors)
   end
 
   # Colorize a result string
@@ -36,12 +36,26 @@ class << Wirb
       string
     end
   end
+  
+  def colorizer=(colorizer)
+    @colorizer=colorizer
+  end
+  
+  # Convenience method, permits simplified syntax like:
+  #   Wirb.colorize_with :HighLine
+  def colorize_with(colorizer_name)
+    @colorizer = Wirb::Colorizer.const_get(colorizer_name)
+  end
+  
+  # Jan: Note change to lazy evaluation
+  def colorizer
+    @colorizer ||= Wirb::Colorizer::Wirb0 # Jan: IMHO, should use Wirb0 not Paint, because Paint depends on an external gem
+  end
 
   # Colorize results
   #  Will hook into irb if IRB is defined
   def start
     require File.dirname(__FILE__) + '/wirb/irb' if defined?(IRB)
-    @colorizer ||= Wirb::Colorizer::Wirb0Paint
     @running = true
   rescue LoadError
     warn "Couldn't activate Wirb"

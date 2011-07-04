@@ -47,15 +47,15 @@ Paint::SHORTCUTS[:wirb] = {
 module Wirb::Colorizer::Wirb0Paint
   def self.run(string, *color_args)
     if color_args.first.is_a? Symbol
-      color_args.first && Paint::Wirb.send(color_args.first, string) || Paint[*color_args]
+      color_args.first && color_args.size==1 && Paint::Wirb.send(color_args.first, string) || Paint[string, *color_args]
     else
       Paint[*color_args]
     end
   end
 
-  def self.color(color_name)
+  def self.color(*color_args)
     if color_args.first.is_a? Symbol
-      color_args.first && Paint::Wirb.send(color_args.first) || Paint.color(*color_args)
+      color_args.first && color_args.size==1 && Paint::Wirb.send(color_args.first) || Paint.color(*color_args)
     else
       Paint.color(*color_args)
     end

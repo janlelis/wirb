@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec-core'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'zucker', '>= 11'
+  s.add_development_dependency 'highline'
+  s.add_development_dependency 'paint'
  
   len = s.homepage.size
   s.post_install_message = \
