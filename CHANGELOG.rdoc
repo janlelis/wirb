@@ -1,5 +1,8 @@
-== next
-* Add ability to hook in a colorizer
+== next (0.4.0)
+* Add ability to hook in a custom colorizer
+  * Support for Paint, HighLine, old Wirb color names (Wirb0) and even older Wirble color names
+  * Provides hybrid connects to Paint and HighLine that also enable Wirb colors (Wirb0Paint, Wirb0HighLine)
+  * Wirb0(-like) colors are still default, but will be dropped (as default) in 1.0
 * Only display error on failed tokenizations if $VERBOSE is true
 
 == 0.3.2
