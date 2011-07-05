@@ -1,11 +1,11 @@
-#require File.dirname(__FILE__) + '/../lib/wirb' unless defined? Wirb
-#require File.dirname(__FILE__) + '/../lib/wirb/wp'
 require 'wirb'
 require 'wirb/wp'
 require 'zucker/engine'
 require 'zucker/version'
 
 Wirb.start
+
+# TOKENIZER
 
 def tokenizer(filename)
   filename =~ /tokenizer_(.*)_spec\.rb/
@@ -34,12 +34,22 @@ def tokens
   Wirb.tokenize(@a).to_a
 end
 
-def only19
-  yield if RubyVersion == 1.9
-end
+# COLORIZER
 
-def only18
-  yield if RubyVersion == 1.8
+shared_examples_for "a Wirb0 colorizer" do
+  it "creates good color codes based on original Wirb color symbols" do
+    # Wirb.get_color(:black).should match_colors(30)
+    Wirb.get_color(:light_purple).should match_colors(1,35)
+    Wirb.get_color(:brown_underline).should match_colors(4,33)
+    Wirb.get_color(:green_background).should match_colors(42)
+  end
+  
+  it "colorizes strings based on original Wirb color symbols" do
+    Wirb.colorize_string('Mos Eisley', :blue).should match_colored_string('Mos Eisley', 34)
+    Wirb.colorize_string('Tatooine', :light_red).should match_colored_string('Tatooine', 1, 31)
+    Wirb.colorize_string('Bespin', :white).should match_colored_string('Bespin', 1, 37)
+    Wirb.colorize_string('Coruscant', :cyan_underline).should match_colored_string('Coruscant', 4, 36)
+  end
 end
 
 def extract_color_codes(string)
@@ -77,6 +87,8 @@ def standardize_color_codes(codes)
   end
   codes
 end
+
+# MATCHER
 
 # match regex in arrays (e.g. for  object ids)
 RSpec::Matchers.define :be_like do |should_array|
@@ -169,25 +181,19 @@ RSpec::Matchers.define :match_colored_string do |*should_spec|
   end
 end
 
+# GENERAL
+
+def only19
+  yield if RubyVersion == 1.9
+end
+
+def only18
+  yield if RubyVersion == 1.8
+end
+
 # common regex patterns
 OBJECT_ID = /0x[0-9a-f]+/
 
 =begin helper method for getting tokens
 def ws(obj); puts Wirb.tokenize(obj.inspect).map{|*x| x.inspect + ','}*$/; end
 =end
-
-shared_examples_for "a Wirb0 colorizer" do
-  it "creates good color codes based on original Wirb color symbols" do
-    # Wirb.get_color(:black).should match_colors(30)
-    Wirb.get_color(:light_purple).should match_colors(1,35)
-    Wirb.get_color(:brown_underline).should match_colors(4,33)
-    Wirb.get_color(:green_background).should match_colors(42)
-  end
-  
-  it "colorizes strings based on original Wirb color symbols" do
-    Wirb.colorize_string('Mos Eisley', :blue).should match_colored_string('Mos Eisley', 34)
-    Wirb.colorize_string('Tatooine', :light_red).should match_colored_string('Tatooine', 1, 31)
-    Wirb.colorize_string('Bespin', :white).should match_colored_string('Bespin', 1, 37)
-    Wirb.colorize_string('Coruscant', :cyan_underline).should match_colored_string('Coruscant', 4, 36)
-  end
-end
