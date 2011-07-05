@@ -4,12 +4,12 @@ require File.dirname(__FILE__) + "/lib/wirb/version"
  
 Gem::Specification.new do |s|
   s.name        = "wirb"
-  s.version     = Wirb::VERSION
+  s.version     = Wirb::VERSION.dup
   s.authors     = ["Jan Lelis"]
   s.email       = "mail@janlelis.de"
   s.homepage    = "https://github.com/janlelis/wirb"
-  s.summary     = "Colorizes your irb results."
-  s.description =  "Colorizes your irb results. It's based on Wirble but only provides result highlighting. Just call Wirb.start and enjoy the colors ;)."
+  s.summary     = "Wavy IRB: Colorizes irb results."
+  s.description =  "Wavy IRB: Colorizes irb results. It originated from Wirble, but only provides result highlighting. Just call Wirb.start and enjoy the colors in your IRB ;). You can use it with your favorite colorizer engine. See README.rdoc for more details."
   s.required_rubygems_version = '>= 1.3.6'
   s.required_ruby_version     = '>= 1.8.7'
   s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c}]) + %w{Rakefile wirb.gemspec .gemtest}
