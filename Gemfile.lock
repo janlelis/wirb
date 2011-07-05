@@ -7,7 +7,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     diff-lcs (1.1.2)
-    highline (1.6.3)
+    highline (1.6.4)
     paint (0.8.0)
     rake (0.8.7)
     rspec (2.5.0)
