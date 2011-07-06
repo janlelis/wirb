@@ -1,0 +1,136 @@
+colorizer:
+- Paint
+- Wirb0_Paint
+
+# container
+open_hash:
+- green
+- bright
+close_hash:
+- green
+- bright
+open_array:
+- green
+- bright
+close_array:
+- green
+- bright
+open_set:
+- green
+close_set:
+- green
+
+# delimiter
+comma:  green
+refers: green
+
+# class
+class:
+- green
+- bright
+class_separator:
+- green
+object_class:
+- green
+- bright
+
+# object
+open_object:
+- green
+object_description_prefix:
+- green
+object_description:
+- yellow
+object_address_prefix:
+- yellow
+- underline
+object_address:
+- yellow
+- underline
+object_line_prefix:
+- yellow
+- underline
+object_line:
+- yellow
+- underline
+object_line_number:
+- brown
+- underline
+object_variable_prefix:
+- purple
+- bright
+object_variable:
+- purple
+- bright
+close_object:
+- green
+
+# symbol
+symbol_prefix:
+- yellow
+- bright
+symbol:
+- yellow
+- bright
+open_symbol_string:
+- yellow
+symbol_string:
+- yellow
+- bright
+close_symbol_string:
+- yellow
+
+# string
+open_string:
+- white
+string:
+- black
+- bright
+close_string:
+- white
+
+# regexp
+open_regexp:
+- blue
+- bright
+regexp:
+- white
+close_regexp:
+- blue
+- bright
+regexp_flags:
+- red
+- bright
+
+# number
+number:
+- cyan
+range:
+- red
+open_rational:
+- cyan
+- bright
+rational_separator:
+- cyan
+- bright
+close_rational:
+- cyan
+- bright
+
+# misc
+#default:
+#keyword:
+time:
+- purple
+nil:
+- red
+- bright
+false:
+- red
+true:
+- green
+gem_requirement_condition:
+- cyan
+gem_requirement_version:
+- cyan
+- bright

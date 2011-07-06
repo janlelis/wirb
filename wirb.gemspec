@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description =  "Wavy IRB: Colorizes irb results. It originated from Wirble, but only provides result highlighting. Just call Wirb.start and enjoy the colors in your IRB ;). You can use it with your favorite colorizer engine. See README.rdoc for more details."
   s.required_rubygems_version = '>= 1.3.6'
   s.required_ruby_version     = '>= 1.8.7'
-  s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c}]) + %w{Rakefile wirb.gemspec .gemtest}
+  s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} data/**/*.yml]) + %w{Rakefile wirb.gemspec .gemtest}
   s.extra_rdoc_files = ["README.rdoc", "COPYING.txt"]
   s.license = 'MIT'
   s.add_development_dependency 'rspec'

@@ -1,6 +1,6 @@
-describe Wirb::Colorizer::Wirb0Paint do
+describe Wirb::Colorizer::Wirb0_Paint do
   before :each do
-    Wirb.colorizer = Wirb::Colorizer::Wirb0Paint
+    Wirb.colorizer = Wirb::Colorizer::Wirb0_Paint
   end
   
   it "creates good color codes based on Paint color symbols" do

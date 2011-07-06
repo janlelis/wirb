@@ -44,7 +44,7 @@ Paint::SHORTCUTS[:wirb] = {
   :white_background   => Paint.color(nil, :white),
 }
 
-module Wirb::Colorizer::Wirb0Paint
+module Wirb::Colorizer::Wirb0_Paint
   def self.run(string, *color_args)
     if color_args.first.is_a? Symbol
       color_args.first && color_args.size==1 && Paint::Wirb.send(color_args.first, string) || Paint[string, *color_args]

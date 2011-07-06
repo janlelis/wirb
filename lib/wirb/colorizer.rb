@@ -8,16 +8,12 @@
 module Wirb
   module Colorizer
     class << self
-      # Tries to find colorizer
-      # Jan: Isn't this just autoload, basically? Why not use that, instead?
       def const_missing(colorizer)
         path = File.dirname(__FILE__) + '/colorizer/' + colorizer.to_s.downcase
 
         begin
           require path
         rescue LoadError => e
-          # Jan: I think this should raise an error; otherwise failed requires default 
-          #      silently to Wirb::Colorizer::Wirb0, which is probably not what the user expected
           raise LoadError, "Could not load colorizer #{colorizer} at #{path}: #{e}"
         end
         

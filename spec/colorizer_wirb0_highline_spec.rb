@@ -1,6 +1,6 @@
-describe Wirb::Colorizer::Wirb0HighLine do
+describe Wirb::Colorizer::Wirb0_HighLine do
   before :each do
-    Wirb.colorizer = Wirb::Colorizer::Wirb0HighLine
+    Wirb.colorizer = Wirb::Colorizer::Wirb0_HighLine
   end
   
   it "creates good color codes based on Highline color symbols" do

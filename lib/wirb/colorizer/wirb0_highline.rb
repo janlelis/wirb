@@ -12,7 +12,7 @@
 
 require 'highline'
 
-module Wirb::Colorizer::Wirb0HighLine
+module Wirb::Colorizer::Wirb0_HighLine
   def self.color(*colors)
     ::HighLine.color_code(*color_name(*colors))
   end

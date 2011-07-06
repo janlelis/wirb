@@ -19,11 +19,12 @@ module Wirb::Colorizer::Wirble
     :white        => '1;37',
   }
 
-  def self.run(string, color_name)
-    color(color_name) + string.to_s + color(:nothing)
+
+  def self.run(string, *color_args)
+    color(*color_args) + string.to_s + color(:nothing)
   end
 
-  def self.color(color_name)
-    COLORS[color_name] ? "\033[#{COLORS[color_name]}m" : ''
+  def self.color(*color_args)
+    color_args.first && COLORS[color_args.first] ? "\e[#{COLORS[color_args.first]}m" : ''
   end
 end   
