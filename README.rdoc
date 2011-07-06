@@ -1,11 +1,7 @@
 == Wavy Interactive Ruby
-*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schema possibilities.
-
-== Next version: Gem release using Paint[https://github.com/janlelis/paint] and adding support for different colorization engines
-
-...around the first wednesday of july.
-
-Travis: http://travis-ci.org/janlelis/wirb.png
+*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schemas using yaml. Wirb is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
+<
+Travis: {http://travis-ci.org/janlelis/wirb.png}[http://travis-ci.org/janlelis/wirb]
 
 == Install
 Install the gem with:
@@ -27,22 +23,30 @@ Add to your <tt>~/.irbrc</tt>
 * Can be used without irb
 * Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
 * Supports 1.8, 1.9, jruby, rbx, head
+* Usable with any supported terminal colors engine
+* Color schemas in yaml files
 
-== Customize
-The color schema can be changed with:
+== Colors
+To only tweak some colors, take a look at the <tt>Wirb.schema</tt> hash. To use a custom schema, inspect the yaml files in the <tt>data/wirb/</tt> directory. You can create your own schema and load it using <tt>Wirb.load_schema(path_to_yaml_file)</tt>. Alternatively, you can use one of the bundled ones by passing a symbol instead of a path.
 
-  Wirb.schema = { :comma => :purple, ... }
+=== Colorizer
+Wirb supports multiple colorization engines. Available engines can be found in <tt>wirb/colorizer/*</tt>, the current default engine is <em>Wirb0</em> (the one of previous Wirb versions, inherited from the original Wirble). It will be dropped as default engine in 1.0 (later this year), because it uses wrong color names. It will be replaced by Paint[https://github.com/janlelis/paint] or a simple colorizer engine with proper color names.
 
-Wirb color schemas are (almost) compatible with those from the original Wirble, but there are lots of extensions. Take a look at wirb/schema.rb for a list of available token descriptions.
+You can use any colorizer defined in the <tt>lib/wirb/colorizer/</tt> directory. Some of them require external gems as dependencies (e.g. HighLine). You can change it using:
 
-Wirb supports multiple colorization engines. Available engines can be found in <tt>wirb/colorizer/*</tt>, the default engine is Paint[https://github.com/janlelis/paint] engines can be changed like this:
+  Wirb.colorize_with :Paint # or :HighLine or whatever
 
-  Wirb.colorizer = Wirb::Colorizer::Wirb0Paint
+Be careful, though! You also need to select a color schema that supports your colorizer (Schemas define supported colorizers using the <tt>:colorizer</tt> key). Load a schema with:
 
-FIXME easy docs
+  Wirb.load_schema! :default_paint          # make sure your colorizer is paint
 
+You can automatically use the first colorizer of the schema by using the non-exclamation mark version:
 
-Color schemas wanted! You've got a good looking alternative color schema? Please post it on the wiki[https://github.com/janlelis/wirb/wiki/schemas], it may be bundled with a next version ;)
+  Wirb.load_schema :default_paint # will fail if paint is not installed
+
+Color schemas wanted! You've got a good looking alternative color schema? Please fork and add it to <tt>data/wirb/*</tt> :)
+
+Colorizers wanted! Your favorite terminal colors gem is not supported yet? Please fork and add it to <tt>lib/wirb/colorizer/*</tt> :D
 
 == wp
 You can colorize any object with <tt>wp</tt> (wavy_print):
@@ -50,19 +54,24 @@ You can colorize any object with <tt>wp</tt> (wavy_print):
   wp some_object
   wp some_object, :light_red
 
-== Todo before next version:
-* More documentation (and why all this compatibility stuff...)
-* Schemas (should include reference to used colorizer)
-
 == Also see
 * Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
 * Wirb is part of: irbtools[https://github.com/janlelis/irbtools]
 * ripl is an irb alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
-* The default colorizer: Paint[https://github.com/janlelis/paint]
+* Advanced terminal color gems: Paint[https://github.com/janlelis/paint], HighLine[https://github.com/JEG2/highline]
+
+== Todo
+* Tests for schema stuff
+* More colorizers and themes
+* More support for stdlib (most important: Complex)
 
 == Credits
 Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.
 
-Influenced by code from (and thanks to): Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
+Contributions[https://github.com/janlelis/wirb/contributors] by and thanks to:
+* {Richard LeBer}[https://github.com/rleber]
+
+Influenced by code from and thanks to:
+* Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
 
 J-_-L
