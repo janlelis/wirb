@@ -1,7 +1,7 @@
 == Wavy Interactive Ruby
 *Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schemas using yaml. Wirb is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
-<
-Travis: {http://travis-ci.org/janlelis/wirb.png}[http://travis-ci.org/janlelis/wirb]
+
+{Travis}[http://travis-ci.org/janlelis/wirb]: http://travis-ci.org/janlelis/wirb.png
 
 == Install
 Install the gem with:
@@ -38,11 +38,11 @@ You can use any colorizer defined in the <tt>lib/wirb/colorizer/</tt> directory.
 
 Be careful, though! You also need to select a color schema that supports your colorizer (Schemas define supported colorizers using the <tt>:colorizer</tt> key). Load a schema with:
 
-  Wirb.load_schema! :default_paint          # make sure your colorizer is paint
+  Wirb.load_schema! :classic_paint # make sure your colorizer is paint
 
 You can automatically use the first colorizer of the schema by using the non-exclamation mark version:
 
-  Wirb.load_schema :default_paint # will fail if paint is not installed
+  Wirb.load_schema :classic_paint # will fail if paint is not installed
 
 Color schemas wanted! You've got a good looking alternative color schema? Please fork and add it to <tt>data/wirb/*</tt> :)
 
@@ -66,7 +66,7 @@ You can colorize any object with <tt>wp</tt> (wavy_print):
 * More support for stdlib (most important: Complex)
 
 == Credits
-Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.
+* Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.
 
 Contributions[https://github.com/janlelis/wirb/contributors] by and thanks to:
 * {Richard LeBer}[https://github.com/rleber]
