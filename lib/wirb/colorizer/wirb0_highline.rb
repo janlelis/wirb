@@ -6,9 +6,9 @@
 # You can mix and match using HighLine color names and Wirb color names. Prefix HighLine color names
 # with :highline. For instance:
 #
-#   Wirb.run(s, :highline, :yellow) #=> calls HighLine.color(s, :yellow)
-#   Wirb.run(s, :yellow)            #=> calls HighLine.color(s, :bold, :yellow) because 
-#                                   #   Wirb uses :yellow to mean bold yellow
+#   Wirb.colorizer.run(s, :highline, :yellow) #=> calls HighLine.color(s, :yellow)
+#   Wirb.colorizer.run(s, :yellow)            #=> calls HighLine.color(s, :bold, :yellow) because 
+#                                             #   Wirb uses :yellow to mean bold yellow
 
 require 'highline'
 

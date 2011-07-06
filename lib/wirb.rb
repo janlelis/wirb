@@ -70,6 +70,8 @@ class << Wirb
     else
       raise LoadError, "Could not load the Wirb schema at: #{yaml_path}"
     end
+
+    @schema
   end
 
   # Loads a color schema from a yaml file and sets colorizer to first suggested one in schema
