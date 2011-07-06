@@ -35,8 +35,8 @@ class << Wirb
   end
 
   # Convenience method, permits simplified syntax like:
-  #   Wirb.colorize_with :HighLine
-  def colorize_with(colorizer_name)
+  #   Wirb.load_colorizer :HighLine
+  def load_colorizer(colorizer_name)
     @colorizer = Wirb::Colorizer.const_get(colorizer_name)
     compatibile_colorizer?(@colorizer)
     @colorizer
@@ -75,7 +75,7 @@ class << Wirb
   # Loads a color schema from a yaml file and sets colorizer to first suggested one in schema
   def load_schema(yaml_path = :classic_wirb0)
     load_schema! yaml_path
-    colorize_with schema[:colorizer].first
+    load_colorizer schema[:colorizer].first
     @schema
   end
 
@@ -118,7 +118,7 @@ class << Wirb
     elsif !Array( @schema[:colorizer] ).include?(short_col)
       warn "Your current color schema does not support this colorizer:\n" +
            "  #{ short_col }\n" + 
-           "The following colorizeres are supported with this schema (use Wirb.colorize_with :Name):\n  " + 
+           "The following colorizeres are supported with this schema (use Wirb.load_colorizer :Name):\n  " + 
            Array( @schema[:colorizer] ).join("\n  ")
       false
     else

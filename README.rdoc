@@ -34,7 +34,7 @@ Wirb supports multiple colorization engines. Available engines can be found in <
 
 You can use any colorizer defined in the <tt>lib/wirb/colorizer/</tt> directory. Some of them require external gems as dependencies (e.g. HighLine). You can change it using:
 
-  Wirb.colorize_with :Paint # or :HighLine or whatever
+  Wirb.load_colorizer :Paint # or :HighLine or whatever
 
 Be careful, though! You also need to select a color schema that supports your colorizer (Schemas define supported colorizers using the <tt>:colorizer</tt> key). Load a schema with:
 
