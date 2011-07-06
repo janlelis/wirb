@@ -48,6 +48,6 @@ module Wirb::Colorizer::Wirb0
   end
 
   def self.color(*color_args)
-    color_args.first && COLORS[color_args.first] ? "\e[#{COLORS[color_args.first]}m" : ''
+    color_args.first && COLORS[color_args.first.to_sym] ? "\e[#{COLORS[color_args.first.to_sym]}m" : ''
   end
 end   

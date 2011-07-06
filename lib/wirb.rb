@@ -64,9 +64,10 @@ class << Wirb
 
     if schema_yaml.is_a?(Hash)
       @schema = Hash[ schema_yaml.map{ |k,v|
-        [k.to_s.to_sym, Array( v ).map(&:to_sym)]
+        [k.to_s.to_sym, Array( v )]
       } ]
       @schema[:name] = schema_name.to_sym
+      @schema[:colorizer].map!(&:to_sym)
     else
       raise LoadError, "Could not load the Wirb schema at: #{yaml_path}"
     end

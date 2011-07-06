@@ -4,133 +4,134 @@ colorizer:
 
 # container
 open_hash:
-- green
-- bright
+- :green
+- :bright
 close_hash:
-- green
-- bright
+- :green
+- :bright
 open_array:
-- green
-- bright
+- :green
+- :bright
 close_array:
-- green
-- bright
+- nil
+- :green
+- :bright
 open_set:
-- green
+- :green
 close_set:
-- green
+- :green
 
 # delimiter
-comma:  green
-refers: green
+comma:  :green
+refers: :green
 
 # class
 class:
-- green
-- bright
+- :green
+- :bright
 class_separator:
-- green
+- :green
 object_class:
-- green
-- bright
+- :green
+- :bright
 
 # object
 open_object:
-- green
+- :green
 object_description_prefix:
-- green
+- :green
 object_description:
-- yellow
+- :yellow
 object_address_prefix:
-- yellow
-- underline
+- :yellow
+- :underline
 object_address:
-- yellow
-- underline
+- :yellow
+- :underline
 object_line_prefix:
-- yellow
-- underline
+- :yellow
+- :underline
 object_line:
-- yellow
-- underline
+- :yellow
+- :underline
 object_line_number:
-- brown
-- underline
+- :brown
+- :underline
 object_variable_prefix:
-- purple
-- bright
+- :purple
+- :bright
 object_variable:
-- purple
-- bright
+- :purple
+- :bright
 close_object:
-- green
+- :green
 
 # symbol
 symbol_prefix:
-- yellow
-- bright
+- :yellow
+- :bright
 symbol:
-- yellow
-- bright
+- :yellow
+- :bright
 open_symbol_string:
-- yellow
+- :yellow
 symbol_string:
-- yellow
-- bright
+- :yellow
+- :bright
 close_symbol_string:
-- yellow
+- :yellow
 
 # string
 open_string:
-- white
+- :white
 string:
-- black
-- bright
+- :black
+- :bright
 close_string:
-- white
+- :white
 
 # regexp
 open_regexp:
-- blue
-- bright
+- :blue
+- :bright
 regexp:
-- white
+- :white
 close_regexp:
-- blue
-- bright
+- :blue
+- :bright
 regexp_flags:
-- red
-- bright
+- :red
+- :bright
 
 # number
 number:
-- cyan
+- :cyan
 range:
-- red
+- :red
 open_rational:
-- cyan
-- bright
+- :cyan
+- :bright
 rational_separator:
-- cyan
-- bright
+- :cyan
+- :bright
 close_rational:
-- cyan
-- bright
+- :cyan
+- :bright
 
 # misc
 #default:
 #keyword:
 time:
-- purple
+- :purple
 nil:
-- red
-- bright
+- :red
+- :bright
 false:
-- red
+- :red
 true:
-- green
+- :green
 gem_requirement_condition:
-- cyan
+- :cyan
 gem_requirement_version:
-- cyan
-- bright
+- :cyan
+- :bright
