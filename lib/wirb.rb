@@ -10,7 +10,7 @@ class << Wirb
 
   # Start colorizing results, will hook into irb if IRB is defined
   def start
-    require File.dirname(__FILE__) + '/wirb/irb' if defined?(IRB)
+    require File.dirname(__FILE__) + '/wirb/irb' if defined?(IRB) && !IRB::Irb.instance_methods.include?(:prompt_non_fancy)
     @running = true
   rescue LoadError
     warn "Couldn't activate Wirb"
