@@ -57,10 +57,10 @@ object_line_number:
 - :brown
 - :underline
 object_variable_prefix:
-- :purple
+- :magenta
 - :bright
 object_variable:
-- :purple
+- :magenta
 - :bright
 close_object:
 - :green
@@ -121,7 +121,7 @@ close_rational:
 #default:
 #keyword:
 time:
-- :purple
+- :magenta
 nil:
 - :red
 - :bright
