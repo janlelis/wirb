@@ -1,3 +1,6 @@
+begin # only test if paint is available
+require 'paint'
+
 describe Wirb::Colorizer::Paint do
   before :each do
     Wirb.colorizer = Wirb::Colorizer::Paint
@@ -24,4 +27,7 @@ describe Wirb::Colorizer::Paint do
   after :each do
     Wirb.colorizer = nil
   end
+end
+
+rescue LoadError
 end

@@ -1,3 +1,6 @@
+begin # only test if highline is available
+require 'highline'
+
 describe Wirb::Colorizer::HighLine do
   before :each do
     Wirb.colorizer = Wirb::Colorizer::HighLine
@@ -14,4 +17,7 @@ describe Wirb::Colorizer::HighLine do
   after :each do
     Wirb.colorizer = nil
   end
+end
+
+rescue LoadError
 end
