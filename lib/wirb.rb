@@ -37,7 +37,8 @@ class << Wirb
   # Convenience method, permits simplified syntax like:
   #   Wirb.load_colorizer :HighLine
   def load_colorizer(colorizer_name)
-    @colorizer = Wirb::Colorizer.const_get(colorizer_name, false)
+    # @colorizer = Wirb::Colorizer.const_get(colorizer_name, false)
+    @colorizer = eval "Wirb::Colorizer::#{colorizer_name}"
     compatibile_colorizer?(@colorizer)
     @colorizer
   end
