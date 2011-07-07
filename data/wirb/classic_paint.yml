@@ -13,7 +13,6 @@ open_array:
 - :green
 - :bright
 close_array:
-- nil
 - :green
 - :bright
 open_set:
