@@ -39,7 +39,7 @@ class << Wirb
   def load_colorizer(colorizer_name)
     # @colorizer = Wirb::Colorizer.const_get(colorizer_name, false)
     @colorizer = eval "Wirb::Colorizer::#{colorizer_name}"
-    compatibile_colorizer?(@colorizer)
+    compatible_colorizer?(@colorizer)
     @colorizer
   end
 
@@ -114,7 +114,7 @@ class << Wirb
 
   private
 
-  def compatibile_colorizer?(col)
+  def compatible_colorizer?(col)
     short_col = col.to_s.sub(/^.*::(.*?)$/, '\1').to_sym
     if !col
       warn "No colorizer selected!"
