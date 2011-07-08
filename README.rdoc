@@ -57,12 +57,10 @@ The following schemas are bundled (load with <tt>Wirb.load_schema :name</tt> and
 * <tt>:classic_paint</tt> (paint implementation of default)
 * <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
 
-
 == wp
 You can colorize any object with <tt>wp</tt> (wavy_print):
   require 'wirb/wp'
   wp some_object
-  wp some_object, :light_red
 
 == Also see
 * Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
