@@ -1,0 +1,79 @@
+colorizer:
+- Paint
+- Wirb0_Paint
+
+# container
+open_hash:
+close_hash:
+open_array:
+close_array:
+open_set:
+close_set:
+
+# delimiter
+comma:
+refers:
+
+# class
+class:
+- :bright
+class_separator:
+object_class:
+- :bright
+
+# object
+open_object:
+object_description_prefix:
+object_description:
+object_address_prefix:
+object_address:
+object_line_prefix:
+object_line:
+object_line_number:
+object_variable_prefix:
+object_variable:
+close_object:
+
+# symbol
+symbol_prefix:
+symbol:
+- :bright
+open_symbol_string:
+symbol_string:
+- :bright
+close_symbol_string:
+
+# string
+open_string:
+string:
+- :underline
+close_string:
+
+# regexp
+open_regexp:
+regexp:
+- :underline
+close_regexp:
+regexp_flags:
+
+# number
+number:
+- :bright
+range:
+open_rational:
+rational_separator:
+close_rational:
+
+# misc
+default:
+keyword:
+time:
+nil:
+- :inverse
+false:
+- :inverse
+true:
+- :inverse
+gem_requirement_condition:
+- :bright
+gem_requirement_version:

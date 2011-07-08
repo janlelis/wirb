@@ -46,6 +46,18 @@ Color schemas wanted! You've got a good looking alternative color schema? Please
 
 Colorizers wanted! Your favorite terminal colors gem is not supported yet? Please fork and add it to <tt>lib/wirb/colorizer/*</tt> :D
 
+=== Bundled schemas
+
+The following schemas are bundled (load with <tt>Wirb.load_schema :name</tt> and make sure the used colorizer is available).
+
+==== Wirb0
+* <tt>:classic_wirb0</tt> (current default)
+
+==== Paint
+* <tt>:classic_paint</tt> (paint implementation of default)
+* <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
+
+
 == wp
 You can colorize any object with <tt>wp</tt> (wavy_print):
   require 'wirb/wp'

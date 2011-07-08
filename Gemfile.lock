@@ -7,7 +7,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     diff-lcs (1.1.2)
-    paint (0.8.1)
+    paint (0.8.2)
     rake (0.8.7)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
