@@ -152,4 +152,15 @@ describe tokenizer(__FILE__) do
       [:close_array, "]"],
     ]
   end
+
+  please do check [:"42"]
+    tokens.should == [
+      [:open_array, "["],
+      [:symbol_prefix, ":"],
+      [:open_symbol_string, "\""],
+      [:symbol_string, "42"],
+      [:close_symbol_string, "\""],
+      [:close_array, "]"],
+    ]
+  end
 end

@@ -185,7 +185,6 @@ class << Wirb
         if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # see string
           pass[:open_symbol_string, '"']
           pass_state[:remove]
-          pop_state[]
           pass[:close_symbol_string, '"']
         else
           @token << c
