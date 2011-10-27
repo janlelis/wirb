@@ -1,5 +1,4 @@
 require 'rake'
-require 'rake/rdoctask'
 require 'fileutils'
 require "rspec/core/rake_task"
 task :default => :spec
@@ -38,11 +37,3 @@ task :gemspec do
   gemspec.validate
 end
 
-Rake::RDocTask.new do |rdoc|
-  require File.expand_path( File.join( 'lib',  'wirb') )
-
-  rdoc.rdoc_dir = 'doc'
-  rdoc.title = "Wirb #{Wirb::VERSION}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
