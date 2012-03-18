@@ -57,7 +57,7 @@ class << Wirb
   def load_schema!(yaml_path = :classic_wirb0)
     if yaml_path.is_a? Symbol # bundled themes
       schema_name = yaml_path.to_s
-      schema_yaml = YAML.load_file(File.join( Gem.datadir('wirb'), schema_name + '.yml' ))
+      schema_yaml = YAML.load_file(File.join(Gem.datadir('wirb'), schema_name + '.yml'))
     else
       schema_name = File.basename(yaml_path).gsub(/\.yml$/, '')
       schema_yaml = YAML.load_file(yaml_path)

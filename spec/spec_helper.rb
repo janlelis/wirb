@@ -1,7 +1,7 @@
 require 'wirb'
 require 'wirb/wp'
 require 'zucker/engine'
-require 'zucker/version'
+require 'zucker/ruby_version'
 
 Wirb.start
 
