@@ -3,6 +3,7 @@ class << Wirb
   # Almost everyone would say that 400 lines long case statements need refactoring, but
   # ...sometimes it just doesn't matter ;)
   def tokenize(str)
+    return [] if str.nil?
     raise ArgumentError, 'Tokenizer needs an inspect-string' unless str.is_a? String
     return enum_for(:tokenize, str) unless block_given?
 
