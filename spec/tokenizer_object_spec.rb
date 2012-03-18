@@ -35,7 +35,7 @@ describe tokenizer(__FILE__) do
       [:object_line_prefix, "@"],
       [:object_line, /.*tokenizer_object_spec.rb:/],
       [:object_line_number, /\d+/],
-      RubyVersion == 1.9 ? [:object_description, " (lambda)"] : nil,
+      RubyVersion >= 1.9 ? [:object_description, " (lambda)"] : nil,
       [:close_object, ">"],
     ].compact
   end
