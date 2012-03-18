@@ -1,5 +1,6 @@
 == 0.4.2
 * Fix a symbol string bug
+* Don't fail on nil input for Wirb.tokenize
 
 == 0.4.1
 * New bundled color schema: colorless (use at least Paint version 0.8.2)

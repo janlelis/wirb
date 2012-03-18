@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wirb (0.4.1)
+    wirb (0.4.2)
 
 GEM
   remote: http://rubygems.org/
