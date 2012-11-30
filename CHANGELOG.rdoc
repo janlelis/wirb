@@ -1,6 +1,6 @@
-== 0.4.3
+== 0.5.0
 * Use magenta instead of black for strings (better readable)
-* Fix bug with StringScanner
+* Fix bug with StringScanner objects
 * Support complex numbers
 * Support Infinity and NaN as valid numbers
 * Default colorizer is now Paint
