@@ -3,6 +3,7 @@
 * Fix bug with StringScanner
 * Support complex numbers
 * Support Infinity and NaN as valid numbers
+* Default colorizer is now Paint
 
 == 0.4.2
 * Fix a symbol string bug

@@ -30,7 +30,7 @@ Add to your <tt>~/.irbrc</tt>
 To only tweak some colors, take a look at the <tt>Wirb.schema</tt> hash. To use a custom schema, inspect the yaml files in the <tt>data/wirb/</tt> directory. You can create your own schema and load it using <tt>Wirb.load_schema(path_to_yaml_file)</tt>. Alternatively, you can use one of the bundled ones by passing a symbol instead of a path.
 
 === Colorizer
-Wirb supports multiple colorization engines. Available engines can be found in <tt>lib/wirb/colorizer/*</tt>. Some of them require external gems as dependencies (e.g. HighLine). The current default engine is <em>Wirb0</em> (the one of previous Wirb versions, inherited from the original Wirble). It will be dropped as default engine in 1.0 (later this year), because it uses wrong color names. It will be replaced by Paint[https://github.com/janlelis/paint] or a simple colorizer engine with proper color names. You can change the colorizer using:
+Wirb supports multiple colorization engines. Available engines can be found in <tt>lib/wirb/colorizer/*</tt>. Some of them require external gems as dependencies (e.g. HighLine). The current default engine is <em>Paint</em>. You can change the colorizer using:
 
   Wirb.load_colorizer :Paint # or :HighLine or whatever
 

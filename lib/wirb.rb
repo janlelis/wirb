@@ -27,7 +27,7 @@ class << Wirb
 
   # extend getter & setter for colorizer & schema
   def colorizer
-    @colorizer ||= Wirb::Colorizer::Wirb0
+    @colorizer ||= Wirb::Colorizer::Paint
   end
 
   def colorizer=(col)
@@ -54,7 +54,7 @@ class << Wirb
   # Loads a color schema from a yaml file
   #   If first argument is a String: path to yaml file
   #   If first argument is a Symbol: bundled schema
-  def load_schema!(yaml_path = :classic_wirb0)
+  def load_schema!(yaml_path = :classic_paint)
     if yaml_path.is_a? Symbol # bundled themes
       schema_name = yaml_path.to_s
       schema_yaml = YAML.load_file(File.join(Gem.datadir('wirb'), schema_name + '.yml'))
@@ -77,7 +77,7 @@ class << Wirb
   end
 
   # Loads a color schema from a yaml file and sets colorizer to first suggested one in schema
-  def load_schema(yaml_path = :classic_wirb0)
+  def load_schema(yaml_path = :classic_paint)
     load_schema! yaml_path
     load_colorizer schema[:colorizer].first
     @schema

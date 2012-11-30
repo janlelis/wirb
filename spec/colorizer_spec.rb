@@ -17,11 +17,11 @@ end
 describe "Colorizer loading" do
   before(:each) {Wirb.colorizer = nil}
   
-  it "defaults to using the Wirb0 colorizer" do
+  it "defaults to using the Paint colorizer" do
     Wirb.colorizer = nil
     Wirb.instance_variable_get(:@colorizer).should be_nil
     foo = Wirb.colorizer # Force a colorizer to be loaded
-    Wirb.colorizer.should == Wirb::Colorizer::Wirb0
+    Wirb.colorizer.should == Wirb::Colorizer::Paint
   end
 
   it "attempts to load the appropriate colorizer" do
