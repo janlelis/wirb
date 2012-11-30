@@ -1,7 +1,9 @@
 == Wavy Interactive Ruby
 *Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schemas using yaml. Wirb is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
 
-https://api.travis-ci.org/janlelis/wirb.png
+{<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
+
+
 
 == Install
 Install the gem with:
