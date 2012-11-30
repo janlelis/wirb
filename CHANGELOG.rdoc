@@ -1,5 +1,6 @@
 == 0.4.3
 * Use magenta instead of black for strings (for better readability)
+* Fix bug with StringScanner
 
 == 0.4.2
 * Fix a symbol string bug

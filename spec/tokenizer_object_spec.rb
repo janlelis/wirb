@@ -40,6 +40,19 @@ describe tokenizer(__FILE__) do
     ].compact
   end
 
+  please do check StringScanner.new('wirb')
+    tokens.should == [
+      [:open_object, "#<"],
+      [:object_class, "StringScanner"],
+      [:object_description_prefix, " "],
+      [:object_description, "0/4 @ "],
+      [:open_string, "\""],
+      [:string, "wirb"],
+      [:close_string, "\""],
+      [:close_object, ">"],
+    ]
+  end
+
   unless RubyEngine.rbx? # rubinius provides more information
     please do check binding
       tokens.should be_like [

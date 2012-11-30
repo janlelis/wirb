@@ -328,8 +328,12 @@ class << Wirb
           open_brackets += 1
           @token << c
         when '@'
-          pass_state[]
-          push_state[:object_variable]
+          if nc =~ /[a-z]/i
+            pass_state[]
+            push_state[:object_variable]
+          else
+            @token << c
+          end
         when '"'
           pass_state[]
           push_state[:string]
