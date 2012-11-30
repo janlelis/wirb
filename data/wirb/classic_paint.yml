@@ -54,7 +54,7 @@ object_line:
 - :yellow
 - :underline
 object_line_number:
-- :brown
+- :yellow
 - :underline
 object_variable_prefix:
 - :magenta
