@@ -71,7 +71,7 @@ You can colorize any object with <tt>wp</tt> (wavy_print):
 == Todo
 * Tests for schema stuff
 * More colorizers and themes
-* More support for stdlib (most important: Complex)
+* Keep up with latest core/stdlib/rubygems inspects
 
 == Credits
 * Copyright (c) 2011 Jan Lelis <http://rbjl.net>, see COPYING for details.

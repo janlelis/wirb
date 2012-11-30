@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'zucker', '>= 12.1'
   #s.add_development_dependency 'highline'
   s.add_development_dependency 'paint'
+  s.add_development_dependency 'debugger'
  
   len = s.homepage.size
   s.post_install_message = \

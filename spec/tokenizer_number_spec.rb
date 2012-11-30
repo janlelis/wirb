@@ -67,6 +67,15 @@ describe tokenizer(__FILE__) do
     ]
   end
 
+  please do check Complex(-2.2,-3.3)
+    tokens.should == [
+      [:open_complex, "("],
+      [:number, "-2.2-3.3"],
+      [:complex_i, "i"],
+      [:close_complex, ")"],
+    ]
+  end
+
   only19 do
     please do check Rational(2,3)
       tokens.should == [

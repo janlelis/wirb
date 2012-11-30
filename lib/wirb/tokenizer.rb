@@ -93,7 +93,10 @@ class << Wirb
             push_state[:gem_requirement_condition, :repeat]
           end
         when '('
-          if nc =~ /[0-9-]/
+          peek = chars[i+1..-1].join
+          if peek =~ /^-?(?:Infinity|NaN|[0-9.e]+)[+-](?:Infinity|NaN|[0-9.e]+)\*?i\)/
+            push_state[:complex, :repeat]
+          elsif nc =~ /[0-9-]/
             push_state[:rational, :repeat]
           else
             push_state[:object_description, :repeat]
@@ -267,12 +270,27 @@ class << Wirb
           pass[:open_rational, '(']
         when /[0-9-]/
           push_state[:number, :repeat]
-        when '/', ','
+        when '/'
           pass[:rational_separator, c]
         when ' '
           pass[:whitespace, c]
         when ')'
           pass[:close_rational, ')']
+          pop_state[]
+        end
+
+      when :complex
+        case c
+        when '('
+          pass[:open_complex, '(']
+        when /[0-9+-]/
+          push_state[:number, :repeat]
+        when ' '
+          pass[:whitespace, c]
+        when 'i'
+          pass[:complex_i, c]
+        when ')'
+          pass[:close_complex, ')']
           pop_state[]
         end
 

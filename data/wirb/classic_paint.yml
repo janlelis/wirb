@@ -115,6 +115,12 @@ rational_separator:
 close_rational:
 - :cyan
 - :bright
+open_complex:
+- :cyan
+complex_i:
+- :cyan
+close_complex:
+- :cyan
 
 # misc
 #default:

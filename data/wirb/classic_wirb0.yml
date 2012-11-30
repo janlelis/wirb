@@ -57,6 +57,9 @@ range:  red
 open_rational:      light_cyan
 rational_separator: light_cyan
 close_rational:     light_cyan
+open_complex:       cyan
+complex_i:          cyan
+close_complex:      cyan
 
 # misc
 #default:
