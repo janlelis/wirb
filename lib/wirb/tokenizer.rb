@@ -97,7 +97,11 @@ class << Wirb
           if peek =~ /^-?(?:Infinity|NaN|[0-9.e]+)[+-](?:Infinity|NaN|[0-9.e]+)\*?i\)/
             push_state[:complex, :repeat]
           elsif nc =~ /[0-9-]/
-            push_state[:rational, :repeat]
+            if @passed =~ /Complex$/ # cheat for old 1.8
+              push_state[:complex, :repeat]
+            else
+              push_state[:rational, :repeat]
+            end
           else
             push_state[:object_description, :repeat]
             open_brackets = 0
@@ -292,7 +296,7 @@ class << Wirb
           pass[:open_rational, '(']
         when /[0-9-]/
           push_state[:number, :repeat]
-        when '/'
+        when '/', ','
           pass[:rational_separator, c]
         when ' '
           pass[:whitespace, c]
@@ -307,6 +311,8 @@ class << Wirb
           pass[:open_complex, '(']
         when /[0-9+-]/
           push_state[:number, :repeat]
+        when ','
+          pass[:number, c] # complex_separator
         when ' '
           pass[:whitespace, c]
         when ')'

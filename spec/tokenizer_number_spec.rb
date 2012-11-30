@@ -1,3 +1,5 @@
+require 'complex'
+
 describe tokenizer(__FILE__) do
   after :each do check_value end
 
@@ -67,14 +69,6 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do check Complex(-2.2,-3.3)
-    tokens.should == [
-      [:open_complex, "("],
-      [:number, "-2.2-3.3i"],
-      [:close_complex, ")"],
-    ]
-  end
-
   only19 do
     please do check Rational(2,3)
       tokens.should == [
@@ -132,13 +126,37 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do check Complex(-1/0.0, 0/0.0)
-    tokens.should == [
-      [:open_complex, "("],
-      [:special_number, "-Infinity"],
-      [:special_number, "+NaN"],
-      [:number, '*i'],
-      [:close_complex, ")"],
-    ]
+  only19 do
+    please do check Complex(-2.2,-3.3)
+      tokens.should == [
+        [:open_complex, "("],
+        [:number, "-2.2-3.3i"],
+        [:close_complex, ")"],
+      ]
+    end
+
+    please do check Complex(-1/0.0, 0/0.0)
+      tokens.should == [
+        [:open_complex, "("],
+        [:special_number, "-Infinity"],
+        [:special_number, "+NaN"],
+        [:number, '*i'],
+        [:close_complex, ")"],
+      ]
+    end
+  end
+
+  only18 do
+    please do check Complex(-2.2,-3.3)
+      tokens.should == [
+        [:class, "Complex"],
+        [:open_complex, "("],
+        [:number, "-2.2"],
+        [:number, ","],
+        [:whitespace, " "],
+        [:number, "-3.3"],
+        [:close_complex, ")"],
+      ]
+    end
   end
 end
