@@ -1,7 +1,8 @@
 == 0.4.3
-* Use magenta instead of black for strings (for better readability)
+* Use magenta instead of black for strings (better readable)
 * Fix bug with StringScanner
 * Support complex numbers
+* Support Infinity and NaN as valid numbers
 
 == 0.4.2
 * Fix a symbol string bug

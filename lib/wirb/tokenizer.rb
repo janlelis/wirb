@@ -153,7 +153,9 @@ class << Wirb
         when /[a-z0-9_]/i
           @token << c
         else
-          if c ==':' && nc == ':'
+          if @token =~ /^(Infinity|NaN)$/
+            set_state[:special_number, :repeat]
+          elsif c ==':' && nc == ':'
             pass_state[]
             pass[:class_separator, '::']
           elsif !(c == ':' && lc == ':')
@@ -231,7 +233,9 @@ class << Wirb
       when :number
         if c == '-' && @token != '' && @token[-1] != 'e'
           set_state[:time, :repeat]
-        elsif c =~ /[0-9e+.-]/ && !(c == '.' && nc == '.')
+        elsif c =~ /[IN]/
+          set_state[:special_number, :repeat]
+        elsif c =~ /[0-9e.*i+-]/ && !(c == '.' && nc == '.')
           @token << c
         elsif c == '/' # ruby 1.8 mathn
           pass_state[]
@@ -255,6 +259,24 @@ class << Wirb
         else
           @token << c
           pop_state[:remove]
+        end
+
+      when :special_number # like time, refactor if code is needed a third time
+        peek = chars[i..-1].join
+        if [
+          /^[-+]?Infinity/,
+          /^[-+]?NaN/,
+        ].any?{ |regex|
+          ( @token + peek ) =~ regex
+        } # found, adjust parsing-pointer:
+          i = i + $&.size - @token.size - 1
+          @token = $&
+          pass_state[]
+          set_state[:number]
+        else
+          # TODO verify...
+          @token << c
+          set_state[:number]
         end
  
       when :range
@@ -287,8 +309,6 @@ class << Wirb
           push_state[:number, :repeat]
         when ' '
           pass[:whitespace, c]
-        when 'i'
-          pass[:complex_i, c]
         when ')'
           pass[:close_complex, ')']
           pop_state[]

@@ -104,6 +104,8 @@ regexp_flags:
 # number
 number:
 - :cyan
+special_number:
+- :cyan
 range:
 - :red
 open_rational:
@@ -116,8 +118,6 @@ close_rational:
 - :cyan
 - :bright
 open_complex:
-- :cyan
-complex_i:
 - :cyan
 close_complex:
 - :cyan

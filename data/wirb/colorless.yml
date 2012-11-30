@@ -59,12 +59,13 @@ regexp_flags:
 # number
 number:
 - :bright
+special_number:
+- :bright
 range:
 open_rational:
 rational_separator:
 close_rational:
 open_complex:
-complex_i:
 close_complex:
 
 # misc

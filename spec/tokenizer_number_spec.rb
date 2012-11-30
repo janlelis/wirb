@@ -70,8 +70,7 @@ describe tokenizer(__FILE__) do
   please do check Complex(-2.2,-3.3)
     tokens.should == [
       [:open_complex, "("],
-      [:number, "-2.2-3.3"],
-      [:complex_i, "i"],
+      [:number, "-2.2-3.3i"],
       [:close_complex, ")"],
     ]
   end
@@ -109,5 +108,37 @@ describe tokenizer(__FILE__) do
         [:number, "3"],
       ]
     end
+  end
+
+  please do check (1/0.0)
+    tokens.should == [
+      [:special_number, "Infinity"],
+    ]
+  end
+  please do check [-(1/0.0), (0/0.0), -(1/0.0), -(0/0.0)]
+    tokens.should == [
+      [:open_array, "["],
+      [:special_number, "-Infinity"],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:special_number, "NaN"],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:special_number, "-Infinity"],
+      [:comma, ","],
+      [:whitespace, " "],
+      [:special_number, "NaN"],
+      [:close_array, "]"],
+    ]
+  end
+
+  please do check Complex(-1/0.0, 0/0.0)
+    tokens.should == [
+      [:open_complex, "("],
+      [:special_number, "-Infinity"],
+      [:special_number, "+NaN"],
+      [:number, '*i'],
+      [:close_complex, ")"],
+    ]
   end
 end
