@@ -42,12 +42,12 @@ close_symbol_string: brown
 
 # string
 open_string:  light_gray
-string:       dark_gray
+string:       purple
 close_string: light_gray
 
 # regexp
 open_regexp:  light_blue
-regexp:       dark_gray
+regexp:       purple
 close_regexp: light_blue
 regexp_flags: light_red
 

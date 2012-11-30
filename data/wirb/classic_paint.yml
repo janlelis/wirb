@@ -84,8 +84,7 @@ close_symbol_string:
 open_string:
 - :white
 string:
-- :black
-- :bright
+- :magenta
 close_string:
 - :white
 
@@ -94,7 +93,7 @@ open_regexp:
 - :blue
 - :bright
 regexp:
-- :white
+- :magenta
 close_regexp:
 - :blue
 - :bright

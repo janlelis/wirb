@@ -1,3 +1,6 @@
+== 0.4.3
+* Use magenta instead of black for strings (for better readability)
+
 == 0.4.2
 * Fix a symbol string bug
 * Don't fail on nil input for Wirb.tokenize
