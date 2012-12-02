@@ -1,3 +1,3 @@
 module Wirb
-  VERSION = '0.4.2'.dup
+  VERSION = '0.5.0'
 end
