@@ -66,24 +66,26 @@ describe tokenizer(__FILE__) do
   end
 
   only19 do
-    please do check STDOUT
-      tokens.should == [
-        [:open_object, "#<"],
-        [:object_class, "IO"],
-        [:object_description_prefix, ":"],
-        [:object_description, "<STDOUT>"],
-        [:close_object, ">"],
-      ]
-    end
+    unless RubyEngine.jruby?
+      please do check STDOUT
+        tokens.should == [
+          [:open_object, "#<"],
+          [:object_class, "IO"],
+          [:object_description_prefix, ":"],
+          [:object_description, "<STDOUT>"],
+          [:close_object, ">"],
+        ]
+      end
 
-    please do check STDIN
-       tokens.should == [
-        [:open_object, "#<"],
-        [:object_class, "IO"],
-        [:object_description_prefix, ":"],
-        [:object_description, "<STDIN>"],
-        [:close_object, ">"],
-      ]
+      please do check STDIN
+         tokens.should == [
+          [:open_object, "#<"],
+          [:object_class, "IO"],
+          [:object_description_prefix, ":"],
+          [:object_description, "<STDIN>"],
+          [:close_object, ">"],
+        ]
+      end
     end
      
     please do check Module.new.singleton_class.singleton_class
