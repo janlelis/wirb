@@ -15,12 +15,12 @@ Gem::Specification.new do |s|
   s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} data/**/*.yml]) + %w{Rakefile wirb.gemspec .gemtest}
   s.extra_rdoc_files = ["README.rdoc", "COPYING.txt"]
   s.license = 'MIT'
+  s.add_dependency 'paint'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rspec-core'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'zucker', '>= 12.1'
   #s.add_development_dependency 'highline'
-  s.add_development_dependency 'paint'
 #  s.add_development_dependency 'debugger'
  
   len = s.homepage.size
