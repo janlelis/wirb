@@ -1,3 +1,9 @@
+== 1.0.2
+* Fix a bug that would load wirb irb hooks in non irb environments
+
+== 1.0.0 / 1.0.1
+* Paint gem is a dependency
+
 == 0.5.0
 * Use magenta instead of black for strings (better readable)
 * Fix bug with StringScanner objects
