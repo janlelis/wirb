@@ -42,17 +42,18 @@ describe tokenizer(__FILE__) do
       only19 do
         please do
           require 'rspec'
-          check [Gem::Specification.find_by_name('rspec').dependencies.first.requirement]*2
+          rspec_version = Gem::Specification.find_by_name('rspec').dependencies.first.requirement
+          check [rspec_version]*2
           tokens.should == [
             [:open_array, '['],
             [:gem_requirement_condition, "~>"],
             [:whitespace, " "],
-            [:gem_requirement_version, RSpec::Version::STRING],
+            [:gem_requirement_version, rspec_version.to_s],
             [:comma, ","],
             [:whitespace, " "],
             [:gem_requirement_condition, "~>"],
             [:whitespace, " "],
-            [:gem_requirement_version, RSpec::Version::STRING],
+            [:gem_requirement_version, rspec_version.to_s],
             [:close_array, ']'],
           ]
         end
