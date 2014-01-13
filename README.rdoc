@@ -1,6 +1,8 @@
-== Wavy Interactive Ruby {<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
+== Wirb Interactive Ruby {<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
 
 *Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schemas using yaml. Wirb is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
+
+Supported Rubies: 2.1, 2.0, 1.9, 1.8, jruby, rubinius
 
 == Install
 
@@ -18,14 +20,18 @@ Add to your <tt>~/.irbrc</tt>
 == Features
 
 * Syntax highlighting for Ruby objects
-* Does not change the inspect value
-* Support for generic objects, especially sets and enumerators
-* Comes with tests
+* Does not change the inspect method
+* Support for generic objects, especially sets and enumerators and nesting more generic objects
+* Funny looking test suite
 * Can be used without irb
 * Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
-* Supports 1.8, 1.9, jruby, rbx, head
 * Usable with any supported terminal colors engine
 * Color schemas in yaml files
+
+== wp
+You can colorize any object with <tt>wp</tt> (wavy_print):
+  require 'wirb/wp'
+  wp some_object
 
 == Colors
 
@@ -57,11 +63,6 @@ The following schemas are bundled (load with <tt>Wirb.load_schema :name</tt> and
 * <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
 * <tt>:classic_wirb0</tt> (default implemented with wirb0)
 
-== wp
-You can colorize any object with <tt>wp</tt> (wavy_print):
-  require 'wirb/wp'
-  wp some_object
-
 == Also see
 
 * Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
@@ -69,19 +70,10 @@ You can colorize any object with <tt>wp</tt> (wavy_print):
 * ripl is an irb alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
 * Advanced terminal color gems: Paint[https://github.com/janlelis/paint], HighLine[https://github.com/JEG2/highline]
 
-== Todo
-* Tests for schema stuff
-* More colorizers and themes
-* Keep up with latest core/stdlib/rubygems inspects
-* Keep up with new Rubinius versions
-
 == Credits
-* Copyright (c) 2011, 2013 Jan Lelis <http://happycode.org>, see COPYING for details.
 
-Contributions[https://github.com/janlelis/wirb/contributors] by and thanks to:
-* {Richard LeBer}[https://github.com/rleber]
+Copyright (c) 2011-2014 Jan Lelis <http://janlelis.de>, see COPYING for details.
 
-Influenced by code from and thanks to:
-* Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
+Influenced by code from and thanks to: Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
 
-J-_-L
+Contributions[https://github.com/janlelis/wirb/contributors] by and thanks to: {Richard LeBer}[https://github.com/rleber]
