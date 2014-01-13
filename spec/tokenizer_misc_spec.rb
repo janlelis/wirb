@@ -7,7 +7,7 @@ describe tokenizer(__FILE__) do
 
   please do check StringIO.new 'wirb'
     if RubyEngine.rbx?
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:class_separator, "::"],
         [:close_object, ">"],
         [:close_object, ">"],

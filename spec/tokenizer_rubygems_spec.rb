@@ -68,7 +68,7 @@ describe tokenizer(__FILE__) do
           [:class_separator, "::"],
           [:object_class, "Dependency"],
           [:object_description_prefix, " "],
-          [:object_description, "type=:development name="],
+          [:object_description, "type=:runtime name="],
           [:open_string, "\""],
           [:string, "paint"],
           [:close_string, "\""],
