@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 require 'rubygems' unless defined? Gem
 require File.dirname(__FILE__) + "/lib/wirb/version"
- 
+
 Gem::Specification.new do |s|
   s.name        = "wirb"
   s.version     = Wirb::VERSION.dup
@@ -15,14 +15,12 @@ Gem::Specification.new do |s|
   s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} data/**/*.yml]) + %w{Rakefile wirb.gemspec .gemtest}
   s.extra_rdoc_files = ["README.rdoc", "COPYING.txt"]
   s.license = 'MIT'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-core'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'zucker', '>= 12.1'
+  s.add_dependency 'paint', '~> 0.8'
+  s.add_development_dependency 'rspec', '~> 2.14'
+  s.add_development_dependency 'rake', '~> 10.1'
+  s.add_development_dependency 'zucker', '~> 13'
   #s.add_development_dependency 'highline'
-#  s.add_development_dependency 'debugger'
-  s.add_dependency 'paint'
- 
+
   len = s.homepage.size
   s.post_install_message = \
    ("       ┌── " + "info ".ljust(len-2,'%')            + "─┐\n" +

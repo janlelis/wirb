@@ -70,11 +70,11 @@ describe tokenizer(__FILE__) do
           [:object_description_prefix, " "],
           [:object_description, "type=:development name="],
           [:open_string, "\""],
-          [:string, "rspec"],
+          [:string, "paint"],
           [:close_string, "\""],
           [:object_description, " requirements="],
           [:open_string, "\""],
-          [:string, ">= 0"],
+          [:string, "~> 0.8"],
           [:close_string, "\""],
           [:close_object, ">"],
         ]
