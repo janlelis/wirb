@@ -1,7 +1,7 @@
 class << Wirb
   # This is an extended version of the original wirble tokenizer.
-  # Almost everyone would say that 400 lines long case statements need refactoring, but
-  # ...sometimes it just doesn't matter ;)
+  # Many people would say that 400 lines long case statements need refactoring, but
+  # ...sometimes it is supposed to be this way!
   def tokenize(str)
     return [] if str.nil?
     raise ArgumentError, 'Tokenizer needs an inspect-string' unless str.is_a? String
@@ -366,6 +366,13 @@ class << Wirb
             pass_state[:remove, :repeat]
           else
             open_brackets -= 1
+            @token << c
+          end
+        when '#'
+          if nc == '<'
+            pass_state[]
+            push_state[:object]
+          else
             @token << c
           end
         when '<'

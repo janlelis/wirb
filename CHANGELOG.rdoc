@@ -1,3 +1,6 @@
+== 1.0.3
+* Allow nestings of objects in object description
+
 == 1.0.2
 * Fix a bug that would load wirb irb hooks in non irb environments
 

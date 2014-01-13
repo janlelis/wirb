@@ -7,19 +7,11 @@ describe tokenizer(__FILE__) do
 
   please do check StringIO.new 'wirb'
     if RubyEngine.rbx?
-=begin TODO sort ivars
       tokens.should be_like [
         [:open_object, "#<"],
         [:object_class, "StringIO"],
         [:object_description_prefix, ":"],
         [:object_address, OBJECT_ID],
-        [:object_description, " "],
-        [:object_variable_prefix, "@"],
-        [:object_variable, "string"],
-        [:object_description, "="],
-        [:open_string, "\""],
-        [:string, "wirb"],
-        [:close_string, "\""],
         [:object_description, " "],
         [:object_variable_prefix, "@"],
         [:object_variable, "append"],
@@ -35,6 +27,29 @@ describe tokenizer(__FILE__) do
         [:object_variable, "writable"],
         [:object_description, "="],
         [:true, "true"],
+        [:object_description, " @__data__="],
+        [:open_object, "#<"],
+        [:object_class, "StringIO"],
+        [:class_separator, "::"],
+        [:object_class, "Data"],
+        [:object_description_prefix, ":"],
+        [:object_address, OBJECT_ID],
+        [:object_description, " "],
+        [:object_variable_prefix, "@"],
+        [:object_variable, "encoding"],
+        [:object_description, "="],
+        [:open_object, "#<"],
+        [:object_class, "Encoding"],
+        [:object_description_prefix, ":"],
+        [:object_description, "US-ASCII"],
+        [:close_object, ">"],
+        [:object_description, " "],
+        [:object_variable_prefix, "@"],
+        [:object_variable, "string"],
+        [:object_description, "="],
+        [:open_string, "\""],
+        [:string, "wirb"],
+        [:close_string, "\""],
         [:object_description, " "],
         [:object_variable_prefix, "@"],
         [:object_variable, "pos"],
@@ -46,8 +61,8 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:number, "0"],
         [:close_object, ">"],
+        [:close_object, ">"],
       ]
-=end
    else
       tokens.should be_like [
         [:open_object, "#<"],
@@ -58,7 +73,7 @@ describe tokenizer(__FILE__) do
       ]
     end
   end
-  
+
   please do check Date.today
     tokens.should be_like [
       [:open_object, "#<"],
