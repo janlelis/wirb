@@ -87,16 +87,22 @@ describe tokenizer(__FILE__) do
         ]
       end
     end
-     
+
     please do check Module.new.singleton_class.singleton_class
       tokens.should be_like [
         [:open_object, "#<"],
         [:object_class, "Class"],
         [:object_description_prefix, ":"],
-        [:object_description, '#<Class:#<Module:'],
+        [:open_object, "#<"],
+        [:object_class, "Class"],
+        [:object_description_prefix, ":"],
+        [:open_object, "#<"],
+        [:object_class, "Module"],
+        [:object_description_prefix, ":"],
         [:object_address, OBJECT_ID],
-        [:object_description, '>>'],
-        [:close_object, ">"]
+        [:close_object, ">"],
+        [:close_object, ">"],
+        [:close_object, ">"],
       ]
     end
   end
@@ -127,7 +133,7 @@ describe tokenizer(__FILE__) do
         @hallo = [1,42]
       end
     end
-    check Hey.new 
+    check Hey.new
     tokens.should be_like [
       [:open_object, "#<"],
       [:object_class, "Hey"],

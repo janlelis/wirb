@@ -7,6 +7,7 @@ platforms :rbx do
   gem 'rubysl-complex'
   gem 'rubysl-date'
   gem 'rubysl-set'
+  gem 'rubysl-singleton'
   gem 'rubysl-stringio'
   gem 'rubysl-ostruct'
 end
