@@ -1,7 +1,4 @@
 class << Wirb
-  # This is an extended version of the original wirble tokenizer.
-  # Many people would say that 400 lines long case statements need refactoring, but
-  # ...sometimes it is supposed to be this way!
   def tokenize(str)
     return [] if str.nil?
     raise ArgumentError, 'Tokenizer needs an inspect-string' unless str.is_a? String
@@ -24,7 +21,7 @@ class << Wirb
     pass_state  = lambda{ |*options| pass_custom_state[ @state[-1], *options ] }
 
     pass        = lambda{ |kind, string| @passed << string; yield kind, string }
-    
+
     set_state   = lambda{ |state, *options|
       @state[-1] = state
       @repeat = true if options.include? :repeat
@@ -85,7 +82,7 @@ class << Wirb
           else
             push_state[:symbol]
           end
- 
+
         when '>'
           if get_state[:variable]
             pop_state[:repeat]
@@ -106,7 +103,7 @@ class << Wirb
             push_state[:object_description, :repeat]
             open_brackets = 0
           end
- 
+
         when '{'
           if get_state[:set]
             pass[:open_set, '{']; push_state[nil] # {{ means set-hash
@@ -118,7 +115,7 @@ class << Wirb
 
         when '['
           pass[:open_array, '[']; push_state[:array]
-          
+
         when ']'
           if get_state[:array]
             pass[:close_array, ']']
@@ -146,9 +143,6 @@ class << Wirb
             push_state[:object_class]
             open_brackets = 0
           end
-
-        # else
-        #  warn "ignoring char #{c.inspect}" if @debug
         end
 
       when :class
@@ -282,7 +276,7 @@ class << Wirb
           @token << c
           set_state[:number]
         end
- 
+
       when :range
         if c == '.'
           @token << c
@@ -478,7 +472,7 @@ class << Wirb
           set_state[:object_line]
         end
 
-      
+
       # else
       #   raise "unknown state #{@state[-1]} #{@state.inspect}"
       end
