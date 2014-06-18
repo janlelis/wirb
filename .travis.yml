@@ -10,9 +10,7 @@ rvm:
 - 1.9.2
 - 1.8.7
 - ree
-- rbx-head
 - rbx-2
-- jruby-head
 - jruby-19mode
-- jruby-18mode
+#- jruby-18mode # strange proc inspect
 
