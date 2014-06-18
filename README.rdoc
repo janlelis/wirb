@@ -1,6 +1,6 @@
-== Wirb Interactive Ruby {<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
+== WIRB Interactive Ruby {<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
 
-*Wirb* colorizes your inspected Ruby objects. It is based on Wirble[http://pablotron.org/software/wirble/], but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schemas using yaml. Wirb is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
+*WIRB* colorizes inspected Ruby objects. It uses an improved version of the original tokenizer of Wirble[http://pablotron.org/software/wirble/]. It provides a colorization engine abstraction layer and includes different color schemas. WIRB is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
 
 Supported Rubies: 2.1, 2.0, 1.9, 1.8, jruby, rubinius
 
@@ -10,6 +10,17 @@ Install the gem with:
 
   gem install wirb
 
+== Features
+
+* Syntax highlighting for Ruby objects
+* Does not monkey patch the inspect method
+* Support for generic objects, especially enumerators, and nested generic objects
+* Funny looking test suite
+* Can be used without IRB
+* Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
+* Usable with any supported terminal colors engine
+* Color schemas can be defined in YAML
+
 == Usage
 
 Add to your <tt>~/.irbrc</tt>
@@ -17,29 +28,18 @@ Add to your <tt>~/.irbrc</tt>
   require 'wirb'
   Wirb.start
 
-== Features
+Done: Your IRB is now colorful. You could also use it like awesome_print:
 
-* Syntax highlighting for Ruby objects
-* Does not change the inspect method
-* Support for generic objects, especially sets and enumerators and nesting more generic objects
-* Funny looking test suite
-* Can be used without irb
-* Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
-* Usable with any supported terminal colors engine
-* Color schemas in yaml files
-
-== wp
-You can colorize any object with <tt>wp</tt> (wavy_print):
   require 'wirb/wp'
   wp some_object
 
-== Colors
+== Advanced: Customize Colors
 
 To only tweak some colors, take a look at the <tt>Wirb.schema</tt> hash. To use a custom schema, inspect the yaml files in the <tt>data/wirb/</tt> directory. You can create your own schema and load it using <tt>Wirb.load_schema(path_to_yaml_file)</tt>. Alternatively, you can use one of the bundled ones by passing a symbol instead of a path.
 
 === Colorizer
 
-Wirb supports multiple colorization engines. Available engines can be found in <tt>lib/wirb/colorizer/*</tt>. Some of them require external gems as dependencies (e.g. HighLine). The current default engine is <em>Paint</em>. You can change the colorizer using:
+WIRB supports multiple colorization engines. Available engines can be found in <tt>lib/wirb/colorizer/*</tt>. Some of them require external gems as dependencies (e.g. HighLine). The current default engine is <em>Paint</em>. You can change the colorizer using:
 
   Wirb.load_colorizer :Paint # or :HighLine or whatever
 
@@ -55,7 +55,7 @@ Color schemas wanted! You've got a good looking alternative color schema? Please
 
 Colorizers wanted! Your favorite terminal colors gem is not supported yet? Please fork and add it to <tt>lib/wirb/colorizer/*</tt> :D
 
-=== Bundled schemas
+=== Bundled Schemas
 
 The following schemas are bundled (load with <tt>Wirb.load_schema :name</tt> and make sure the used colorizer is available).
 
@@ -63,11 +63,11 @@ The following schemas are bundled (load with <tt>Wirb.load_schema :name</tt> and
 * <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
 * <tt>:classic_wirb0</tt> (default implemented with wirb0)
 
-== Also see
+== Also See
 
 * Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
-* Wirb is part of: irbtools[https://github.com/janlelis/irbtools]
-* ripl is an irb alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
+* WIRB is part of: irbtools[https://github.com/janlelis/irbtools]
+* ripl is an IRB alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
 * Advanced terminal color gems: Paint[https://github.com/janlelis/paint], HighLine[https://github.com/JEG2/highline]
 
 == Credits
