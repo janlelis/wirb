@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Jan Lelis"]
   s.email       = "mail@janlelis.de"
   s.homepage    = "https://github.com/janlelis/wirb"
-  s.summary     = "Wirb Interactive Ruby"
-  s.description =  "Wirb colorizes your inspected Ruby objects. It is based on Wirble, but only provides and improves result highlighting. It also provides a colorization engine abstraction layer and offers flexible schemas using yaml. Wirb is part of the irbtools suite."
+  s.summary     = "WIRB Interactive Ruby"
+  s.description =  "WIRB highlights inspected Ruby objects. It is based on the original Wirble. You can create new color schemas using yaml."
   s.required_ruby_version     = '>= 1.8.7'
   s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} data/**/*.yml]) + %w{Rakefile wirb.gemspec .gemtest}
   s.extra_rdoc_files = ["README.rdoc", "COPYING.txt"]
