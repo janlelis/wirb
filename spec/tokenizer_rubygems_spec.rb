@@ -74,7 +74,7 @@ describe tokenizer(__FILE__) do
           [:close_string, "\""],
           [:object_description, " requirements="],
           [:open_string, "\""],
-          [:string, "~> 0.8"],
+          [:string, "~> 0.9"],
           [:close_string, "\""],
           [:close_object, ">"],
         ]
