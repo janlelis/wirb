@@ -18,7 +18,6 @@ Install the gem with:
 * Funny looking test suite
 * Can be used without IRB
 * Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
-* Usable with any supported terminal colors engine
 * Color schemas can be defined in YAML
 
 == Usage
@@ -28,7 +27,11 @@ Add to your <tt>~/.irbrc</tt>
   require 'wirb'
   Wirb.start
 
-Done: Your IRB is now colorful. You could also use it like awesome_print:
+All values returned by IRB will be syntax highlighted!
+
+=== <tt>wp</tt>
+
+As an bonus you can also colorize any other object using <tt>wp</tt>:
 
   require 'wirb/wp'
   wp some_object
@@ -37,42 +40,23 @@ Done: Your IRB is now colorful. You could also use it like awesome_print:
 
 To only tweak some colors, take a look at the <tt>Wirb.schema</tt> hash. To use a custom schema, inspect the yaml files in the <tt>data/wirb/</tt> directory. You can create your own schema and load it using <tt>Wirb.load_schema(path_to_yaml_file)</tt>. Alternatively, you can use one of the bundled ones by passing a symbol instead of a path.
 
-=== Colorizer
-
-WIRB supports multiple colorization engines. Available engines can be found in <tt>lib/wirb/colorizer/*</tt>. Some of them require external gems as dependencies (e.g. HighLine). The current default engine is <em>Paint</em>. You can change the colorizer using:
-
-  Wirb.load_colorizer :Paint # or :HighLine or whatever
-
-Be careful, though! You also need to select a color schema that supports your colorizer (Schemas define supported colorizers using the <tt>:colorizer</tt> key). Load a schema with:
-
-  Wirb.load_schema! :classic_paint # make sure your colorizer is paint
-
-You can automatically use the first colorizer of the schema by using the non-exclamation mark version:
-
-  Wirb.load_schema :classic_paint # will fail if paint is not installed
-
-Color schemas wanted! You've got a good looking alternative color schema? Please fork and add it to <tt>data/wirb/*</tt> :)
-
-Colorizers wanted! Your favorite terminal colors gem is not supported yet? Please fork and add it to <tt>lib/wirb/colorizer/*</tt> :D
-
 === Bundled Schemas
 
-The following schemas are bundled (load with <tt>Wirb.load_schema :name</tt> and make sure the used colorizer is available).
+The following schemas are bundled. You can load one with <tt>Wirb.load_schema :name</tt>
 
-* <tt>:classic_paint</tt> (paint implementation of default)
+* <tt>:classic</tt> (default)
 * <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
-* <tt>:classic_wirb0</tt> (default implemented with wirb0)
 
 == Also See
 
-* Configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
+* Gem that allows you to configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
 * WIRB is part of: irbtools[https://github.com/janlelis/irbtools]
 * ripl is an IRB alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
-* Advanced terminal color gems: Paint[https://github.com/janlelis/paint], HighLine[https://github.com/JEG2/highline]
+* Terminal colors: Paint[https://github.com/janlelis/paint]
 
 == Credits
 
-Copyright (c) 2011-2014 Jan Lelis <http://janlelis.de>, see COPYING for details.
+Copyright (c) 2011-2015 Jan Lelis <http://janlelis.com> see COPYING for details.
 
 Influenced by code from and thanks to: Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
 
