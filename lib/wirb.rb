@@ -37,7 +37,7 @@ class << Wirb
   # Loads a color schema from a yaml file
   #   If first argument is a String: path to yaml file
   #   If first argument is a Symbol: bundled schema
-  def load_schema!(yaml_path = :classic)
+  def load_schema(yaml_path = :classic)
     if yaml_path.is_a? Symbol # bundled themes
       schema_name = yaml_path.to_s
       schema_yaml = YAML.load_file(File.join(Gem.datadir('wirb'), schema_name + '.yml'))
@@ -58,17 +58,10 @@ class << Wirb
     @schema
   end
 
-  # Loads a color schema from a yaml file
-  def load_schema(yaml_path = :classic)
-    load_schema! yaml_path
-    @schema
-  end
-
   # Return the escape code for a given color
   def get_color(*keys)
     Paint.color(*keys)
   end
-  alias color get_color
 
   # Colorize a string
   def colorize_string(string, *colors)
@@ -90,10 +83,8 @@ class << Wirb
       string
     end
   end
-  alias colorize_code colorize_result
-  alias colorize_ruby colorize_result
 
 end
 
 # J-_-L
-#
+
