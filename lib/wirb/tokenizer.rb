@@ -56,7 +56,7 @@ class << Wirb
         when '/'      then push_state[:regexp]
         when '#'      then push_state[:object]
         when /[A-Z]/  then push_state[:class,    :repeat]
-        when /[a-z]/  then push_state[:keyword,  :repeat]
+        when /[a-z]/  then push_state[:word,     :repeat]
         when /[0-9-]/ then push_state[:number,   :repeat]
         when '.'      then push_state[:range,    :repeat]
         when /[~=]/  then push_state[:gem_requirement_condition, :repeat]
@@ -220,7 +220,7 @@ class << Wirb
           pass_state[:remove, :repeat]
         end
 
-      when :keyword
+      when :word
         if c =~ /[a-z0-9_]/i
           @token << c
           pass_custom_state[@token.to_sym, :remove] if %w[nil false true].include?(@token)

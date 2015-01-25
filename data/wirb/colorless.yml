@@ -57,8 +57,8 @@ complex:
 
 # misc
 default:
-keyword:
 time:
+word:
 nil:
 - :inverse
 false:

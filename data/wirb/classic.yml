@@ -98,9 +98,10 @@ complex:
 
 # misc
 #default:
-#keyword:
 time:
 - :magenta
+word:
+- :blue
 nil:
 - :red
 - :bright

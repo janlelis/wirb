@@ -1,4 +1,5 @@
 == next
+* :keyword -> :word (e.g. main)
 * Simplify setting delimiters in schema (e.g. :array instead of :open_array and :close_array)
 * Remove abstraction for alternative colorizers, only use paint
 
