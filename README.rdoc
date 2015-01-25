@@ -2,7 +2,7 @@
 
 *WIRB* colorizes inspected Ruby objects. It uses an improved version of the original tokenizer of Wirble[http://pablotron.org/software/wirble/]. It provides a colorization engine abstraction layer and includes different color schemas. WIRB is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
 
-Supported Rubies: 2.1, 2.0, 1.9, 1.8, jruby, rubinius
+Supported Rubies: 2.2, 2.1, 2.0, 1.9, 1.8, jruby, rubinius
 
 == Install
 
