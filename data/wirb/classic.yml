@@ -1,19 +1,11 @@
 # container
-open_hash:
+hash:
 - :green
 - :bright
-close_hash:
+array:
 - :green
 - :bright
-open_array:
-- :green
-- :bright
-close_array:
-- :green
-- :bright
-open_set:
-- :green
-close_set:
+set:
 - :green
 
 # delimiter
@@ -31,7 +23,7 @@ object_class:
 - :bright
 
 # object
-open_object:
+object:
 - :green
 object_description_prefix:
 - :green
@@ -58,8 +50,6 @@ object_variable_prefix:
 object_variable:
 - :magenta
 - :bright
-close_object:
-- :green
 
 # symbol
 symbol_prefix:
@@ -68,29 +58,22 @@ symbol_prefix:
 symbol:
 - :yellow
 - :bright
-open_symbol_string:
-- :yellow
 symbol_string:
 - :yellow
 - :bright
-close_symbol_string:
+symbol_string_delimetr:
 - :yellow
 
 # string
-open_string:
-- :white
 string:
 - :magenta
-close_string:
+string_delimiter:
 - :white
 
 # regexp
-open_regexp:
-- :blue
-- :bright
 regexp:
 - :magenta
-close_regexp:
+regexp_delimiter:
 - :blue
 - :bright
 regexp_flags:
@@ -104,18 +87,13 @@ special_number:
 - :cyan
 range:
 - :red
-open_rational:
+rational:
 - :cyan
 - :bright
 rational_separator:
 - :cyan
 - :bright
-close_rational:
-- :cyan
-- :bright
-open_complex:
-- :cyan
-close_complex:
+complex:
 - :cyan
 
 # misc

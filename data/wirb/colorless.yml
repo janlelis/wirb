@@ -1,10 +1,7 @@
 # container
-open_hash:
-close_hash:
-open_array:
-close_array:
-open_set:
-close_set:
+hash:
+array:
+set:
 
 # delimiter
 comma:
@@ -18,7 +15,7 @@ object_class:
 - :bright
 
 # object
-open_object:
+object:
 object_description_prefix:
 object_description:
 object_address_prefix:
@@ -28,28 +25,24 @@ object_line:
 object_line_number:
 object_variable_prefix:
 object_variable:
-close_object:
 
 # symbol
 symbol_prefix:
 symbol:
 - :bright
-open_symbol_string:
 symbol_string:
 - :bright
-close_symbol_string:
+symbol_string_delimiter:
 
 # string
-open_string:
 string:
 - :underline
-close_string:
+string_delimiter:
 
 # regexp
-open_regexp:
 regexp:
 - :underline
-close_regexp:
+regexp_delimiter:
 regexp_flags:
 
 # number
@@ -58,11 +51,9 @@ number:
 special_number:
 - :bright
 range:
-open_rational:
+rational:
 rational_separator:
-close_rational:
-open_complex:
-close_complex:
+complex:
 
 # misc
 default:
