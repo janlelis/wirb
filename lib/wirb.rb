@@ -89,10 +89,14 @@ class << Wirb
   def colorize_result(string, custom_schema = schema)
     if @running
       check = ''
-      colorful = tokenize(string).map do |kind, token|
-        check << token
-        colorize_string token, *Array( custom_schema[kind] )
-      end.join
+      begin
+        colorful = tokenize(string).map{ |kind, token|
+          check << token
+          colorize_string token, *Array( custom_schema[kind] )
+        }.join
+      rescue
+        p $!, $!.backtrace[0] if $VERBOSE
+      end
 
       # always display the correct inspect string!
       check == string ? colorful : string

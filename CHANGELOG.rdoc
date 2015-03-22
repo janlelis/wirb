@@ -3,6 +3,7 @@
 * Rename :keyword token to :word (e.g. main) and more token renamings
 * Simplify setting delimiters in schema (e.g. :array instead of :open_array and :close_array)
 * Remove abstraction for alternative colorizers, only use paint
+* Move exception handling out of tokenizer
 
 == 1.0.3
 * Allow nestings of objects in object description
