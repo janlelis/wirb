@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../wirb' unless defined? Wirb
+require_relative '../wirb'
 
 module Kernel
   private

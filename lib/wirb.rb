@@ -1,5 +1,5 @@
-require File.dirname(__FILE__) + '/wirb/version'
-require File.dirname(__FILE__) + '/wirb/tokenizer'
+require_relative 'wirb/version'
+require_relative 'wirb/tokenizer'
 
 require 'yaml'
 require 'paint'

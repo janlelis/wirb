@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-require 'rubygems' unless defined? Gem
 require File.dirname(__FILE__) + "/lib/wirb/version"
 
 Gem::Specification.new do |s|
