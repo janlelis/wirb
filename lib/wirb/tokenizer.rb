@@ -360,7 +360,7 @@ module Wirb
             open_brackets += 1
             @token << c
           when '@'
-            if nc =~ /[a-z]/i
+            if nc =~ /[a-z_]/i
               pass_state[]
               push_state[:object_variable]
             else

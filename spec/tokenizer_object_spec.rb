@@ -126,6 +126,24 @@ describe tokenizer(__FILE__) do
   end
 
   please do
+    object = Object.new
+    object.instance_variable_set(:@_, 42)
+    check(object)
+    tokens.should be_like [
+      [:open_object, "#<"],
+      [:object_class, "Object"],
+      [:object_description_prefix, ":"],
+      [:object_address, /#{OBJECT_ID}/],
+      [:object_description, " "],
+      [:object_variable_prefix, "@"],
+      [:object_variable, "_"],
+      [:object_description, "="],
+      [:number, "42"],
+      [:close_object, ">"],
+    ]
+  end
+
+  please do
     class Hey
       def initialize
         @hallo = [1,42]
