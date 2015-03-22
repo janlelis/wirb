@@ -1,11 +1,11 @@
 # container
-hash:
+hash_delimiter:
 - :green
 - :bright
-array:
+array_delimiter:
 - :green
 - :bright
-set:
+set_delimiter:
 - :green
 
 # delimiter
@@ -87,13 +87,13 @@ special_number:
 - :cyan
 range:
 - :red
-rational:
+rational_delimiter:
 - :cyan
 - :bright
 rational_separator:
 - :cyan
 - :bright
-complex:
+complex_delimiter:
 - :cyan
 
 # misc

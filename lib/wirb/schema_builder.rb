@@ -23,15 +23,14 @@ module Wirb
      def self.normalize_schema(schema_yaml)
        normalized_schema = Hash[ schema_yaml.map{ |k,v| [k.to_s.to_sym, Array( v )] } ]
        %w(
-         hash
-         array
-         set
-         object
+         hash_delimiter
+         array_delimiter
+         set_delimiter
          symbol_string_delimiter
          string_delimiter
-         regexp_delimiter
-         rational
-         complex
+         regexp_delitimier
+         rational_delimiter
+         complex_delimiter
        ).each{ |what|
          values = normalized_schema.delete(what.to_sym)
          normalized_schema[:"open_#{what}"]  = values
