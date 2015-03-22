@@ -79,21 +79,13 @@ class << Wirb
     normalized_schema
   end
 
-  def get_color(*keys)
-    Paint.color(*keys)
-  end
-
-  def colorize_string(string, *colors)
-    Paint[string, *colors]
-  end
-
   def colorize_result(string)
     if @running
       check = ''
       begin
         colorful = Wirb::Tokenizer.run(string).map{ |kind, token|
           check << token
-          colorize_string token, *Array( schema[kind] )
+          Paint[token, *Array( schema[kind] )]
         }.join
       rescue
         p $!, $!.backtrace[0] if $VERBOSE
