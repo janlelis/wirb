@@ -133,29 +133,6 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  require 'prime'
-  please do check Prime.each
-    tokens.should be_like [
-      [:open_object, "#<"],
-      [:object_class, "Prime"],
-      [:class_separator, "::"],
-      [:object_class, "EratosthenesGenerator"],
-      [:object_description_prefix, ":"],
-      [:object_address, /#{OBJECT_ID}/],
-      [:object_description, ' '],
-      [:object_variable_prefix, "@"],
-      [:object_variable, "last_prime"],
-      [:object_description, "="],
-      [:nil, "nil"],
-      [:object_description, ", "],
-      [:object_variable_prefix, "@"],
-      [:object_variable, "ubound"],
-      [:object_description, "="],
-      [:nil, "nil"],
-      [:close_object, ">"],
-    ]
-  end
-
   please do check [{1=>2},Wirb::Tokenizer.run('2'),Set[2,3],[3,4],[5,6].each].map
     tokens.should == [
       [:open_object, "#<"],
