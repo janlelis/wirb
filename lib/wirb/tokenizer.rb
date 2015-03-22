@@ -60,7 +60,7 @@ module Wirb
           when /[a-z]/  then push_state[:word,     :repeat]
           when /[0-9-]/ then push_state[:number,   :repeat]
           when '.'      then push_state[:range,    :repeat]
-          when /[~=]/  then push_state[:gem_requirement_condition, :repeat]
+          when /\=/     then push_state[:equal,    :repeat]
 
           when /\s/
             if get_state[:variable]
@@ -85,11 +85,7 @@ module Wirb
             end
 
           when '>'
-            if get_state[:variable]
-              pop_state[:repeat]
-            elsif @token == '' && nc =~ /[= ]/
-              push_state[:gem_requirement_condition, :repeat]
-            end
+            pop_state[:repeat]
           when '('
             peek = chars[i+1..-1].join
             if peek =~ /^-?(?:Infinity|NaN|[0-9.e]+)[+-](?:Infinity|NaN|[0-9.e]+)\*?i\)/
@@ -136,14 +132,10 @@ module Wirb
             pop_state[] if get_state[:enumerator]
 
           when '<'
-            if nc =~ /[= ]/
-              push_state[:gem_requirement_condition, :repeat]
-            else # MAYBE slightly refactoring
-              pass[:open_object, '<']
-              push_state[:object]
-              push_state[:object_class]
-              open_brackets = 0
-            end
+            pass[:open_object, '<']
+            push_state[:object]
+            push_state[:object_class]
+            open_brackets = 0
           end
 
         when :class
@@ -436,7 +428,7 @@ module Wirb
             pass_state[:remove, :repeat]
           end
 
-        when :gem_requirement_condition
+        when :equal
           if c == '>' && lc == '='
             @token = ''; pop_state[] # TODO in pass helper
             if get_state[:hash]
@@ -449,19 +441,10 @@ module Wirb
             else # MAYBE remove this <=> cheat
               pass[:symbol, '=>']
             end
-          elsif c =~ /[^\s]/
+          elsif c =~ /\S/
             @token << c
           else
-            pass_state[:remove]
             pass[:whitespace, c]
-            push_state[:gem_requirement_version]
-          end
-
-        when :gem_requirement_version
-          if c =~ /[0-9a-z.]/i
-            @token << c
-          else
-            pass_state[:remove, :repeat]
           end
 
         when :instructionsequence # RubyVM
@@ -473,16 +456,15 @@ module Wirb
             set_state[:object_line]
           end
 
-
-        # else
-        #   raise "unknown state #{@state[-1]} #{@state.inspect}"
+        else
+          raise "unknown state #{@state[-1]} #{@state.inspect}"
         end
 
-        # next round :)
+        # next round
         if !@repeat
           i += 1
         elsif snapshot && Marshal.load(snapshot) == [@state, @token, llc, lc, c, nc] # loop protection
-          raise 'Wirb Bug :/'
+          raise "This might be a WIRB bug, please open an issue at:\nhttps://github.com/janlelis/wirb/issues/new"
         end
 
         snapshot = Marshal.dump([@state, @token, llc, lc, c, nc])
