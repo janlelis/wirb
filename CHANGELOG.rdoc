@@ -1,4 +1,5 @@
 == next (2.0)
+* Introduce timeout option: If WIRB hasn't finised applying colors within 3 seconds, it will skip rendering the string
 * Don't target Ruby 1 anymore, set required Ruby version to 2.0
 * Rename :keyword token to :word (e.g. main) and more token renamings
 * Simplify setting delimiters in schema (e.g. :array instead of :open_array and :close_array)

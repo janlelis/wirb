@@ -3,13 +3,22 @@ require File.dirname(__FILE__) + '/wirb/tokenizer'
 
 require 'yaml'
 require 'paint'
+require 'timeout'
 
 class << Wirb
-  def running?() @running end
+  def running?
+    !!@running
+  end
 
-  @running = false
+  def timeout
+    @timeout ||= 3
+  end
 
-  # Start colorizing results, will hook into irb if IRB is defined
+  def schema
+    @schema ||= load_schema
+  end
+
+
   def start
     require File.dirname(__FILE__) + '/wirb/irb' if defined?(IRB) && defined?(IRB::Irb) && !IRB::Irb.instance_methods.include?(:prompt_non_fancy)
     @running = true
@@ -19,18 +28,13 @@ class << Wirb
   alias activate start
   alias enable   start
 
-  # Stop colorizing
   def stop
     @running = false
   end
   alias deactivate stop
   alias disable    stop
 
-  def schema
-    @schema || load_schema
-  end
-
-  def schema=(val)
+    def schema=(val)
     @schema = val
   end
 
@@ -75,24 +79,21 @@ class << Wirb
     normalized_schema
   end
 
-  # Return the escape code for a given color
   def get_color(*keys)
     Paint.color(*keys)
   end
 
-  # Colorize a string
   def colorize_string(string, *colors)
     Paint[string, *colors]
   end
 
-  # Colorize a result string
-  def colorize_result(string, custom_schema = schema)
+  def colorize_result(string)
     if @running
       check = ''
       begin
-        colorful = tokenize(string).map{ |kind, token|
+        colorful = Wirb::Tokenizer.run(string).map{ |kind, token|
           check << token
-          colorize_string token, *Array( custom_schema[kind] )
+          colorize_string token, *Array( schema[kind] )
         }.join
       rescue
         p $!, $!.backtrace[0] if $VERBOSE
@@ -103,6 +104,18 @@ class << Wirb
     else
       string
     end
+  end
+
+  def colorize_result_with_timeout(string)
+    if timeout.to_i == 0
+      colorize_result(string)
+    else
+      Timeout.timeout(timeout) do
+        colorize_result(string)
+      end
+    end
+  rescue Timeout::Error
+    string
   end
 
 end

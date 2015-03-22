@@ -5,7 +5,7 @@ class IRB::Irb
 
   def output_value
     if @context.inspect?
-      printf @context.return_format, ::Wirb.colorize_result( @context.last_value.inspect )
+      printf @context.return_format, ::Wirb.colorize_result_with_timeout( @context.last_value.inspect )
     else
       printf @context.return_format, @context.last_value
     end
