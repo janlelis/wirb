@@ -115,14 +115,16 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do check Wirb.tokenize('[2,3,4]')
+  please do check Wirb::Tokenizer.run('[2,3,4]')
     tokens.should == [
       [:open_object, "#<"],
       [:object_class, "Enumerator"],
       [:object_description_prefix, ":"],
       [:whitespace, " "],
       [:class, "Wirb"],
-      [:object_description, ":tokenize("],
+      [:class_separator, "::"],
+      [:class, "Tokenizer"],
+      [:object_description, ":run("],
       [:open_string, "\""],
       [:string, "[2,3,4]"],
       [:close_string, "\""],
@@ -154,7 +156,7 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  please do check [{1=>2},Wirb.tokenize('2'),Set[2,3],[3,4],[5,6].each].map
+  please do check [{1=>2},Wirb::Tokenizer.run('2'),Set[2,3],[3,4],[5,6].each].map
     tokens.should == [
       [:open_object, "#<"],
       [:object_class, "Enumerator"],
@@ -173,7 +175,9 @@ describe tokenizer(__FILE__) do
       [:object_description_prefix, ":"],
       [:whitespace, " "],
       [:class, "Wirb"],
-      [:object_description, ":tokenize("],
+      [:class_separator, "::"],
+      [:class, "Tokenizer"],
+      [:object_description, ":run("],
       [:open_string, "\""],
       [:string, "2"],
       [:close_string, "\""],
