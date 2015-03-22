@@ -1,43 +1,38 @@
 == WIRB Interactive Ruby {<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
 
-*WIRB* colorizes inspected Ruby objects. It uses an improved version of the original tokenizer of Wirble[http://pablotron.org/software/wirble/]. It provides a colorization engine abstraction layer and includes different color schemas. WIRB is part of the {irbtools suite}[https://github.com/janlelis/irbtools].
+*WIRB* colorizes inspected Ruby objects. It uses an improved version of the original tokenizer of Wirble[http://pablotron.org/software/wirble/] and comes with different color schemas.
 
-Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius
+Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius. Please use WIRB 1.0 if you need support for legacy Rubies (1.9, 1.8)
 
-Please use WIRB 1.0 if you need support for legacy Rubies (1.9, 1.8)
+
+== Features
+
+* Syntax highlighting for Ruby objects
+* No monkey patches anywhere
+* Support for generic objects, especially enumerators, and nested generic objects
+* Funny looking test suite
+* Can be used without IRB
+* Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
+* Custom color schemas via YAML
 
 
 == Install
 
 Install the gem with:
 
-  gem install wirb
+    $ gem install wirb
 
-== Features
-
-* Syntax highlighting for Ruby objects
-* Does not monkey patch the inspect method
-* Support for generic objects, especially enumerators, and nested generic objects
-* Funny looking test suite
-* Can be used without IRB
-* Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
-* Color schemas can be defined in YAML
 
 == Usage
 
-Add to your <tt>~/.irbrc</tt>
+You can set up IRB to use it for one session by doing:
 
-  require 'wirb'
-  Wirb.start
+    $ irb -r wirb --inspect wirb
 
-All values returned by IRB will be syntax highlighted!
+But probably, you want to use it every time you use IRB. This is done by adding the following to  <tt>~/.irbrc</tt>
 
-=== <tt>wp</tt>
-
-As an bonus you can also colorize any other object using <tt>wp</tt>:
-
-  require 'wirb/wp'
-  wp some_object
+    require 'wirb'
+    Wirb.start
 
 == Advanced: Customize Colors
 
@@ -50,17 +45,24 @@ The following schemas are bundled. You can load one with <tt>Wirb.load_schema :n
 * <tt>:classic</tt> (default)
 * <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
 
+== <tt>wp</tt>
+
+As an bonus you can also colorize any other object as well, using <tt>wp</tt>:
+
+  require 'wirb/wp'
+  wp some_object
+
 == Also See
 
 * Gem that allows you to configure views for specific objects: hirb[https://github.com/cldwalker/hirb]
 * WIRB is part of: irbtools[https://github.com/janlelis/irbtools]
-* ripl is an IRB alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
-* Terminal colors: Paint[https://github.com/janlelis/paint]
+* RIPL is an IRB alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
+* More about terminal colors: Paint[https://github.com/janlelis/paint]
 
 == Credits
 
 Copyright (c) 2011-2015 Jan Lelis <http://janlelis.com> see COPYING for details.
 
-Influenced by code from and thanks to: Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
+Influenced by code from: Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
 
-Contributions[https://github.com/janlelis/wirb/contributors] by and thanks to: {Richard LeBer}[https://github.com/rleber]
+{All contributors}[https://github.com/janlelis/wirb/contributors]

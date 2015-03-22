@@ -1,9 +1,13 @@
 == next (2.0)
-* Introduce timeout option: If WIRB hasn't finised applying colors within 3 seconds, it will skip rendering the string
+Main Changes
 * Don't target Ruby 1 anymore, set required Ruby version to 2.0
+* Change the way WIRB is integrated into IRB: Now uses the IRB API, instead of monkey patch
+* Remove abstraction for alternative colorizers, only use paint
+* Introduce timeout option: If WIRB hasn't finised applying colors within 3 seconds, it will skip rendering the string
+
+Minor Changes
 * Rename :keyword token to :word (e.g. main) and more token renamings
 * Simplify setting delimiters in schema (e.g. :array instead of :open_array and :close_array)
-* Remove abstraction for alternative colorizers, only use paint
 * Move exception handling out of tokenizer
 
 == 1.0.3
