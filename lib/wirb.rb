@@ -42,15 +42,15 @@ class << Wirb
   alias deactivate stop
   alias disable    stop
 
-
   def colorize_result(string)
     if @running
       check = ''
+      colorful = ''
       begin
-        colorful = Wirb::Tokenizer.run(string).map{ |kind, token|
+        Wirb::Tokenizer.run(string).each{ |kind, token|
           check << token
-          Paint[token, *Array( schema[kind] )]
-        }.join
+          colorful << Paint[token, *Array( schema[kind] )]
+        }
       rescue
         p $!, $!.backtrace[0] if $VERBOSE
       end
