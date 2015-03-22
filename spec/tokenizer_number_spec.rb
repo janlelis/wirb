@@ -39,7 +39,7 @@ describe tokenizer(__FILE__) do
       [:close_array, "]"],
     ]
   end
- 
+
   please do check [2, 3, 4.0, -3, 99e99, 1e-99, 2_3_4, 4E8]
     tokens.should == [
       [:open_array, "["],
@@ -69,18 +69,17 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  only19 do
-    please do check Rational(2,3)
-      tokens.should == [
-        [:open_rational, "("],
-        [:number, "2"],
-        [:rational_separator, "/"],
-        [:number, "3"],
-        [:close_rational, ")"],
-      ]
-    end
+  please do check Rational(2,3)
+    tokens.should == [
+      [:open_rational, "("],
+      [:number, "2"],
+      [:rational_separator, "/"],
+      [:number, "3"],
+      [:close_rational, ")"],
+    ]
   end
 
+=begin
   only18 do
     please do check Rational(2,3)
       tokens.should == [
@@ -103,12 +102,14 @@ describe tokenizer(__FILE__) do
       ]
     end
   end
+=end
 
   please do check (1/0.0)
     tokens.should == [
       [:special_number, "Infinity"],
     ]
   end
+
   please do check [-(1/0.0), (0/0.0), -(1/0.0), -(0/0.0)]
     tokens.should == [
       [:open_array, "["],
@@ -126,26 +127,26 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  only19 do
-    please do check Complex(-2.2,-3.3)
-      tokens.should == [
-        [:open_complex, "("],
-        [:number, "-2.2-3.3i"],
-        [:close_complex, ")"],
-      ]
-    end
-
-    please do check Complex(-1/0.0, 0/0.0)
-      tokens.should == [
-        [:open_complex, "("],
-        [:special_number, "-Infinity"],
-        [:special_number, "+NaN"],
-        [:number, '*i'],
-        [:close_complex, ")"],
-      ]
-    end
+  please do check Complex(-2.2,-3.3)
+    tokens.should == [
+      [:open_complex, "("],
+      [:number, "-2.2-3.3i"],
+      [:close_complex, ")"],
+    ]
   end
 
+  please do check Complex(-1/0.0, 0/0.0)
+    tokens.should == [
+      [:open_complex, "("],
+      [:special_number, "-Infinity"],
+      [:special_number, "+NaN"],
+      [:number, '*i'],
+      [:close_complex, ")"],
+    ]
+  end
+end
+
+=begin
   only18 do
     please do check Complex(-2.2,-3.3)
       tokens.should == [
@@ -160,3 +161,4 @@ describe tokenizer(__FILE__) do
     end
   end
 end
+=end

@@ -1,16 +1,12 @@
 require 'wirb'
 require 'wirb/wp'
-require 'zucker/engine'
-require 'zucker/ruby_version'
-
-Wirb.start
-
+require 'ruby_engine'
 
 # TOKENIZER
 
 def tokenizer(filename)
   filename =~ /tokenizer_(.*)_spec\.rb/
-  "Wirb.tokenize" + ($1 ? "(#{$1})" : "")
+  "Wirb::Tokenizer.run" + ($1 ? "(#{$1})" : "")
 end
 
 def check_value
@@ -80,17 +76,7 @@ end
 
 # GENERAL
 
-def only19
-  yield if RubyVersion == 1.9
-end
-
-def only18
-  yield if RubyVersion == 1.8
-end
-
 # common regex patterns
 OBJECT_ID = /0x[0-9a-f]+/
 
-=begin helper method for getting tokens
-def ws(obj); puts Wirb.tokenize(obj.inspect).map{|*x| x.inspect + ','}*$/; end
-=end
+def ws(obj) puts Wirb.tokenize(obj.inspect).map{|*x| x.inspect + ','}*$/ end

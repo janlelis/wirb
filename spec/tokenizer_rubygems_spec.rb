@@ -38,47 +38,43 @@ describe tokenizer(__FILE__) do
       ]
     end
 
-    if Gem::Specification.respond_to? :find_by_name
-      only19 do
-        please do
-          require 'rspec'
-          rspec_version = Gem::Specification.find_by_name('rspec').dependencies.first.requirement
-          only_version_number = rspec_version.requirements[0][1].to_s
-          check [rspec_version]*2
-          tokens.should == [
-            [:open_array, '['],
-            [:gem_requirement_condition, "~>"],
-            [:whitespace, " "],
-            [:gem_requirement_version, only_version_number],
-            [:comma, ","],
-            [:whitespace, " "],
-            [:gem_requirement_condition, "~>"],
-            [:whitespace, " "],
-            [:gem_requirement_version, only_version_number],
-            [:close_array, ']'],
-          ]
-        end
-      end
+    please do
+      require 'rspec'
+      rspec_version = Gem::Specification.find_by_name('rspec').dependencies.first.requirement
+      only_version_number = rspec_version.requirements[0][1].to_s
+      check [rspec_version]*2
+      tokens.should == [
+        [:open_array, '['],
+        [:gem_requirement_condition, "~>"],
+        [:whitespace, " "],
+        [:gem_requirement_version, only_version_number],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:gem_requirement_condition, "~>"],
+        [:whitespace, " "],
+        [:gem_requirement_version, only_version_number],
+        [:close_array, ']'],
+      ]
+    end
 
-      please do
-        check Gem::Specification.find_by_name('wirb').dependencies.first
-        tokens.should == [ # <Gem::Dependency type=:development name="rspec" requirements=">= 0">
-          [:open_object, "<"],
-          [:object_class, "Gem"],
-          [:class_separator, "::"],
-          [:object_class, "Dependency"],
-          [:object_description_prefix, " "],
-          [:object_description, "type=:runtime name="],
-          [:open_string, "\""],
-          [:string, "paint"],
-          [:close_string, "\""],
-          [:object_description, " requirements="],
-          [:open_string, "\""],
-          [:string, "~> 0.9"],
-          [:close_string, "\""],
-          [:close_object, ">"],
-        ]
-      end
+    please do
+      check Gem::Specification.find_by_name('wirb').dependencies.first
+      tokens.should == [ # <Gem::Dependency type=:development name="rspec" requirements=">= 0">
+        [:open_object, "<"],
+        [:object_class, "Gem"],
+        [:class_separator, "::"],
+        [:object_class, "Dependency"],
+        [:object_description_prefix, " "],
+        [:object_description, "type=:runtime name="],
+        [:open_string, "\""],
+        [:string, "paint"],
+        [:close_string, "\""],
+        [:object_description, " requirements="],
+        [:open_string, "\""],
+        [:string, "~> 0.9"],
+        [:close_string, "\""],
+        [:close_object, ">"],
+      ]
     end
   end
 end

@@ -100,15 +100,13 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  only19 do
-    please do check __ENCODING__
-      tokens.should == [
-        [:open_object, "#<"],
-        [:object_class, "Encoding"],
-        [:object_description_prefix, ":"],
-        [:object_description, "US-ASCII"],
-        [:close_object, ">"],
-      ]
-    end
+  please do check __ENCODING__
+    tokens.should == [
+      [:open_object, "#<"],
+      [:object_class, "Encoding"],
+      [:object_description_prefix, ":"],
+      [:object_description, "US-ASCII"],
+      [:close_object, ">"],
+    ]
   end
 end

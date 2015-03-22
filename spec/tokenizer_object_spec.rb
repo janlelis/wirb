@@ -65,46 +65,44 @@ describe tokenizer(__FILE__) do
     end
   end
 
-  only19 do
-    unless RubyEngine.jruby?
-      please do check STDOUT
-        tokens.should == [
-          [:open_object, "#<"],
-          [:object_class, "IO"],
-          [:object_description_prefix, ":"],
-          [:object_description, "<STDOUT>"],
-          [:close_object, ">"],
-        ]
-      end
-
-      please do check STDIN
-         tokens.should == [
-          [:open_object, "#<"],
-          [:object_class, "IO"],
-          [:object_description_prefix, ":"],
-          [:object_description, "<STDIN>"],
-          [:close_object, ">"],
-        ]
-      end
-    end
-
-    please do check Module.new.singleton_class.singleton_class
-      tokens.should be_like [
+  unless RubyEngine.jruby?
+    please do check STDOUT
+      tokens.should == [
         [:open_object, "#<"],
-        [:object_class, "Class"],
+        [:object_class, "IO"],
         [:object_description_prefix, ":"],
-        [:open_object, "#<"],
-        [:object_class, "Class"],
-        [:object_description_prefix, ":"],
-        [:open_object, "#<"],
-        [:object_class, "Module"],
-        [:object_description_prefix, ":"],
-        [:object_address, OBJECT_ID],
-        [:close_object, ">"],
-        [:close_object, ">"],
+        [:object_description, "<STDOUT>"],
         [:close_object, ">"],
       ]
     end
+
+    please do check STDIN
+       tokens.should == [
+        [:open_object, "#<"],
+        [:object_class, "IO"],
+        [:object_description_prefix, ":"],
+        [:object_description, "<STDIN>"],
+        [:close_object, ">"],
+      ]
+    end
+  end
+
+  please do check Module.new.singleton_class.singleton_class
+    tokens.should be_like [
+      [:open_object, "#<"],
+      [:object_class, "Class"],
+      [:object_description_prefix, ":"],
+      [:open_object, "#<"],
+      [:object_class, "Class"],
+      [:object_description_prefix, ":"],
+      [:open_object, "#<"],
+      [:object_class, "Module"],
+      [:object_description_prefix, ":"],
+      [:object_address, OBJECT_ID],
+      [:close_object, ">"],
+      [:close_object, ">"],
+      [:close_object, ">"],
+    ]
   end
 
   please do

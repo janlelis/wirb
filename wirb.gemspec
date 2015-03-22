@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
   s.add_dependency 'paint', '~> 1.0'
   s.add_development_dependency 'rspec', '~> 2.14'
-  s.add_development_dependency 'rake', '~> 10.1'
-  s.add_development_dependency 'zucker', '~> 13'
-  #s.add_development_dependency 'highline'
+  s.add_development_dependency 'rake', '~> 10.4'
+  s.add_development_dependency 'ruby_engine', '~> 1.0'
 end
