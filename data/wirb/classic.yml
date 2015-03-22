@@ -23,7 +23,7 @@ object_class:
 - :bright
 
 # object
-object:
+object_delimiter:
 - :green
 object_description_prefix:
 - :green
@@ -61,7 +61,7 @@ symbol:
 symbol_string:
 - :yellow
 - :bright
-symbol_string_delimetr:
+symbol_string_delimiter:
 - :yellow
 
 # string
@@ -97,7 +97,6 @@ complex_delimiter:
 - :cyan
 
 # misc
-#default:
 time:
 - :magenta
 word:
@@ -109,8 +108,3 @@ false:
 - :red
 true:
 - :green
-gem_requirement_condition:
-- :cyan
-gem_requirement_version:
-- :cyan
-- :bright

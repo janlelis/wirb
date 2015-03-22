@@ -1,7 +1,7 @@
 # container
-hash:
-array:
-set:
+hash_delimiter:
+array_delimiter:
+set_delimiter:
 
 # delimiter
 comma:
@@ -15,7 +15,7 @@ object_class:
 - :bright
 
 # object
-object:
+object_delimiter:
 object_description_prefix:
 object_description:
 object_address_prefix:
@@ -56,7 +56,6 @@ rational_separator:
 complex:
 
 # misc
-default:
 time:
 word:
 nil:
@@ -65,6 +64,3 @@ false:
 - :inverse
 true:
 - :inverse
-gem_requirement_condition:
-- :bright
-gem_requirement_version:
