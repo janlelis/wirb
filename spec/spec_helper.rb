@@ -79,4 +79,4 @@ end
 # common regex patterns
 OBJECT_ID = /0x[0-9a-f]+/
 
-def ws(obj) puts Wirb.tokenize(obj.inspect).map{|*x| x.inspect + ','}*$/ end
+def ws(obj) puts Wirb::Tokenizer.run(obj.inspect).map{|*x| x.inspect + ','}*$/ end

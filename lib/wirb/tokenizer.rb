@@ -139,7 +139,6 @@ module Wirb
           end
 
         when :class
-          next set_state[:time, :repeat] if c == ' ' # Ruby 1.8 default timestamp
           case c
           when /[a-z0-9_]/i
             @token << c
@@ -228,9 +227,6 @@ module Wirb
             set_state[:special_number, :repeat]
           elsif c =~ /[0-9e.*i+-]/ && !(c == '.' && nc == '.')
             @token << c
-          elsif c == '/' # ruby 1.8 mathn
-            pass_state[]
-            pass[:rational_separator, '/']
           else
             pass_state[:remove, :repeat]
           end
@@ -239,8 +235,6 @@ module Wirb
           peek = chars[i..-1].join
           if [
             /^\d+-\d{2}-\d{2} \d{2}:\d{2}:\d{2} (?:[+-]\d{4}|[a-z]{3})/i,               # 1.9 / UTC
-            /^[a-z]{3} [a-z]{3} \d{2} \d{2}:\d{2}:\d{2} (?:[+-]\d{4}|[a-z]{3}) \d{4}/i, # 1.8
-            #/^\d+-\d{2}-\d{2}/, # simple date
           ].any?{ |regex|
             ( @token + peek ) =~ regex
           } # found, adjust parsing-pointer:

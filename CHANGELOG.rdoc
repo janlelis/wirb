@@ -1,14 +1,15 @@
-== next (2.0)
-Main Changes
+== 2.0.0 (master)
+=== Main Changes
 * Don't target Ruby 1 anymore, set required Ruby version to 2.0
 * Change the way WIRB is integrated into IRB: Now uses the IRB API, instead of monkey patch
 * Remove abstraction for alternative colorizers, only use paint
 * Introduce timeout option: If WIRB hasn't finised applying colors within 3 seconds, it will skip rendering the string
 
-Minor Changes
+=== Minor Changes
 * Rename :keyword token to :word (e.g. main) and more token renamings
 * Simplify setting delimiters in schema (e.g. :array instead of :open_array and :close_array)
 * Move exception handling out of tokenizer
+* Remove parsing rules for 1.8 and rubygem dependencies
 
 == 1.0.3
 * Allow nestings of objects in object description
