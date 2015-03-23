@@ -1,6 +1,6 @@
 == WIRB Interactive Ruby {<img src="https://travis-ci.org/janlelis/wirb.png" />}[https://travis-ci.org/janlelis/wirb]
 
-*WIRB* colorizes inspected Ruby objects. It uses an improved version of the original tokenizer of Wirble[http://pablotron.org/software/wirble/] and comes with different color schemas.
+*WIRB* syntax highlights Ruby objects, for example, in IRB.
 
 Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius. Please use WIRB 1.0 if you need support for legacy Rubies (1.9, 1.8)
 
@@ -10,9 +10,8 @@ Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius. Please use WIRB 1.0 if you nee
 * Syntax highlighting for Ruby objects
 * No monkey patches anywhere
 * Support for generic objects, especially enumerators, and nested generic objects
-* Funny looking test suite
 * Can be used without IRB
-* Limited stdlib/gem objects support (e.g. Set, Gem::Requirement)
+* Supports stdlib objects, like +Set+
 * Custom color schemas via YAML
 
 
@@ -25,29 +24,26 @@ Install the gem with:
 
 == Usage
 
-You can set up IRB to use it for one session by doing:
+To start IRB with WIRB activated for one session, do:
 
     $ irb -r wirb --inspect wirb
 
-But probably, you want to use it every time you use IRB. This is done by adding the following to  <tt>~/.irbrc</tt>
+To activate WIRB permanently, you'll need to add this to the <tt>~/.irbrc</tt> file:
 
     require 'wirb'
     Wirb.start
 
-== Advanced: Customize Colors
-
-To only tweak some colors, take a look at the <tt>Wirb.schema</tt> hash. To use a custom schema, inspect the yaml files in the <tt>data/wirb/</tt> directory. You can create your own schema and load it using <tt>Wirb.load_schema(path_to_yaml_file)</tt>. Alternatively, you can use one of the bundled ones by passing a symbol instead of a path.
-
 === Bundled Schemas
 
-The following schemas are bundled. You can load one with <tt>Wirb.load_schema :name</tt>
+These are the bundled color schemas. You can load one with <tt>Wirb.load_schema :name</tt>
 
 * <tt>:classic</tt> (default)
 * <tt>:colorless</tt> (only uses :bright, :underline and :inverse effect)
 
-== <tt>wp</tt>
 
-As an bonus you can also colorize any other object as well, using <tt>wp</tt>:
+== <tt>Kernel#wp</tt>
+
+You can use WIRB like awesome_print using <tt>wp</tt>:
 
   require 'wirb/wp'
   wp some_object
@@ -58,6 +54,7 @@ As an bonus you can also colorize any other object as well, using <tt>wp</tt>:
 * WIRB is part of: irbtools[https://github.com/janlelis/irbtools]
 * RIPL is an IRB alternative, syntax highlighting plugin (uses wirb by default): ripl-color_result[https://github.com/janlelis/ripl-color_result]
 * More about terminal colors: Paint[https://github.com/janlelis/paint]
+* [Wirble](http://pablotron.org/software/wirble/): WIRB's predecessor
 
 == Credits
 
