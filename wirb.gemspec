@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.summary     = "WIRB Interactive Ruby"
   s.description =  "WIRB highlights inspected Ruby objects. It is based on the original Wirble. You can create new color schemas using yaml."
   s.required_ruby_version = '~> 2.0'
-  s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,rdoc} ext/**/*.{rb,c} data/**/*.yml]) + %w{Rakefile wirb.gemspec .gemtest}
-  s.extra_rdoc_files = ["README.rdoc", "COPYING.txt"]
+  s.files = Dir.glob(%w[{lib,test,spec}/**/*.rb bin/* [A-Z]*.{txt,md} ext/**/*.{rb,c} data/**/*.yml]) + %w{Rakefile wirb.gemspec}
+  s.extra_rdoc_files = ["README.md", "CHANGELOG.md", "COPYING.txt"]
   s.license = 'MIT'
   s.add_dependency 'paint', '>= 0.9', '< 2.0'
   s.add_development_dependency 'rspec', '~> 2.14'
