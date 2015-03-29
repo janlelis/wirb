@@ -65,7 +65,27 @@ describe tokenizer(__FILE__) do
     end
   end
 
-  unless RubyEngine.jruby?
+  if RubyEngine.jruby? || RubyEngine.rbx?
+    please do check STDOUT
+      tokens.should == [
+        [:open_object, "#<"],
+        [:object_class, "IO"],
+        [:object_description_prefix, ":"],
+        [:object_description, "fd 1"],
+        [:close_object, ">"],
+      ]
+    end
+
+    please do check STDIN
+       tokens.should == [
+        [:open_object, "#<"],
+        [:object_class, "IO"],
+        [:object_description_prefix, ":"],
+        [:object_description, "fd 0"],
+        [:close_object, ">"],
+      ]
+    end
+  else
     please do check STDOUT
       tokens.should == [
         [:open_object, "#<"],
