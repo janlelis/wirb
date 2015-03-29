@@ -65,7 +65,7 @@ describe tokenizer(__FILE__) do
     end
   end
 
-  if RubyEngine.jruby? || RubyEngine.rbx?
+  if RubyEngine.rbx?
     please do check STDOUT
       tokens.should == [
         [:open_object, "#<"],
