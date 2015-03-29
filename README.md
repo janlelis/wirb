@@ -1,9 +1,12 @@
-## WIRB Interactive Ruby [<img src="https://travis-ci.org/janlelis/wirb.png" />](https://travis-ci.org/janlelis/wirb)
+## WIRB Interactive Ruby [![version](https://badge.fury.io/rb/wirb.svg)](http://badge.fury.io/rb/wirb) [<img src="https://travis-ci.org/janlelis/wirb.png" />](https://travis-ci.org/janlelis/wirb)
 
-**WIRB** syntax highlights Ruby objects, for example, in IRB.
+**WIRB** syntax highlights Ruby objects.
 
 Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius. Please use WIRB 1.0 if you
-need support for legacy Rubies (1.9, 1.8)
+need support for legacy Rubies (1.9, 1.8).
+
+[Example outputs](https://travis-ci.org/janlelis/wirb/jobs/27912244)
+
 
 ## Features
 
@@ -14,7 +17,6 @@ need support for legacy Rubies (1.9, 1.8)
 * Can be used without IRB
 * Supports stdlib objects, like `Set`
 * Custom color schemas via YAML
-
 
 ## Install
 
