@@ -6,6 +6,7 @@
 * Remove abstraction for alternative colorizers, only use paint
 * Introduce timeout option: If WIRB hasn't finised applying colors within 3
   seconds, it will skip rendering the string
+* Support rubinius enumerators
 
 ### Minor Changes
 * Rename :keyword token to :word (e.g. main) and more token renamings

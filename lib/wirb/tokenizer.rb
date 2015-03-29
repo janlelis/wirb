@@ -5,7 +5,7 @@ module Wirb
       raise ArgumentError, 'Tokenizer needs an inspect-string' unless str.is_a? String
       return enum_for(:run, str) unless block_given?
 
-      chars = str.split(//)
+      chars = str.split('')
 
       @state, @token, i  =  [], '', 0
       @passed, snapshot  =  '', nil # exception handling
@@ -19,9 +19,14 @@ module Wirb
         @repeat = true      if     options.include?(:repeat)
       }
 
-      pass_state  = lambda{ |*options| pass_custom_state[ @state[-1], *options ] }
+      pass_state  = lambda{ |*options|
+        pass_custom_state[ @state[-1], *options ]
+      }
 
-      pass        = lambda{ |kind, string| @passed << string; yield kind, string }
+      pass        = lambda{ |kind, string|
+        @passed << string
+        yield kind, string
+      }
 
       set_state   = lambda{ |state, *options|
         @state[-1] = state
@@ -323,7 +328,7 @@ module Wirb
             if c == ':' && nc == ':'
               pass_state[]
               pass[:class_separator, '::']
-            elsif !(c == ':' && lc == ':')
+            elsif c != ':' || lc != ':'
               pass_state[:keep_token]
               pass[:object_description_prefix, c]
 
@@ -332,8 +337,8 @@ module Wirb
                 set_state[@token.to_sym]
               else
                 set_state[:object_description]
-                if %w[enumerator].include?(@token) && RUBY_VERSION >= '1.9'
-                  push_state[@token.to_sym]
+                if @token == "enumerator" && RUBY_ENGINE != "rbx"
+                  push_state[:enumerator]
                 end
               end
               @token = ''
