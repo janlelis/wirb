@@ -8,7 +8,7 @@ describe tokenizer(__FILE__) do
 
   please do check StringIO.new 'wirb'
     if RubyEngine.rbx?
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "StringIO"],
         [:object_description_prefix, ":"],
@@ -66,7 +66,7 @@ describe tokenizer(__FILE__) do
         [:number, "0"],
         [:close_object, ">"],
         [:close_object, ">"],
-      ]
+      ].sort
    else
       tokens.should be_like [
         [:open_object, "#<"],
