@@ -203,7 +203,7 @@ describe tokenizer(__FILE__) do
     end
   else # is rbx
     please do check [2,3,4].each
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -257,11 +257,11 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
 
     please do check Set[2,3,4].map
-      tokens.should be_like [
+      tokens.sort.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -320,11 +320,11 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
 
     please do check({1=>3}.each)
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -374,11 +374,11 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
 
     please do check({1=>3}.each.map)
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -472,11 +472,11 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
 
     please do check [2,Set[{1=>2}],4].map
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -541,11 +541,11 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
 
     please do check Wirb::Tokenizer.run('[2,3,4]')
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -596,11 +596,11 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
 
     please do check [{1=>2},Wirb::Tokenizer.run('2'),Set[2,3],[3,4],[5,6].each].map
-      tokens.should be_like [
+      tokens.sort.should be_like [
         [:open_object, "#<"],
         [:object_class, "Enumerable"],
         [:class_separator, "::"],
@@ -777,7 +777,7 @@ describe tokenizer(__FILE__) do
         [:object_description, "="],
         [:nil, "nil"],
         [:close_object, ">"],
-      ]
+      ].sort
     end
   end
 end
