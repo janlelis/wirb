@@ -1,4 +1,4 @@
-## 2.0.0 (master)
+## 2.0.0
 ### Main Changes
 * Don't target Ruby 1 anymore, set required Ruby version to 2.0
 * Change the way WIRB is integrated into IRB: Now uses the IRB API, instead

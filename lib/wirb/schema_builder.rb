@@ -18,7 +18,7 @@ module Wirb
        else
          [File.basename(yaml_path).gsub(/\.yml$/, ''), YAML.load_file(yaml_path)]
        end
-    end
+     end
 
      def self.normalize_schema(schema_yaml)
        normalized_schema = Hash[ schema_yaml.map{ |k,v| [k.to_s.to_sym, Array( v )] } ]

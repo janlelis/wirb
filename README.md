@@ -2,10 +2,11 @@
 
 **WIRB** syntax highlights Ruby objects.
 
-Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius. Please use WIRB 1.0 if you
-need support for legacy Rubies (1.9, 1.8).
+Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius.
 
-[Example outputs](https://travis-ci.org/janlelis/wirb/jobs/27912244)
+Legacy Rubies (1.9, 1.8): Use [WIRB 1.0](https://github.com/janlelis/wirb/tree/1.0.3)
+
+[Example output](https://travis-ci.org/janlelis/wirb/jobs/56299603)
 
 
 ## Features
