@@ -2,7 +2,7 @@
 
 **WIRB** syntax highlights Ruby objects.
 
-Supported Rubies: 2.2, 2.1, 2.0, jruby, rubinius.
+Supported Rubies: 2.3, 2.2, 2.1, 2.0, jruby, rubinius.
 
 Legacy Rubies (1.9, 1.8): Use [WIRB 1.0](https://github.com/janlelis/wirb/tree/1.0.3)
 
