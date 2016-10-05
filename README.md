@@ -44,6 +44,9 @@ These are the bundled color schemas. You can load one with `Wirb.load_schema
 * `:classic` (default)
 * `:colorless` (only uses :bright, :underline and :inverse effect)
 
+### Usage with Rails
+
+See [the solution in this issue](https://github.com/janlelis/wirb/issues/12#issuecomment-249492524).
 
 ## `Kernel#wp`
 
