@@ -1,0 +1,102 @@
+# container
+hash_delimiter:
+- :red
+array_delimiter:
+- :red
+set_delimiter:
+- :red
+
+# delimiter
+# comma:  :white
+# refers: :white
+
+# class
+class:
+- :red
+class_separator:
+- :white
+object_class:
+- :red
+
+# object
+object_delimiter:
+- :green
+object_description_prefix:
+- :green
+object_description:
+- :yellow
+object_address_prefix:
+- :yellow
+- :underline
+object_address:
+- :yellow
+- :underline
+object_line_prefix:
+- :yellow
+- :underline
+object_line:
+- :yellow
+- :underline
+object_line_number:
+- :yellow
+- :underline
+object_variable_prefix:
+- :red
+- :bright
+object_variable:
+- :red
+- :bright
+
+# symbol
+symbol_prefix:
+- :green
+symbol:
+- :green
+symbol_string:
+- :green
+symbol_string_delimiter:
+- :green
+
+# string
+string:
+- :cyan
+string_delimiter:
+- :cyan
+
+# regexp
+regexp:
+- :magenta
+regexp_delimiter:
+- :blue
+- :bright
+regexp_flags:
+- :red
+- :bright
+
+# number
+number:
+- :cyan
+special_number:
+- :cyan
+range:
+- :red
+rational_delimiter:
+- :cyan
+- :bright
+rational_separator:
+- :cyan
+- :bright
+complex_delimiter:
+- :cyan
+
+# misc
+time:
+- :red
+word:
+- :red
+nil:
+- :cyan
+false:
+- :cyan
+true:
+- :cyan
