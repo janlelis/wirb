@@ -1,3 +1,6 @@
+## 2.1.0
+* New color schema: ultra
+
 ## 2.0.0
 ### Main Changes
 * Don't target Ruby 1 anymore, set required Ruby version to 2.0
