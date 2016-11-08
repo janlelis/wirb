@@ -43,6 +43,8 @@ These are the bundled color schemas. You can load one with `Wirb.load_schema
 
 * `:classic` (default)
 * `:colorless` (only uses :bright, :underline and :inverse effect)
+* `:ultra` (matches the colorscheme from
+    [Ultra](https://github.com/venantius/ultra) over in Clojure-land)
 
 ### Usage with Rails
 
