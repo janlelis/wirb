@@ -1,3 +1,6 @@
+## 2.1.1
+* Relax paint dependency (allow paint versions >= 2.0)
+
 ## 2.1.0
 * New color schema: ultra
 
