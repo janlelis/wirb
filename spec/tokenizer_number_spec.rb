@@ -79,31 +79,6 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-=begin
-  only18 do
-    please do check Rational(2,3)
-      tokens.should == [
-        [:class, "Rational"],
-        [:open_rational, "("],
-        [:number, "2"],
-        [:rational_separator, ","],
-        [:whitespace, " "],
-        [:number, "3"],
-        [:close_rational, ")"],
-      ]
-
-      # modifying the world, see https://github.com/janlelis/wirb/issues#issue/1
-      require 'mathn'
-      check Rational(2,3)
-      tokens.should == [
-        [:number, "2"],
-        [:rational_separator, "/"],
-        [:number, "3"],
-      ]
-    end
-  end
-=end
-
   please do check (1/0.0)
     tokens.should == [
       [:special_number, "Infinity"],
