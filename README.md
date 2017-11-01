@@ -66,7 +66,7 @@ You can use WIRB like awesome_print to highlight any objects using `wp`:
   default):
   [ripl-color_result](https://github.com/janlelis/ripl-color_result)
 * More about terminal colors: [Paint](https://github.com/janlelis/paint)
-* [Wirble](http://pablotron.org/software/wirble/): WIRB's predecessor
+* [Wirble](https://rubygems.org/gems/wirble): WIRB's predecessor
 
 
 ## Credits
