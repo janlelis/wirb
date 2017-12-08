@@ -1,3 +1,6 @@
+## 2.1.2
+* Fix Gem.datadir deprecation
+
 ## 2.1.1
 * Relax paint dependency (allow paint versions >= 2.0)
 
