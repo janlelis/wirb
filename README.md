@@ -71,7 +71,7 @@ You can use WIRB like awesome_print to highlight any objects using `wp`:
 
 ## Credits
 
-Copyright (c) 2011-2017 Jan Lelis <http://janlelis.com> see COPYING for
+Copyright (c) 2011-2018 Jan Lelis <http://janlelis.com> see COPYING for
 details.
 
 Influenced by code from: Copyright (C) 2006-2009 Paul Duncan
