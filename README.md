@@ -2,9 +2,11 @@
 
 **WIRB** syntax highlights Ruby objects.
 
-Supported Rubies: 2.5, 2.4, 2.3, 2.2, 2.1, 2.0, jruby, rubinius.
+Supported Rubies: 2.6, 2.5, 2.4
 
-Legacy Rubies (1.9, 1.8): Use [WIRB 1.0](https://github.com/janlelis/wirb/tree/1.0.3)
+Older Rubies, should work: 2.3, 2.2, 2.1, 2.0, rubinius.
+
+Ancient Rubies (1.9, 1.8): Use [WIRB 1.0](https://github.com/janlelis/wirb/tree/1.0.3)
 
 [Example output](https://travis-ci.org/janlelis/wirb/jobs/56299603)
 
@@ -71,7 +73,7 @@ You can use WIRB like awesome_print to highlight any objects using `wp`:
 
 ## Credits
 
-Copyright (c) 2011-2018 Jan Lelis <http://janlelis.com> see COPYING for
+Copyright (c) 2011-2019 Jan Lelis <https://janlelis.com> see COPYING for
 details.
 
 Influenced by code from: Copyright (C) 2006-2009 Paul Duncan
