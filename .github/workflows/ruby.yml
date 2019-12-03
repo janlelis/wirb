@@ -4,16 +4,17 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        ruby: [ '2.7.0-preview3', '2.6.x' , '2.5.x', '2.4.x']
+        ruby: [2.7.x, 2.6.x, 2.5.x, 2.4.x]
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
     - uses: actions/checkout@v1
     - name: Set up Rubies
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby }}
+        ruby-version: ${{matrix.ruby}}
     - name: Build and test with Rake
       run: |
         gem install bundler
