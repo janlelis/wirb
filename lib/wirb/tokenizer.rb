@@ -239,7 +239,7 @@ module Wirb
         when :time # via regex, state needs to be triggered somewhere else
           peek = chars[i..-1].join
           if [
-            /^\d+-\d{2}-\d{2} \d{2}:\d{2}:\d{2} (?:[+-]\d{4}|[a-z]{3})/i,               # 1.9 / UTC
+            /^\d+-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d{9})? (?:[+-]\d{4}|[a-z]{3})/i,
           ].any?{ |regex|
             ( @token + peek ) =~ regex
           } # found, adjust parsing-pointer:
@@ -400,10 +400,10 @@ module Wirb
           if c =~ /[x0-9a-f]/
             @token << c
           else
-            if c == '@'
+            if c == '@' || c == ' ' && nc != "@"
               pass_state[:remove]
               push_state[:object_line]
-              pass[:object_line_prefix, '@']
+              pass[:object_line_prefix, c]
             else
               pass_state[:remove, :repeat]
             end

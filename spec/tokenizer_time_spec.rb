@@ -1,14 +1,17 @@
 describe tokenizer(__FILE__) do
   after :each do check_value end
 
-  please do now = Time.now
-            check [Time.now, Time.now]
+
+  please do
+    now = Time.now
+    now2 = Time.now
+    check [now, now2]
     tokens.should == [
       [:open_array, "["],
-      [:time, now.to_s],
+      [:time, now.inspect],
       [:comma, ","],
       [:whitespace, " "],
-      [:time, now.to_s],
+      [:time, now2.inspect],
       [:close_array, "]"],
     ]
   end

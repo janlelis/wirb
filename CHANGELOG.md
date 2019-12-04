@@ -1,3 +1,7 @@
+## 2.2.0 (unreleased)
+
+* Support Ruby 2.7
+
 ## 2.1.2
 * Fix Gem.datadir deprecation
 

@@ -11,33 +11,60 @@ describe tokenizer(__FILE__) do
       [:object_address, OBJECT_ID],
       [:close_object, ">"],
     ]
- end
+  end
 
   please do check proc{}
-    tokens.should be_like [
-      [:open_object, "#<"],
-      [:object_class, "Proc"],
-      [:object_description_prefix, ":"],
-      [:object_address, OBJECT_ID],
-      [:object_line_prefix, "@"],
-      [:object_line, /.*tokenizer_object_spec.rb:/],
-      [:object_line_number, /\d+/],
-      [:close_object, ">"],
-    ]
+    if RUBY_VERSION >= "2.7"
+      tokens.should be_like [
+        [:open_object, "#<"],
+        [:object_class, "Proc"],
+        [:object_description_prefix, ":"],
+        [:object_address, OBJECT_ID],
+        [:object_line_prefix, " "], # changed in 2.7
+        [:object_line, /.*tokenizer_object_spec.rb:/],
+        [:object_line_number, /\d+/],
+        [:close_object, ">"],
+      ]
+    else
+      tokens.should be_like [
+        [:open_object, "#<"],
+        [:object_class, "Proc"],
+        [:object_description_prefix, ":"],
+        [:object_address, OBJECT_ID],
+        [:object_line_prefix, "@"],
+        [:object_line, /.*tokenizer_object_spec.rb:/],
+        [:object_line_number, /\d+/],
+        [:close_object, ">"],
+      ]
+    end
   end
 
   please do check lambda{}
-    tokens.should be_like [
-      [:open_object, "#<"],
-      [:object_class, "Proc"],
-      [:object_description_prefix, ":"],
-      [:object_address, OBJECT_ID],
-      [:object_line_prefix, "@"],
-      [:object_line, /.*tokenizer_object_spec.rb:/],
-      [:object_line_number, /\d+/],
-      [:object_description, " (lambda)"],
-      [:close_object, ">"],
-    ]
+    if RUBY_VERSION >= "2.7"
+      tokens.should be_like [
+        [:open_object, "#<"],
+        [:object_class, "Proc"],
+        [:object_description_prefix, ":"],
+        [:object_address, OBJECT_ID],
+        [:object_line_prefix, " "],  # changed in 2.7
+        [:object_line, /.*tokenizer_object_spec.rb:/],
+        [:object_line_number, /\d+/],
+        [:object_description, " (lambda)"],
+        [:close_object, ">"],
+      ]
+    else
+      tokens.should be_like [
+        [:open_object, "#<"],
+        [:object_class, "Proc"],
+        [:object_description_prefix, ":"],
+        [:object_address, OBJECT_ID],
+        [:object_line_prefix, "@"],
+        [:object_line, /.*tokenizer_object_spec.rb:/],
+        [:object_line_number, /\d+/],
+        [:object_description, " (lambda)"],
+        [:close_object, ">"],
+      ]
+    end
   end
 
   please do check StringScanner.new('wirb')
