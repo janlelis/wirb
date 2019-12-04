@@ -1,5 +1,4 @@
-## 2.2.0 (unreleased)
-
+## 2.2.0
 * Support Ruby 2.7
 
 ## 2.1.2

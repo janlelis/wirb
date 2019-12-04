@@ -1,8 +1,8 @@
-## WIRB Interactive Ruby [![version](https://badge.fury.io/rb/wirb.svg)](http://badge.fury.io/rb/wirb) [<img src="https://travis-ci.org/janlelis/wirb.png" />](https://travis-ci.org/janlelis/wirb)
+## WIRB Interactive Ruby [![version](https://badge.fury.io/rb/wirb.svg)](https://badge.fury.io/rb/wirb) [<img src="https://travis-ci.org/janlelis/wirb.png" />](https://travis-ci.org/janlelis/wirb)
 
 The **WIRB** gem syntax highlights Ruby objects. Works best as your default REPL inspector (see usage section below), but does not require IRB.
 
-Supported Rubies: 2.6, 2.5, 2.4
+Supported Rubies: 2.7, 2.6, 2.5, 2.4
 
 Older Rubies, should work: 2.3, 2.2, 2.1, 2.0, rubinius
 
