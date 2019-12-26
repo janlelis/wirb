@@ -239,7 +239,7 @@ module Wirb
         when :time # via regex, state needs to be triggered somewhere else
           peek = chars[i..-1].join
           if [
-            /^\d+-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d{9})? (?:[+-]\d{4}|[a-z]{3})/i,
+            /^\d+-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(?:\.\d{,9})? (?:[+-]\d{4}|[a-z]{3})/i,
           ].any?{ |regex|
             ( @token + peek ) =~ regex
           } # found, adjust parsing-pointer:

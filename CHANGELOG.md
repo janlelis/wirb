@@ -1,3 +1,6 @@
+## 2.2.1
+* Fix new timestamp matching
+
 ## 2.2.0
 * Support Ruby 2.7
 
