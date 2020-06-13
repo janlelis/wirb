@@ -1,14 +1,12 @@
 require 'rake'
 require 'fileutils'
-require "rspec/core/rake_task"
+
 task :default => :spec
 task :test    => :spec
 
-RSpec::Core::RakeTask.new(:spec) do |t|
-  t.rspec_opts = [
-     '--color',
-    '-r ' + File.expand_path( File.join( 'spec', 'spec_helper') ),
-  ]
+desc "Run tests"
+task :spec do
+  sh "rspec"
 end
 
 def gemspec
