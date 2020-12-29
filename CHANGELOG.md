@@ -1,4 +1,4 @@
-## 2.2.2 (unreleased)
+## 2.2.2
 * Relax Ruby version requirement to allow 3.0
 
 ## 2.2.1
