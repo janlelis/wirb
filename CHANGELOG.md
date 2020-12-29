@@ -1,3 +1,6 @@
+## 2.2.2 (unreleased)
+* Relax Ruby version requirement to allow 3.0
+
 ## 2.2.1
 * Fix new timestamp matching
 
