@@ -14,7 +14,7 @@ jobs:
         - 2.6
         - 2.5
         - jruby-9.2.13.0
-        - truffleruby-20.3.0
+        # - truffleruby-20.3.0
         os:
         - ubuntu-latest
         - macos-latest
