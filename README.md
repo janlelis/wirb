@@ -67,7 +67,7 @@ If you run into problems using WIRB with Rails, try [the solution in this issue]
 
 ## Credits
 
-Copyright (c) 2011-2020 Jan Lelis <https://janlelis.com> see COPYING for details.
+Copyright (c) 2011-2022 Jan Lelis <https://janlelis.com> see COPYING for details.
 
 First tokenizer version was based on the [wirble](https://rubygems.org/gems/wirble) gem:
 Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
