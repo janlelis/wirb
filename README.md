@@ -2,9 +2,9 @@
 
 The **WIRB** gem syntax highlights Ruby objects. Works best as your default REPL inspector (see usage section below), but does not require IRB.
 
-Supported Rubies: 3.0, 2.7, 2.6, 2.5
+Supported Rubies: 3.1, 2.7, 2.6
 
-Older Rubies, should work: 2.4, 2.3, 2.2, 2.1, 2.0, rubinius
+Older Rubies, should work: 2.5, 2.4, 2.3, 2.2, 2.1, 2.0, rubinius
 
 Ancient Rubies (1.9, 1.8): Please use [WIRB 1.0](https://github.com/janlelis/wirb/tree/1.0.3)
 
