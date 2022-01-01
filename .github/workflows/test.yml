@@ -13,7 +13,6 @@ jobs:
         - 3.0
         - 2.7
         - 2.6
-        - 2.5
         - jruby-9.2.13.0
         # - truffleruby-20.3.0
         os:
@@ -39,7 +38,6 @@ jobs:
         - 3.0
         - 2.7
         - 2.6
-        - 2.5
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
