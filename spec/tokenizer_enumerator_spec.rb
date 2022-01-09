@@ -42,7 +42,7 @@ describe tokenizer(__FILE__) do
         [:number, "4"],
         [:close_set, "}"],
         [:close_object, ">"],
-        [:object_description, ":map"],
+        [:object_description, RubyEngine.truffle? ? ":collect" : ":map"],
         [:close_object, ">"],
       ]
     end
@@ -80,7 +80,7 @@ describe tokenizer(__FILE__) do
         [:close_hash, "}"],
         [:object_description, ":each"],
         [:close_object, ">"],
-        [:object_description, ":map"],
+        [:object_description, RubyEngine.truffle? ? ":collect" : ":map"],
         [:close_object, ">"],
       ]
     end
