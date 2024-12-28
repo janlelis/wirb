@@ -1,3 +1,6 @@
+## 2.3.0 (unreleased)
+* Support Ruby 3.4 hash inspects (TODO)
+
 ## 2.2.2
 * Relax Ruby version requirement to allow 3.0
 
@@ -95,7 +98,7 @@
 * Fix stupid rescue bug (no more wirb crashes)
 
 ## 0.2.3 / 0.2.4
-* Support for rubygems-test <gem-testers.org>
+* Support for rubygems-test
 
 ## 0.2.2
 * Always return inspected string (even when errors happen) and endless-loop

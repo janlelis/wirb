@@ -48,6 +48,10 @@ describe tokenizer(__FILE__) do
        [:whitespace, " "],
        [:whitespace, " "],
        [:whitespace, " "],
-     ]
+       ([:whitespace, " "] if hash34?),
+       ([:whitespace, " "] if hash34?),
+       ([:whitespace, " "] if hash34?),
+       ([:whitespace, " "] if hash34?),
+     ].compact
    end
 end

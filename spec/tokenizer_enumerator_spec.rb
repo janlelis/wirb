@@ -55,12 +55,14 @@ describe tokenizer(__FILE__) do
         [:whitespace, " "],
         [:open_hash, "{"],
         [:number, "1"],
+        ([:whitespace, " "] if hash34?),
         [:refers, "=>"],
+        ([:whitespace, " "] if hash34?),
         [:number, "3"],
         [:close_hash, "}"],
         [:object_description, ":each"],
         [:close_object, ">"],
-      ]
+      ].compact
     end
 
     please do check({1=>3}.each.map)
@@ -75,14 +77,16 @@ describe tokenizer(__FILE__) do
         [:whitespace, " "],
         [:open_hash, "{"],
         [:number, "1"],
+        ([:whitespace, " "] if hash34?),
         [:refers, "=>"],
+        ([:whitespace, " "] if hash34?),
         [:number, "3"],
         [:close_hash, "}"],
         [:object_description, ":each"],
         [:close_object, ">"],
         [:object_description, RubyEngine.truffle? ? ":collect" : ":map"],
         [:close_object, ">"],
-      ]
+      ].compact
     end
 
     please do check [2,Set[{1=>2}],4].map
@@ -102,7 +106,9 @@ describe tokenizer(__FILE__) do
         [:open_set, "{"],
         [:open_hash, "{"],
         [:number, "1"],
+        ([:whitespace, " "] if hash34?),
         [:refers, "=>"],
+        ([:whitespace, " "] if hash34?),
         [:number, "2"],
         [:close_hash, "}"],
         [:close_set, "}"],
@@ -113,7 +119,7 @@ describe tokenizer(__FILE__) do
         [:close_array, "]"],
         [:object_description, ":map"],
         [:close_object, ">"],
-      ]
+      ].compact
     end
 
     please do check Wirb::Tokenizer.run('[2,3,4]')
@@ -131,7 +137,7 @@ describe tokenizer(__FILE__) do
         [:close_string, "\""],
         [:object_description, ")"],
         [:close_object, ">"],
-      ]
+      ].compact
     end
 
     please do check [{1=>2},Wirb::Tokenizer.run('2'),Set[2,3],[3,4],[5,6].each].map
@@ -143,7 +149,9 @@ describe tokenizer(__FILE__) do
         [:open_array, "["],
         [:open_hash, "{"],
         [:number, "1"],
+        ([:whitespace, " "] if hash34?),
         [:refers, "=>"],
+        ([:whitespace, " "] if hash34?),
         [:number, "2"],
         [:close_hash, "}"],
         [:comma, ","],
@@ -199,7 +207,7 @@ describe tokenizer(__FILE__) do
         [:close_array, "]"],
         [:object_description, ":map"],
         [:close_object, ">"],
-      ]
+      ].compact
     end
   else # is rbx
     please do check [2,3,4].each

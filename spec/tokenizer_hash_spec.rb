@@ -7,10 +7,12 @@ describe tokenizer(__FILE__) do
     tokens.should == [
       [:open_hash, "{"],
       [:number, "1"],
+      ([:whitespace, " "] if hash34?),
       [:refers, "=>"],
+      ([:whitespace, " "] if hash34?),
       [:number, "2"],
       [:close_hash, "}"],
-    ]
+    ].compact
   end
 
   please do check({:hallo => {1=>Set[2,3,4]}})
@@ -21,7 +23,9 @@ describe tokenizer(__FILE__) do
       [:refers, "=>"],
       [:open_hash, "{"],
       [:number, "1"],
+      ([:whitespace, " "] if hash34?),
       [:refers, "=>"],
+      ([:whitespace, " "] if hash34?),
       [:open_object, "#<"],
       [:object_class, "Set"],
       [:object_description_prefix, ":"],
@@ -38,7 +42,7 @@ describe tokenizer(__FILE__) do
       [:close_object, ">"],
       [:close_hash, "}"],
       [:close_hash, "}"],
-    ]
+    ].compact
   end
 
   please do check( {1=>2, 3=>8, {} => {}} )
@@ -58,6 +62,12 @@ describe tokenizer(__FILE__) do
       [:refers, "=>"],
       [:refers, "=>"],
       [:refers, "=>"],
+      [:whitespace, " "],
+      [:whitespace, " "],
+      [:whitespace, " "],
+      [:whitespace, " "],
+      [:whitespace, " "],
+      [:whitespace, " "],
       [:whitespace, " "],
       [:whitespace, " "],
     ]
