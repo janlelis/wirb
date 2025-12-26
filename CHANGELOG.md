@@ -1,4 +1,5 @@
-## 2.3.0 (unreleased)
+## Next (unreleased)
+* Relax Ruby version requirement to allow 4.0
 * Support Ruby 3.4 hash inspects (TODO)
 
 ## 2.2.2
