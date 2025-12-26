@@ -191,11 +191,25 @@ module Wirb
             @token << c
           end
 
+        when :symbol_string_suffix
+          ## TODO
+          if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # see string
+            pass[:open_symbol_string, '"']
+            pass_state[:remove]
+            pass[:close_symbol_string, '"']
+          else
+            @token << c
+          end
+
         when :string
           if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # allow escaping of " and
-            pass[:open_string, '"']                              # work around \\
-            pass_state[:remove]
-            pass[:close_string, '"']
+            if nc != ':'
+              pass[:open_string, '"']                              # work around \\
+              pass_state[:remove]
+              pass[:close_string, '"']
+            else
+              set_state[:symbol_string_suffix, :repeat]
+            end
           else
             @token << c
           end

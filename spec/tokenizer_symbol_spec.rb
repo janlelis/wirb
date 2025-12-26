@@ -163,4 +163,30 @@ describe tokenizer(__FILE__) do
       [:close_array, "]"],
     ]
   end
+
+  please do check({symbol: :style})
+    tokens.should == [
+      [:open_hash, "{"],
+      [:word, "symbol"],
+      [:symbol_prefix, ":"],
+      [:whitespace, " "],
+      [:symbol_prefix, ":"],
+      [:symbol, "style"],
+      [:close_hash, "}"],
+    ]
+  end
+
+  please do check({"string symbol": :style})
+    tokens.should == [
+      [:open_hash, "{"],
+      [:open_symbol_string, "\""],
+      [:symbol_string_suffix, "string symbol"],
+      [:close_symbol_string, "\""],
+      [:symbol_prefix, ":"],
+      [:whitespace, " "],
+      [:symbol_prefix, ":"],
+      [:symbol, "style"],
+      [:close_hash, "}"],
+    ]
+  end
 end
