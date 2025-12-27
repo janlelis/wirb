@@ -35,3 +35,11 @@ task :gemspec do
   gemspec.validate
 end
 
+
+# # #
+# Start an IRB session using WIRB as inspector
+
+desc "#{gemspec.name} | wIRB"
+task :irb do
+  sh "irb -f -I ./lib -r #{gemspec.name.gsub '-','/'} --inspect wirb"
+end
