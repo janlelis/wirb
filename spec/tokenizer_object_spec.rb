@@ -80,19 +80,17 @@ describe tokenizer(__FILE__) do
     ]
   end
 
-  unless RubyEngine.rbx? # rubinius provides more information
-    please do check binding
-      tokens.should be_like [
-        [:open_object, "#<"],
-        [:object_class, "Binding"],
-        [:object_description_prefix, ":"],
-        [:object_address, OBJECT_ID],
-        [:close_object, ">"],
-      ]
-    end
+  please do check binding
+    tokens.should be_like [
+      [:open_object, "#<"],
+      [:object_class, "Binding"],
+      [:object_description_prefix, ":"],
+      [:object_address, OBJECT_ID],
+      [:close_object, ">"],
+    ]
   end
 
-  if RubyEngine.rbx? || RubyEngine.truffle?
+  if RubyEngine.truffle?
     please do check STDOUT
       tokens.should == [
         [:open_object, "#<"],

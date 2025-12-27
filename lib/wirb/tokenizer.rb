@@ -337,7 +337,7 @@ module Wirb
                 set_state[@token.to_sym]
               else
                 set_state[:object_description]
-                if @token == "enumerator" && RUBY_ENGINE != "rbx"
+                if @token == "enumerator"
                   push_state[:enumerator]
                 end
               end
