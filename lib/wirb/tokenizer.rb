@@ -160,18 +160,18 @@ module Wirb
           end
 
         when :class
-          case c
-          when /[a-z0-9_]/i
+          if c =~ /[a-z0-9_]/i
             @token << c
-          else
-            if @token =~ /^(Infinity|NaN)$/
-              set_state[:special_number, :repeat]
-            elsif c ==':' && nc == ':'
-              pass_state[]
-              pass[:class_separator, '::']
-            elsif !(c == ':' && lc == ':')
-              pass_state[:remove, :repeat]
-            end
+          elsif c == ":" && get_previous_state[:hash]
+            pass_custom_state[:symbol, :remove, :repeat]
+            @refers_seen[-1] = true
+          elsif @token =~ /^(Infinity|NaN)$/
+            set_state[:special_number, :repeat]
+          elsif c ==':' && nc == ':'
+            pass_state[]
+            pass[:class_separator, '::']
+          elsif !(c == ':' && lc == ':')
+            pass_state[:remove, :repeat]
           end
 
         when :symbol
@@ -208,10 +208,15 @@ module Wirb
           end
 
         when :string
-          if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # allow escaping of " and
-            pass[:open_string, '"']                              # work around \\
-            pass_state[:remove]
-            pass[:close_string, '"']
+          if c == '"' && ( !( @token =~ /\\+$/; $& ) || $&.size % 2 == 0 ) # allow escaping of " and work around \\
+            if nc == ':' && get_previous_state[:hash]
+              set_state[:symbol_string, :repeat]
+              @refers_seen[-1] = true
+            else
+              pass[:open_string, '"']
+              pass_state[:remove]
+              pass[:close_string, '"']
+            end
           else
             @token << c
           end
@@ -237,6 +242,9 @@ module Wirb
           if c =~ /[a-z0-9_]/i
             @token << c
             pass_custom_state[@token.to_sym, :remove] if %w[nil false true].include?(@token)
+          elsif c == ":"
+            pass_custom_state[:symbol, :remove, :repeat]
+            @refers_seen[-1] = true
           else
             pass_state[:remove, :repeat]
           end

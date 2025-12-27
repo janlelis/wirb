@@ -67,11 +67,71 @@ describe tokenizer(__FILE__) do
     end
   end
 
+  please do check({:Symbol => :value})
+    if symbol_hash_keys?
+      tokens.should == [
+        [:open_hash, "{"],
+        [:symbol, "Symbol"],
+        [:symbol_prefix, ":"],
+        [:whitespace, " "],
+        [:symbol_prefix, ":"],
+        [:symbol, "value"],
+        [:close_hash, "}"],
+      ]
+    else
+      tokens.should == [
+        [:open_hash, "{"],
+        [:symbol_prefix, ":"],
+        [:symbol, "Symbol"],
+        [:refers, "=>"],
+        [:symbol_prefix, ":"],
+        [:symbol, "value"],
+        [:close_hash, "}"],
+      ]
+    end
+  end
+
+  please do check({Module => :value})
+    tokens.should == [
+      [:open_hash, "{"],
+      [:class, "Module"],
+      ([:whitespace, " "] if spaced_hashes?),
+      [:refers, "=>"],
+      ([:whitespace, " "] if spaced_hashes?),
+      [:symbol_prefix, ":"],
+      [:symbol, "value"],
+      [:close_hash, "}"],
+    ].compact
+  end
+
   please do check({:hallo => {1=>Set[2,3,4]}})
     if symbol_hash_keys?
-      fail
-      tokens.should == [
-        # TODO
+      tokens.should be_like [
+        [:open_hash, "{"],
+        [:symbol, "hallo"],
+        [:symbol_prefix, ":"],
+        ([:whitespace, " "] if spaced_hashes?),
+        [:open_hash, "{"],
+        [:number, "1"],
+        ([:whitespace, " "] if spaced_hashes?),
+        [:refers, "=>"],
+        ([:whitespace, " "] if spaced_hashes?),
+        [:open_object, "#<"],
+        [:object_class, "Set"],
+        [:object_description_prefix, ":"],
+        [:whitespace, " "],
+        [:open_set, "{"],
+        [:number, /\d+/],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:number, /\d+/],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:number, /\d+/],
+        [:close_set, "}"],
+        [:close_object, ">"],
+        [:close_hash, "}"],
+        [:close_hash, "}"],
       ]
     else
       tokens.should be_like [
