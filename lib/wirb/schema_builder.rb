@@ -9,12 +9,12 @@ module Wirb
 
        schema = normalize_schema(schema_yaml)
        schema[:name] = schema_name.to_sym
-       schema
+       schema.freeze
      end
 
      def self.resolve_schema_yaml(yaml_path)
        if yaml_path.is_a? Symbol # bundled themes
-         datadir = Gem.loaded_specs['wirb'].datadir
+         datadir = File.expand_path(File.dirname(__FILE__) + "/../../data/wirb/").freeze
          [yaml_path.to_s, YAML.load_file(File.join(datadir, "#{yaml_path}.yml"))]
        else
          [File.basename(yaml_path).gsub(/\.yml$/, ''), YAML.load_file(yaml_path)]
