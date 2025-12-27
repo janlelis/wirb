@@ -90,3 +90,7 @@ def ws(obj) puts Wirb::Tokenizer.run(obj.inspect).map{|*x| x.inspect + ','}*$/ e
 def spaced_hashes?
   RUBY_VERSION >= "3.4.0"
 end
+
+def symbol_hash_keys?
+  RUBY_VERSION >= "3.4.0"
+end

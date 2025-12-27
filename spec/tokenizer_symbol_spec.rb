@@ -90,69 +90,74 @@ describe tokenizer(__FILE__) do
 
   please do check :'hello"word'
     tokens.should == [
-      [:symbol_prefix, ":"], [:open_symbol_string, "\""],
-      [:symbol_string, "hello\\\"word"], [:close_symbol_string, "\""]
+      [:symbol_prefix, ":"],
+      [:open_symbol_string, "\""],
+      [:symbol_string, "hello\\\"word"],
+      [:close_symbol_string, "\""]
     ]
   end
 
-  # FIXME 3.4 symbol hash keys
-  # please do check [[:hallo],{:'hallo'=>:'test'}, {:'hallo='=>:'test='}, {:'<'=>9}, {:'<=>'=>9}, {:'<'=>:'<=>'}]
-  #   tokens.should == [
-  #     [:open_array, "["],
-  #     [:open_array, "["],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "hallo"],
-  #     [:close_array, "]"],
-  #     [:comma, ","],
-  #     [:whitespace, " "],
-  #     [:open_hash, "{"],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "hallo"],
-  #     [:refers, "=>"],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "test"],
-  #     [:close_hash, "}"],
-  #     [:comma, ","],
-  #     [:whitespace, " "],
-  #     [:open_hash, "{"],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "hallo="],
-  #     [:refers, "=>"],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "test="],
-  #     [:close_hash, "}"],
-  #     [:comma, ","],
-  #     [:whitespace, " "],
-  #     [:open_hash, "{"],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "<"],
-  #     [:refers, "=>"],
-  #     [:number, "9"],
-  #     [:close_hash, "}"],
-  #     [:comma, ","],
-  #     [:whitespace, " "],
-  #     [:open_hash, "{"],
-  #     [:symbol_prefix, ":"],
-  #     # [:symbol, "<=>"], # MAYBE fixme
-  #     [:symbol, "<"],
-  #     [:symbol, "=>"],
-  #     [:refers, "=>"],
-  #     [:number, "9"],
-  #     [:close_hash, "}"],
-  #     [:comma, ","],
-  #     [:whitespace, " "],
-  #     [:open_hash, "{"],
-  #     [:symbol_prefix, ":"],
-  #     [:symbol, "<"],
-  #     [:refers, "=>"],
-  #     [:symbol_prefix, ":"],
-  #     # [:symbol, "<=>"], # MAYBE fixme
-  #     [:symbol, "<"],
-  #     [:symbol, "=>"],
-  #     [:close_hash, "}"],
-  #     [:close_array, "]"],
-  #   ]
-  # end
+  please do check [[:hallo],{:'hallo'=>:'test'}, {:'hallo='=>:'test='}, {:'<'=>9}, {:'<=>'=>9}, {:'<'=>:'<=>'}]
+    if symbol_hash_keys?
+      fail
+    else
+      tokens.should == [
+        [:open_array, "["],
+        [:open_array, "["],
+        [:symbol_prefix, ":"],
+        [:symbol, "hallo"],
+        [:close_array, "]"],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:open_hash, "{"],
+        [:symbol_prefix, ":"],
+        [:symbol, "hallo"],
+        [:refers, "=>"],
+        [:symbol_prefix, ":"],
+        [:symbol, "test"],
+        [:close_hash, "}"],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:open_hash, "{"],
+        [:symbol_prefix, ":"],
+        [:symbol, "hallo="],
+        [:refers, "=>"],
+        [:symbol_prefix, ":"],
+        [:symbol, "test="],
+        [:close_hash, "}"],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:open_hash, "{"],
+        [:symbol_prefix, ":"],
+        [:symbol, "<"],
+        [:refers, "=>"],
+        [:number, "9"],
+        [:close_hash, "}"],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:open_hash, "{"],
+        [:symbol_prefix, ":"],
+        # [:symbol, "<=>"], # MAYBE fixme
+        [:symbol, "<"],
+        [:symbol, "=>"],
+        [:refers, "=>"],
+        [:number, "9"],
+        [:close_hash, "}"],
+        [:comma, ","],
+        [:whitespace, " "],
+        [:open_hash, "{"],
+        [:symbol_prefix, ":"],
+        [:symbol, "<"],
+        [:refers, "=>"],
+        [:symbol_prefix, ":"],
+        # [:symbol, "<=>"], # MAYBE fixme
+        [:symbol, "<"],
+        [:symbol, "=>"],
+        [:close_hash, "}"],
+        [:close_array, "]"],
+      ]
+    end
+  end
 
   please do check [:"42"]
     tokens.should == [
