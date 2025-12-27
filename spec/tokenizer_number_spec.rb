@@ -1,5 +1,3 @@
-require 'complex'
-
 describe tokenizer(__FILE__) do
   after :each do check_value end
 
