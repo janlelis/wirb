@@ -1,6 +1,10 @@
-## Next (unreleased)
-* Relax Ruby version requirement to allow 4.0
+# Change Log
+
+## 3.0 (unreleased)
+* Require Ruby 3
+* Relax Ruby version requirement to allow Ruby 4.0
 * Support Ruby 3.4 hash inspects (TODO)
+* Support Ruby 4.0 changes (TODO)
 
 ## 2.2.2
 * Relax Ruby version requirement to allow 3.0

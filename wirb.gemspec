@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.md", "CHANGELOG.md", "COPYING.txt"]
   s.license     = 'MIT'
   s.metadata    = { "rubygems_mfa_required" => "true" }
-  s.required_ruby_version = '>= 2.0', '< 5.0'
+  s.required_ruby_version = '>= 3.0', '< 5.0'
   s.add_dependency 'paint', '>= 0.9', '< 4.0'
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_development_dependency 'diff-lcs', '~> 1.6'
