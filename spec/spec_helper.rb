@@ -87,6 +87,6 @@ OBJECT_ID = /0x[0-9a-f]+/
 
 def ws(obj) puts Wirb::Tokenizer.run(obj.inspect).map{|*x| x.inspect + ','}*$/ end
 
-def hash34?
+def spaced_hashes?
   RUBY_VERSION >= "3.4.0"
 end

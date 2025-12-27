@@ -7,9 +7,9 @@ describe tokenizer(__FILE__) do
     tokens.should == [
       [:open_hash, "{"],
       [:number, "1"],
-      ([:whitespace, " "] if hash34?),
+      ([:whitespace, " "] if spaced_hashes?),
       [:refers, "=>"],
-      ([:whitespace, " "] if hash34?),
+      ([:whitespace, " "] if spaced_hashes?),
       [:number, "2"],
       [:close_hash, "}"],
     ].compact
@@ -24,9 +24,9 @@ describe tokenizer(__FILE__) do
   #     [:refers, "=>"],
   #     [:open_hash, "{"],
   #     [:number, "1"],
-  #     ([:whitespace, " "] if hash34?),
+  #     ([:whitespace, " "] if spaced_hashes?),
   #     [:refers, "=>"],
-  #     ([:whitespace, " "] if hash34?),
+  #     ([:whitespace, " "] if spaced_hashes?),
   #     [:open_object, "#<"],
   #     [:object_class, "Set"],
   #     [:object_description_prefix, ":"],
@@ -63,7 +63,7 @@ describe tokenizer(__FILE__) do
       [:refers, "=>"],
       [:refers, "=>"],
       [:refers, "=>"],
-      *([[:whitespace, " "]] * (hash34? ? 8 : 2))
+      *([[:whitespace, " "]] * (spaced_hashes? ? 8 : 2))
     ]
   end
 end
