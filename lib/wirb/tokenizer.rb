@@ -58,14 +58,29 @@ module Wirb
         case @state[-1]
         when nil, :hash, :array, :enumerator, :set, :variable # default state
           case c
-          when '"'      then push_state[:string]
-          when '/'      then push_state[:regexp]
-          when '#'      then push_state[:object]
-          when /[A-Z]/  then push_state[:class,    :repeat]
-          when /[a-z]/  then push_state[:word,     :repeat]
-          when /[0-9-]/ then push_state[:number,   :repeat]
-          when '.'      then push_state[:range,    :repeat]
-          when /\=/     then push_state[:equal,    :repeat]
+          when '"'
+            push_state[:string]
+
+          when '/'
+            push_state[:regexp]
+
+          when '#'
+            push_state[:object]
+
+          when /[A-Z]/
+            push_state[:class, :repeat]
+
+          when /[a-z]/
+            push_state[:word, :repeat]
+
+          when /[0-9-]/
+            then push_state[:number, :repeat]
+
+          when '.'
+            push_state[:range, :repeat]
+
+          when /\=/
+            push_state[:equal, :repeat]
 
           when /\s/
             if get_state[:variable]
@@ -91,6 +106,7 @@ module Wirb
 
           when '>'
             pop_state[:repeat]
+
           when '('
             peek = chars[i+1..-1].join
             if peek =~ /^-?(?:Infinity|NaN|[0-9.e]+)[+-](?:Infinity|NaN|[0-9.e]+)\*?i\)/
