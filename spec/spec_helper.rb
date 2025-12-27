@@ -2,6 +2,12 @@ require 'wirb'
 require 'wirb/wp'
 require 'ruby_engine'
 
+# CONFIG
+
+RSpec.configure do |config|
+  config.expect_with(:rspec) { |c| c.syntax = :should }
+end
+
 # TOKENIZER
 
 def tokenizer(filename)

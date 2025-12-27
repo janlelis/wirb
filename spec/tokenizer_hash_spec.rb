@@ -15,7 +15,7 @@ describe tokenizer(__FILE__) do
     ].compact
   end
 
-  # TODO 3.4 symbol hash keys
+  # FIXME 3.4 symbol hash keys
   # please do check({:hallo => {1=>Set[2,3,4]}})
   #   tokens.should be_like [
   #     [:open_hash, "{"],

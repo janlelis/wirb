@@ -15,7 +15,8 @@ Gem::Specification.new do |s|
   s.metadata    = { "rubygems_mfa_required" => "true" }
   s.required_ruby_version = '>= 2.0', '< 5.0'
   s.add_dependency 'paint', '>= 0.9', '< 4.0'
-  s.add_development_dependency 'rspec', '~> 2.99'
+  s.add_development_dependency 'rspec', '~> 3.13'
+  s.add_development_dependency 'diff-lcs', '~> 1.6'
   s.add_development_dependency 'rake', '~> 13.0'
   s.add_development_dependency 'ruby_engine', '~> 2.0'
 end
