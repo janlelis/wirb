@@ -1,12 +1,10 @@
 ## WIRB Interactive Ruby [![version](https://badge.fury.io/rb/wirb.svg)](https://badge.fury.io/rb/wirb) [<img src="https://github.com/janlelis/wirb/workflows/Test/badge.svg" />](https://github.com/janlelis/wirb/actions?query=workflow%3ATest)
 
-The **WIRB** gem syntax highlights Ruby objects. Works best as your default REPL inspector (see usage section below), but does not require IRB.
+The **WIRB** gem adds syntax highlighting to inspected Ruby objects. It covers core Ruby classes/modules and most of standard library. Works best as your default REPL inspector, but also works without IRB.
 
-Supported Rubies: 3.1, 2.7, 2.6
+Supports Ruby 3.x and 4.0.
 
-Older Rubies, should work: 2.5, 2.4, 2.3, 2.2, 2.1, 2.0, rubinius
-
-Ancient Rubies (1.9, 1.8): Please use [WIRB 1.0](https://github.com/janlelis/wirb/tree/1.0.3)
+Please note that WIRB also works well for Ruby 1 and Ruby 2 - just install the latest WIRB version possible to install.
 
 ## Features
 
@@ -37,14 +35,16 @@ To activate WIRB permanently, you can add this to the `~/.irbrc` file:
     require 'wirb'
     Wirb.start
 
-Another way would be to use [Irbtools](https://irb.tools), which activate WIRB automatically.
+Another way would be to use [Irbtools](https://github.com/janlelis/irbtools), which activates WIRB automatically.
 
 ## `Kernel#wp`
 
-WIRB comes with a pretty printing utility (similar to awesome_print):
+WIRB comes with a pretty printing utility:
 
     require 'wirb/wp'
     wp some_object
+
+Other than similar tools like *pp* or *awesome_print*, it will not change the format the highlighted objects by adding whitespace, but only adds colors.
 
 ### Bundled Schemas
 
@@ -54,20 +54,15 @@ These are the bundled color schemas. You can load one with `Wirb.load_schema(:na
 * `:colorless` (only uses :bright, :underline and :inverse effect)
 * `:ultra` (by @venantius, matches the colorscheme from [Ultra](https://github.com/venantius/ultra) over in Clojure-land)
 
-### Usage with Rails
-
-If you run into problems using WIRB with Rails, try [the solution in this issue](https://github.com/janlelis/wirb/issues/12#issuecomment-249492524).
 
 ## Also See
 
-* Gem that allows you to configure views for specific objects:
-  [hirb](https://github.com/cldwalker/hirb)
 * WIRB is part of: [Irbtools](https://github.com/janlelis/irbtools)
 * More about terminal colors: [Paint](https://github.com/janlelis/paint)
 
 ## Credits
 
-Copyright (c) 2011-2022 Jan Lelis <https://janlelis.com> see COPYING for details.
+Copyright (c) 2011-2025 Jan Lelis <https://janlelis.com> see COPYING for details.
 
 First tokenizer version was based on the [wirble](https://rubygems.org/gems/wirble) gem:
 Copyright (C) 2006-2009 Paul Duncan <pabs@pablotron.org>
