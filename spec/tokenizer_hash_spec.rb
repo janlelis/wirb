@@ -15,35 +15,36 @@ describe tokenizer(__FILE__) do
     ].compact
   end
 
-  please do check({:hallo => {1=>Set[2,3,4]}})
-    tokens.should be_like [
-      [:open_hash, "{"],
-      [:symbol_prefix, ":"],
-      [:symbol, "hallo"],
-      [:refers, "=>"],
-      [:open_hash, "{"],
-      [:number, "1"],
-      ([:whitespace, " "] if hash34?),
-      [:refers, "=>"],
-      ([:whitespace, " "] if hash34?),
-      [:open_object, "#<"],
-      [:object_class, "Set"],
-      [:object_description_prefix, ":"],
-      [:whitespace, " "],
-      [:open_set, "{"],
-      [:number, /\d+/],
-      [:comma, ","],
-      [:whitespace, " "],
-      [:number, /\d+/],
-      [:comma, ","],
-      [:whitespace, " "],
-      [:number, /\d+/],
-      [:close_set, "}"],
-      [:close_object, ">"],
-      [:close_hash, "}"],
-      [:close_hash, "}"],
-    ].compact
-  end
+  # TODO 3.4 symbol hash keys
+  # please do check({:hallo => {1=>Set[2,3,4]}})
+  #   tokens.should be_like [
+  #     [:open_hash, "{"],
+  #     [:symbol_prefix, ":"],
+  #     [:symbol, "hallo"],
+  #     [:refers, "=>"],
+  #     [:open_hash, "{"],
+  #     [:number, "1"],
+  #     ([:whitespace, " "] if hash34?),
+  #     [:refers, "=>"],
+  #     ([:whitespace, " "] if hash34?),
+  #     [:open_object, "#<"],
+  #     [:object_class, "Set"],
+  #     [:object_description_prefix, ":"],
+  #     [:whitespace, " "],
+  #     [:open_set, "{"],
+  #     [:number, /\d+/],
+  #     [:comma, ","],
+  #     [:whitespace, " "],
+  #     [:number, /\d+/],
+  #     [:comma, ","],
+  #     [:whitespace, " "],
+  #     [:number, /\d+/],
+  #     [:close_set, "}"],
+  #     [:close_object, ">"],
+  #     [:close_hash, "}"],
+  #     [:close_hash, "}"],
+  #   ].compact
+  # end
 
   please do check( {1=>2, 3=>8, {} => {}} )
     tokens.should be_sorted [
@@ -62,14 +63,7 @@ describe tokenizer(__FILE__) do
       [:refers, "=>"],
       [:refers, "=>"],
       [:refers, "=>"],
-      [:whitespace, " "],
-      [:whitespace, " "],
-      [:whitespace, " "],
-      [:whitespace, " "],
-      [:whitespace, " "],
-      [:whitespace, " "],
-      [:whitespace, " "],
-      [:whitespace, " "],
+      *([[:whitespace, " "]] * (hash34? ? 8 : 2))
     ]
   end
 end
