@@ -1,6 +1,6 @@
 # Change Log
 
-## 3.0 (unreleased)
+## 3.0.0
 * Require Ruby 3
 * Relax Ruby version requirement to allow Ruby 4.0
 * Support Ruby 3.4 hash inspects
