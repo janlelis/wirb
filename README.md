@@ -9,9 +9,8 @@ Please note that WIRB also works well for Ruby 1 and Ruby 2 - just install the l
 ## Features
 
 * Syntax highlighting for inspected Ruby objects
-* No monkey patches anywhere
 * Support for generic objects, especially enumerators, and nested generic objects
-* Supports common standard library objects, like `Set`
+* Supports common standard library objects
 * Color schemas customizable via YAML
 
 ## Install

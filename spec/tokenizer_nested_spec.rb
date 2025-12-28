@@ -4,6 +4,20 @@ describe tokenizer(__FILE__) do
   after :each do check_value end
 
   please do check [2,'sdf',:hallosfe, /34jf3/, [[[[]]]], {{5=> "4"} => {Set.new => Object.new}}]
+    set = concise_set? ? [
+      [:class, "Set"],
+      [:open_array, "["],
+      [:close_array, "]"],
+    ] : [
+      [:open_object, "#<"],
+      [:object_class, "Set"],
+      [:object_description_prefix, ":"],
+      [:whitespace, " "],
+      [:open_set, "{"],
+      [:close_set, "}"],
+      [:close_object, ">"],
+    ]
+
     tokens.should be_like [
       [:open_array, "["],
       [:number, "2"],
@@ -47,13 +61,7 @@ describe tokenizer(__FILE__) do
       [:refers, "=>"],
       ([:whitespace, " "] if spaced_hashes?),
       [:open_hash, "{"],
-      [:open_object, "#<"],
-      [:object_class, "Set"],
-      [:object_description_prefix, ":"],
-      [:whitespace, " "],
-      [:open_set, "{"],
-      [:close_set, "}"],
-      [:close_object, ">"],
+      *set,
       ([:whitespace, " "] if spaced_hashes?),
       [:refers, "=>"],
       ([:whitespace, " "] if spaced_hashes?),

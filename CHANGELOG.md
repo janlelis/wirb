@@ -4,7 +4,7 @@
 * Require Ruby 3
 * Relax Ruby version requirement to allow Ruby 4.0
 * Support Ruby 3.4 hash inspects
-* Support Ruby 4.0 changes (TODO)
+* Support Ruby 4.0 concise set syntax
 
 ## 2.2.2
 * Relax Ruby version requirement to allow 3.0
